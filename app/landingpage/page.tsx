@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Page() {
   return (
-    <main className="flex flex-col items-center justify-between lg:px-24 px-0">
+    <main className="flex flex-col items-center justify-between md:px-24 px-0">
       <div
         style={{ maxWidth: `500px` }}
         className="overflow-hidden w-full shadow-2xl"
@@ -15,7 +15,7 @@ export default function Page() {
           }}
         >
           <div className="bg-black opacity-25 absolute w-full h-full"></div>
-          <div className="lg:px-10 px-6 lg:py-8 py-6 space-y-2 relative">
+          <div className="md:px-10 px-6 md:py-8 py-6 space-y-2 relative">
             <h1 className="font-bold text-3xl text-white">
               Pesan Dadakan <br />
               Mulai dari 5 Porsi <br />
@@ -36,7 +36,7 @@ export default function Page() {
           }}
         >
           <section id="about-us" className="relative">
-            <div className="flex flex-col lg:px-10 px-0 py-8 space-y-2 relative">
+            <div className="flex flex-col md:px-10 px-0 py-8 space-y-2 relative">
               <div className="flex justify-center">
                 <Image
                   src="/logo.png"
@@ -49,9 +49,9 @@ export default function Page() {
                   priority
                 />
               </div>
-              <div className="flex justify-center pt-4 lg:px-12 px-4">
+              <div className="flex justify-center pt-4 md:px-0 px-4">
                 <div
-                  className="flex items-center justify-between rounded-full px-8 py-3 w-full"
+                  className="flex items-center justify-between rounded-full px-8 py-2.5 w-full"
                   style={{ backgroundColor: `#88171d` }}
                 >
                   <div className="flex flex-col w-full space-y-1 text-white items-center justify-center">
@@ -73,7 +73,7 @@ export default function Page() {
                     </div>
                     <h3
                       style={{ fontSize: `0.5rem` }}
-                      className="flex text-center md:h-fit h-8 items-center"
+                      className="flex text-center md:h-6 h-6 items-center"
                     >
                       Halal
                     </h3>
@@ -97,7 +97,7 @@ export default function Page() {
                     </div>
                     <h3
                       style={{ fontSize: `0.5rem` }}
-                      className="flex text-center md:h-fit h-8 items-center"
+                      className="flex text-center md:h-6 h-6 items-center"
                     >
                       Tim Profesional
                     </h3>
@@ -121,7 +121,7 @@ export default function Page() {
                     </div>
                     <h3
                       style={{ fontSize: `0.5rem` }}
-                      className="flex text-center md:h-fit h-8 items-center"
+                      className="flex text-center md:h-6 h-6 items-center"
                     >
                       Admin Fast Response
                     </h3>
@@ -145,7 +145,7 @@ export default function Page() {
                     </div>
                     <h3
                       style={{ fontSize: `0.5rem` }}
-                      className="flex text-center md:h-fit h-8 items-center"
+                      className="flex text-center md:h-6 h-6 items-center"
                     >
                       Baik Bersih Cantik
                     </h3>
@@ -158,8 +158,39 @@ export default function Page() {
               >
                 Cari konsumsi dan catering untuk acara dadakan!
               </h4>
+
+              <div className="flex justify-between pt-2">
+                <div
+                  className="h-52 w-52 bg-contain bg-left bg-no-repeat"
+                  style={{
+                    backgroundImage: `url(/bg/bg-about-us-left.png)`,
+                  }}
+                ></div>
+                <div
+                  className="h-52 w-52 bg-contain bg-right bg-no-repeat"
+                  style={{
+                    backgroundImage: `url(/bg/bg-about-us-right.png)`,
+                  }}
+                ></div>
+              </div>
+
+              <h5
+                className="text-2xl text-center pt-8"
+                style={{ color: `#88171d` }}
+              >
+                OK! <span className="font-bold">Humani Catering Service</span>
+                <br />
+                selalu siap mari merapat!
+                <br />
+                2 Jam langsung kirim.
+                <br />
+                <span className="font-bold">24 Jam Delivery Service</span>
+                <br />
+                Ready ribuan porsi setiap harinya
+              </h5>
             </div>
           </section>
+          <section></section>
         </div>
       </div>
     </main>
