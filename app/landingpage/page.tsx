@@ -30,17 +30,17 @@ export default function Page() {
           </div>
         </section>
         <div
-          className="relative -top-64 -mb-64 bg-cover bg-no-repeat"
+          className="relative -top-64 -mb-64 bg-contain bg-no-repeat"
           style={{
             backgroundImage: `url(/bg/bg-circle-top.png)`,
           }}
         >
           <section id="about-us" className="relative">
-            <div className="flex flex-col md:px-10 px-0 py-8 space-y-2 relative">
+            <div className="flex flex-col md:px-10 px-0 pt-8 space-y-2 relative">
               <div className="flex justify-center">
                 <Image
                   src="/logo.png"
-                  alt="Humani Food"
+                  alt="Humani Food Logo"
                   style={{
                     filter: `invert(85%) sepia(30%) saturate(3460%) hue-rotate(321deg) brightness(98%) contrast(100%)`,
                   }}
@@ -152,11 +152,13 @@ export default function Page() {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="bg-white md:px-10 px-2.5 py-2">
               <h4
-                className="text-3xl text-center font-bold pt-4 px-2"
+                className="md:text-3xl text-2xl text-center font-bold pt-4 px-2"
                 style={{ color: `#88171d` }}
               >
-                Cari konsumsi dan catering untuk acara dadakan!
+                Cari konsumsi dan catering <br /> untuk acara dadakan!
               </h4>
 
               <div className="flex justify-between pt-2">
@@ -173,9 +175,8 @@ export default function Page() {
                   }}
                 ></div>
               </div>
-
               <h5
-                className="text-2xl text-center pt-8"
+                className="text-2xl text-center py-8"
                 style={{ color: `#88171d` }}
               >
                 OK! <span className="font-bold">Humani Catering Service</span>
@@ -190,7 +191,47 @@ export default function Page() {
               </h5>
             </div>
           </section>
-          <section></section>
+          <section
+            id="footer"
+            className="flex space-x-12 px-4 py-6"
+            style={{ backgroundColor: `#88171d` }}
+          >
+            <div className="">
+              <Image
+                src="/logo.png"
+                alt="Humani Food Logo"
+                width={100}
+                height={24}
+                priority
+              />
+            </div>
+            <div className="text-white space-y-6">
+              <div id="workshop">
+                <h4 className="text-lg font-bold">Workshop</h4>
+                <div>
+                  Jalan Anggrek No. 57C <br />
+                  Kel. Curug, Kec. Cimanggis <br />
+                  Kota Depok - Jawa Barat
+                </div>
+              </div>
+              <div id="customer-care">
+                <h4 className="text-lg font-bold">Customer Care</h4>
+                <div>
+                  Admin Official - 0859 7317 3321 <br />
+                  Email - xxxx@sample.com
+                </div>
+              </div>
+              <div id="service-hour">
+                <h4 className="text-lg font-bold">Service Hour</h4>
+                <div>
+                  Senin - Minggu <br />
+                  Fast Response Chat <br />
+                  07.00 - 22.00 <br />
+                  Pengiriman 24 Jam
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </main>
