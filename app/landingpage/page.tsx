@@ -155,7 +155,7 @@ export default function Page() {
             </div>
             <div className="bg-white md:px-10 px-2.5 py-2">
               <h4
-                className="md:text-3xl text-2xl text-center font-bold pt-4 px-2"
+                className="md:text-3xl text-2xl text-center font-bold md:pt-8 md:pb-6 pt-4 px-2"
                 style={{ color: `#88171d` }}
               >
                 Cari konsumsi dan catering <br /> untuk acara dadakan!
@@ -194,11 +194,11 @@ export default function Page() {
           <section id="service" className="bg-white">
             <div className="relative top-1">
               <Image
-                src="/bg/wave-top.png"
+                src="/bg/wave.png"
                 alt="Wave Background"
                 style={{ width: `100%` }}
-                width={200}
-                height={80}
+                width={100}
+                height={50}
                 priority
               />
             </div>
@@ -216,9 +216,27 @@ export default function Page() {
               />
             </div>
 
-            <div className="relative rotate-180 -top-1">
+            <div className="relative rotate-180 -top-1 z-20">
               <Image
-                src="/bg/wave-top.png"
+                src="/bg/wave.png"
+                alt="Wave Background"
+                style={{ width: `100%` }}
+                width={200}
+                height={80}
+                priority
+              />
+            </div>
+            <div
+              className="md:h-80 h-64 w-full bg-cover bg-no-repeat relative md:-top-10 -top-8 md:-mb-10 -mb-8 z-10"
+              style={{
+                backgroundImage: `url(/bg/bg-menu-service.jpg)`,
+              }}
+            >
+              <div className="bg-black opacity-25 absolute w-full h-full"></div>
+            </div>
+            <div className="relative md:-top-9 -top-7 md:-mb-10 -mb-8 z-20">
+              <Image
+                src="/bg/wave.png"
                 alt="Wave Background"
                 style={{ width: `100%` }}
                 width={200}
@@ -227,6 +245,132 @@ export default function Page() {
               />
             </div>
           </section>
+          <section
+            id="why-us"
+            className="text-white text-2xl font-bold pb-36"
+            style={{ backgroundColor: `#88171d` }}
+          >
+            <h2 className="text-center py-8">Kenapa Harus</h2>
+            <div className="flex justify-center pb-12">
+              <Image
+                src="/logo.png"
+                alt="Humani Food Logo"
+                width={150}
+                height={50}
+                priority
+              />
+            </div>
+            <div className="flex flex-col space-y-8">
+              <div className="text-center space-y-2">
+                <div className="flex justify-center">
+                  <h3
+                    className="bg-white px-6 py-1 rounded-full"
+                    style={{ color: `#88171d` }}
+                  >
+                    10+ Tahun
+                  </h3>
+                </div>
+                <h4 className="text-lg">melayani jabodetabek</h4>
+              </div>
+              <div className="text-center space-y-2">
+                <div className="flex justify-center">
+                  <h3
+                    className="bg-white px-6 py-1 rounded-full"
+                    style={{ color: `#88171d` }}
+                  >
+                    25.000
+                  </h3>
+                </div>
+                <h4 className="text-lg">acara telah kami dampingi</h4>
+              </div>
+              <div className="text-center space-y-2">
+                <div className="flex justify-center">
+                  <h3
+                    className="bg-white px-6 py-1 rounded-full"
+                    style={{ color: `#88171d` }}
+                  >
+                    +2.000.000
+                  </h3>
+                </div>
+                <h4 className="text-lg">
+                  porsi telah dinikmati Sahabat <br />
+                  Humani Catering Service
+                </h4>
+              </div>
+            </div>
+
+            <div className="flex justify-center  pt-12">
+              <div className="flex w-1/2 text-center justify-between">
+                <div>
+                  <svg
+                    width="52"
+                    height="52"
+                    viewBox="0 0 769 1024"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="m673 384l96 103l-135 42l32 137l-127-29l102 325q0 33-28 52l-52-52l-62 62q-22-5-36-22.5T449 962l-65-206l-64 206q0 22-14 39.5t-36 22.5l-62-62l-52 52q-28-19-28-52l102-325l-127 29l32-137L0 487l96-103L0 281l135-41l-32-137l137 32L281 0l103 96L487 0l42 135l137-32l-32 137l135 41zM384.5 192q-79.5 0-136 56.5t-56.5 136t56.5 136t136 56.5t136-56.5t56.5-136t-56.5-136t-136-56.5"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <svg
+                    width="52"
+                    height="52"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M7 5v10c0 1.11-.89 2-2 2H4c-.55 0-1-.45-1-1v-3H1v3c0 1.66 1.34 3 3 3h1c2.21 0 4-1.79 4-4V5m14 8.38l-1.23-1.23A3.905 3.905 0 0 0 19 11h-2v2h2c.5 0 1 .2 1.35.56l.35.35l-1.2.69c-.46.26-.97.4-1.5.4h-1c-.56 0-1-.44-1-1V6h-2v3.81l-.62-.69C12.7 8.37 11.6 8 10.59 8H10v2h.59c.64 0 1.25.25 1.7.71l1.71 1.7V14c0 1.12-.88 2-2 2h-2v2h2c1.37 0 2.5-.7 3.17-1.76A2.5 2.5 0 0 0 17 17h1c.88 0 1.74-.23 2.5-.67l2.5-1.44Z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <svg
+                    width="52"
+                    height="52"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M4.75 3A2.75 2.75 0 0 0 2 5.75V11a5 5 0 0 1 8 6v1h9.25A2.75 2.75 0 0 0 22 15.25v-9.5A2.75 2.75 0 0 0 19.25 3zm2 4h10.5a.75.75 0 0 1 0 1.5H6.75a.75.75 0 0 1 0-1.5M12 12.75a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1-.75-.75M6 10a4 4 0 1 0 0 8.001A4 4 0 0 0 6 10m3 8.001c-.835.628-1.874 1-3 1a4.978 4.978 0 0 1-3-.998v3.246c0 .57.605.92 1.09.669l.09-.055L6 20.592l1.82 1.272a.75.75 0 0 0 1.172-.51L9 21.249z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </section>
+          <div
+            className="relative bg-cover -top-28 -mb-28 bg-no-repeat"
+            style={{
+              backgroundImage: `url(/bg/bg-circle-top.png)`,
+            }}
+          >
+            <section id="artis">
+              <div className="flex justify-center pt-8">
+                <Image
+                  src="/logo.png"
+                  alt="Humani Food Logo"
+                  style={{
+                    filter: `invert(85%) sepia(30%) saturate(3460%) hue-rotate(321deg) brightness(98%) contrast(100%)`,
+                  }}
+                  width={100}
+                  height={24}
+                  priority
+                />
+              </div>
+              <h2
+                className="text-3xl font-bold text-center py-8"
+                style={{ color: `#88171d` }}
+              >
+                Catering Favorit <br /> Para Artis
+              </h2>
+            </section>
+          </div>
+
           <section
             id="footer"
             className="flex space-x-12 px-4 py-6"
