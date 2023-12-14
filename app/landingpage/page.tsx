@@ -176,7 +176,7 @@ export default function Page() {
                 ></div>
               </div>
               <h5
-                className="text-2xl text-center py-8"
+                className="md:text-2xl text-xl text-center py-8"
                 style={{ color: `#88171d` }}
               >
                 OK! <span className="font-bold">Humani Catering Service</span>
@@ -189,6 +189,42 @@ export default function Page() {
                 <br />
                 Ready ribuan porsi setiap harinya
               </h5>
+            </div>
+          </section>
+          <section id="service" className="bg-white">
+            <div className="relative top-1">
+              <Image
+                src="/bg/wave-top.png"
+                alt="Wave Background"
+                style={{ width: `100%` }}
+                width={200}
+                height={80}
+                priority
+              />
+            </div>
+
+            <div
+              className="flex justify-center py-4"
+              style={{ backgroundColor: `#88171d` }}
+            >
+              <Image
+                src="/bg/24-jam-service.png"
+                alt="24 Jam Service"
+                width={200}
+                height={80}
+                priority
+              />
+            </div>
+
+            <div className="relative rotate-180 -top-1">
+              <Image
+                src="/bg/wave-top.png"
+                alt="Wave Background"
+                style={{ width: `100%` }}
+                width={200}
+                height={80}
+                priority
+              />
             </div>
           </section>
           <section
