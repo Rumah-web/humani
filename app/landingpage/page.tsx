@@ -1,7 +1,15 @@
+'use client'
+
 import Image from "next/image";
+import { motion } from "framer-motion"
 
 export default function Page() {
   const ourCustomer = [1,2,3,4,5,6,7,8,9]
+  const transitionValues = {
+    duration: 0.8,
+    yoyo: Infinity,
+    ease: "easeOut"
+  };
   
 
   return (
@@ -371,24 +379,24 @@ export default function Page() {
             </div>
             <div className="flex flex-col justify-center pt-6 space-y-2 items-center">
               {ourCustomer.map((customer, i) => {
-                return <>
+                return <div key={i} className="w-96 md:px-0 px-4">
                 <Image
                   src={`/client/client-${customer}.png`}
                   alt="Humani Food Customer"
                   width={100}
                   height={24}
                   priority
-                  style={{ width: `75%` }}
-                /></>
+                  style={{ width: `100%` }}
+                /></div>
               })}
             </div>
-            <h2 className="text-3xl font-bold text-center py-8">
+            <h2 className="text-3xl font-bold text-center pt-8">
               Yang suka cari catering dadakan mari kemari merapat
             </h2>
           </section>
           <section id="delivery">
-              <div className="flex space-x-4 px-8 py-4 items-center justify-between bg-[#88171d]">
-                <h2 className="text-white uppercase text-3xl"><b>2 jam </b>siap kirim <br /> <b>dengan selamat</b></h2>
+              <div className="flex space-x-4 md:px-8 px-4 py-4 items-center justify-between bg-[#88171d]">
+                <h2 className="text-white uppercase md:text-3xl text-2xl"><b>2 jam </b>siap kirim <br /> <b>dengan selamat</b></h2>
                 <Image
                   src="/icon/delivery.png"
                   alt="24 Jam siap kirim dengan selamat"
@@ -401,7 +409,37 @@ export default function Page() {
               <h2 className="text-xl">
                 Dapatkan Potongan Ongkir <br /> mulai dari 50rb* Hari ini
               </h2>
-              <div>Icon Arrow</div>
+              <div className="flex justify-between md:px-24 px-16">
+                <div className="animate-bounce">
+                  <Image
+                    src="/icon/arrow-cs.png"
+                    alt="Humani Food CS"
+                    className="-rotate-45"
+                    width={60}
+                    height={20}
+                    priority
+                  />
+                </div>
+                <div className="animate-bounce">
+                  <Image
+                    src="/icon/arrow-cs.png"
+                    alt="Humani Food CS"
+                    width={60}
+                    height={20}
+                    priority
+                  />
+                </div>
+                <div className="animate-bounce">
+                  <Image
+                    src="/icon/arrow-cs.png"
+                    alt="Humani Food CS"
+                    className="rotate-45"
+                    width={60}
+                    height={20}
+                    priority
+                  />
+                </div>
+              </div>
               <div className="flex justify-center">
                 <div className="md:w-2/3 w-4/5 border border-[#88171d] py-1.5 px-1.5 rounded-full">
                   <div className="flex pl-6 pr-4 py-2.5 rounded-full items-center text-white bg-gradient-to-r from-[#88171d] to-[#d83831]">
