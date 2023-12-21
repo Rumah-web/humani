@@ -1,7 +1,8 @@
 'use client'
 
 import Image from "next/image";
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
+import Carosel from "../components/slider/carosel";
 
 export default function Page() {
   const ourCustomer = [1,2,3,4,5,6,7,8,9]
@@ -10,6 +11,12 @@ export default function Page() {
     yoyo: Infinity,
     ease: "easeOut"
   };
+
+  const images = [
+    `/testimoni/testimoni-1.jpeg`,
+    `/testimoni/testimoni-2.jpeg`,
+    `/testimoni/testimoni-3.jpeg`,
+  ];
   
 
   return (
@@ -367,6 +374,9 @@ export default function Page() {
               </h2>
             </section>
           </div>
+          <section id="slider-artis">
+            <Carosel images={images} />
+          </section>
           <section id="our-customer" className="bg-white px-4 py-6 text-[#88171d]">
             <h2 className="text-3xl font-bold text-center py-8">
               Tidak hanya jadi <br />
