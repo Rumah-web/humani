@@ -12,10 +12,24 @@ export default function Page() {
     ease: "easeOut"
   };
 
-  const images = [
+  const testimoni = [
     `/testimoni/testimoni-1.jpeg`,
     `/testimoni/testimoni-2.jpeg`,
     `/testimoni/testimoni-3.jpeg`,
+  ];
+
+  const menufavorit = [
+    `/menu/menu-1.jpeg`,
+    `/menu/menu-2.jpeg`,
+    `/menu/menu-3.jpeg`,
+    `/menu/menu-4.jpeg`,
+    `/menu/menu-5.jpeg`,
+  ];
+
+  const review = [
+    `/review/review-1.jpeg`,
+    `/review/review-2.jpeg`,
+    `/review/review-3.png`,
   ];
   
 
@@ -375,7 +389,23 @@ export default function Page() {
             </section>
           </div>
           <section id="slider-artis">
-            <Carosel images={images} />
+            <Carosel images={testimoni} />
+            <h2 className="text-2xl text-white bg-[#88171d] text-center font-bold py-6">
+              Kalau Nikmat Emang <br />
+              Ga Bisa Bohong !
+            </h2>
+          </section>
+          <section id="menu-favorit">
+            <div className="py-6 text-center relative" style={{backgroundImage: `url(/bg/bg-menu-service.jpg)`}}>
+              <div className="bg-black opacity-50 absolute w-full h-full top-0"></div>
+              <div className="relative">
+                <h2 className="text-3xl font-bold text-white">
+                  Berbagai Pilihan <br />
+                  Menu Favorit
+                </h2>
+              </div>
+            </div>
+            <Carosel images={menufavorit} />
           </section>
           <section id="our-customer" className="bg-white px-4 py-6 text-[#88171d]">
             <h2 className="text-3xl font-bold text-center py-8">
@@ -462,7 +492,9 @@ export default function Page() {
               </div>
             </div>
           </section>
-
+          <section id="review" className="bg-[#88171d] mt-4">
+            <Carosel images={review} />
+          </section>
           <section
             id="footer"
             className="flex space-x-12 px-4 py-6 bg-[#88171d]"
