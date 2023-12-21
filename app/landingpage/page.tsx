@@ -395,7 +395,7 @@ export default function Page() {
               Ga Bisa Bohong !
             </h2>
           </section>
-          <section id="menu-favorit">
+          <section id="menu-favorit" className="bg-[#88171d]">
             <div className="py-6 text-center relative" style={{backgroundImage: `url(/bg/bg-menu-service.jpg)`}}>
               <div className="bg-black opacity-50 absolute w-full h-full top-0"></div>
               <div className="relative">
@@ -405,7 +405,7 @@ export default function Page() {
                 </h2>
               </div>
             </div>
-            <Carosel images={menufavorit} />
+            <Carosel images={menufavorit} size="contain" />
           </section>
           <section id="our-customer" className="bg-white px-4 py-6 text-[#88171d]">
             <h2 className="text-3xl font-bold text-center py-8">

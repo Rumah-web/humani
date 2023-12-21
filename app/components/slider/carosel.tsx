@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import "./carosel.css"
 import { url } from "inspector";
 
-const Carosel = ({images}: any) => {
+const Carosel = ({images, size = 'cover'}: any) => {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState(null as any);
@@ -60,7 +60,7 @@ const Carosel = ({images}: any) => {
                 <AnimatePresence>
                 <motion.div
                     key={currentIndex}
-                    style={{backgroundImage: `url(${images[currentIndex]})`}}
+                    style={{backgroundImage: `url(${images[currentIndex]})`, backgroundSize: size}}
                     className="img"
                     initial={direction === "right" ? "hiddenRight" : "hiddenLeft"}
                     animate="visible"
