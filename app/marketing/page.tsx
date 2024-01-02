@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion"
 import Carosel from "../components/slider/carosel";
 
-export default function Page() {
+export default function Iklan() {
   const ourCustomer = [1,2,3,4,5,6,7,8,9]
   const transitionValues = {
     duration: 0.8,
@@ -321,43 +321,31 @@ export default function Page() {
             <div className="flex justify-center  pt-12">
               <div className="flex w-1/2 text-center justify-between">
                 <div>
-                  <svg
-                    width="52"
-                    height="52"
-                    viewBox="0 0 769 1024"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="m673 384l96 103l-135 42l32 137l-127-29l102 325q0 33-28 52l-52-52l-62 62q-22-5-36-22.5T449 962l-65-206l-64 206q0 22-14 39.5t-36 22.5l-62-62l-52 52q-28-19-28-52l102-325l-127 29l32-137L0 487l96-103L0 281l135-41l-32-137l137 32L281 0l103 96L487 0l42 135l137-32l-32 137l135 41zM384.5 192q-79.5 0-136 56.5t-56.5 136t56.5 136t136 56.5t136-56.5t56.5-136t-56.5-136t-136-56.5"
-                    />
-                  </svg>
+                <Image
+                    src="/icon/iso.png"
+                    alt="Humani Food ISO 22000"
+                    width={70}
+                    height={24}
+                    priority
+                  />
                 </div>
                 <div>
-                  <svg
-                    width="52"
-                    height="52"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M7 5v10c0 1.11-.89 2-2 2H4c-.55 0-1-.45-1-1v-3H1v3c0 1.66 1.34 3 3 3h1c2.21 0 4-1.79 4-4V5m14 8.38l-1.23-1.23A3.905 3.905 0 0 0 19 11h-2v2h2c.5 0 1 .2 1.35.56l.35.35l-1.2.69c-.46.26-.97.4-1.5.4h-1c-.56 0-1-.44-1-1V6h-2v3.81l-.62-.69C12.7 8.37 11.6 8 10.59 8H10v2h.59c.64 0 1.25.25 1.7.71l1.71 1.7V14c0 1.12-.88 2-2 2h-2v2h2c1.37 0 2.5-.7 3.17-1.76A2.5 2.5 0 0 0 17 17h1c.88 0 1.74-.23 2.5-.67l2.5-1.44Z"
-                    />
-                  </svg>
+                <Image
+                    src="/icon/halal.png"
+                    alt="Humani Food Sertifikat HALAL"
+                    width={70}
+                    height={24}
+                    priority
+                  />
                 </div>
                 <div>
-                  <svg
-                    width="52"
-                    height="52"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M4.75 3A2.75 2.75 0 0 0 2 5.75V11a5 5 0 0 1 8 6v1h9.25A2.75 2.75 0 0 0 22 15.25v-9.5A2.75 2.75 0 0 0 19.25 3zm2 4h10.5a.75.75 0 0 1 0 1.5H6.75a.75.75 0 0 1 0-1.5M12 12.75a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1-.75-.75M6 10a4 4 0 1 0 0 8.001A4 4 0 0 0 6 10m3 8.001c-.835.628-1.874 1-3 1a4.978 4.978 0 0 1-3-.998v3.246c0 .57.605.92 1.09.669l.09-.055L6 20.592l1.82 1.272a.75.75 0 0 0 1.172-.51L9 21.249z"
-                    />
-                  </svg>
+                <Image
+                    src="/icon/slhs.png"
+                    alt="Humani Food Sertifikat SLHS"
+                    width={70}
+                    height={24}
+                    priority
+                  />
                 </div>
               </div>
             </div>
