@@ -120,13 +120,34 @@ export default function Home() {
               <div className='relative'>
                 <h2 className='text-white md:text-4xl text-2xl text-center mt-12 font-bold'>Komitmen Kami</h2>
               </div>
-              <div className='z-10'>
+              <div className='z-10 flex justify-center'>
                 <div
-                      className="border border-white flex items-center justify-between rounded-full px-8 py-2.5 w-full bg-[#e7e8ea] my-4"
+                      className="border border-white flex items-center justify-between rounded-full px-8 py-2.5 w-4/5 bg-[#e7e8ea] my-4"
                     >
-                      <div className="flex flex-col w-full space-y-1 text-white items-center justify-center">
+                      <div className="flex flex-col w-full space-y-3 text-white items-center justify-center">
                         <div
-                          className="flex bg-white rounded-full h-9 w-9 items-center justify-center text-[#88171d]"
+                          className="flex bg-[#88171d] rounded-full h-9 w-9 items-center justify-center text-white"
+                        >
+                          <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                                  <path stroke-linejoin="round" stroke-miterlimit="1.5" d="M8 19a2 2 0 1 0 0-4a2 2 0 0 0 0 4m10 0a2 2 0 1 0 0-4a2 2 0 0 0 0 4"/>
+                                  <path d="M10.05 17H15V6.6a.6.6 0 0 0-.6-.6H1m4.65 11H3.6a.6.6 0 0 1-.6-.6v-4.9"/>
+                                  <path stroke-linejoin="round" d="M2 9h4"/>
+                                  <path d="M15 9h5.61a.6.6 0 0 1 .548.356l1.79 4.028a.6.6 0 0 1 .052.243V16.4a.6.6 0 0 1-.6.6h-1.9M15 17h1"/>
+                              </g>
+                          </svg>
+                        </div>
+                        <h3
+                          style={{ fontSize: `0.8rem` }}
+                          className="flex text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none"
+                        >
+                          Layanan 1,5 Jam <br />
+                          (SatSet Service)
+                        </h3>
+                      </div>
+                      <div className="flex flex-col w-full space-y-3 text-white items-center justify-center">
+                        <div
+                          className="flex bg-[#88171d] rounded-full h-9 w-9 items-center justify-center text-white"
                         >
                           <svg
                             width="20"
@@ -141,38 +162,15 @@ export default function Home() {
                           </svg>
                         </div>
                         <h3
-                          style={{ fontSize: `0.5rem` }}
-                          className="flex text-center md:h-6 h-6 items-center"
+                          style={{ fontSize: `0.8rem` }}
+                          className="flex text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none"
                         >
-                          Tim Profesional
+                          Tim Berpengalaman <br /> (Super Team)
                         </h3>
                       </div>
-                      <div className="flex flex-col w-full space-y-1 text-white items-center justify-center">
+                      <div className="flex flex-col w-full space-y-3 text-white items-center justify-center">
                         <div
-                          className="flex bg-white rounded-full h-9 w-9 items-center justify-center text-[#88171d]"
-                        >
-                          <svg
-                            width="20"
-                            height="20"
-                            viewBox="0 0 28 28"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="m12.167 17.802l-.006-.014a7.798 7.798 0 0 1-.36-.094l-.009-.003A7.985 7.985 0 0 1 8.708 16a8 8 0 1 1 13.257-6.75c.039.413-.3.75-.715.75c-.414 0-.745-.337-.793-.749A6.5 6.5 0 1 0 11.496 16l.04.017c.2.082.406.154.616.217A2 2 0 0 1 16 17a2 2 0 0 1-3.833.802m-.986 1.272a9.514 9.514 0 0 1-4.53-3.054A3 3 0 0 0 4 19v.715C4 23.433 8.21 26 14 26s10-2.708 10-6.285V19a3 3 0 0 0-3-3h-3.645a3.5 3.5 0 0 1-6.174 3.074M19 10c0-1.512-.67-2.867-1.731-3.784a5 5 0 1 0-5.624 8.195A3.486 3.486 0 0 1 14 13.5a3.49 3.49 0 0 1 2.356.911A5 5 0 0 0 19 10"
-                            />
-                          </svg>
-                        </div>
-                        <h3
-                          style={{ fontSize: `0.5rem` }}
-                          className="flex text-center md:h-6 h-6 items-center"
-                        >
-                          Admin Fast Response
-                        </h3>
-                      </div>
-                      <div className="flex flex-col w-full space-y-1 text-white items-center justify-center">
-                        <div
-                          className="flex bg-white rounded-full h-9 w-9 items-center justify-center text-[#88171d]"
+                          className="flex bg-[#88171d] rounded-full h-9 w-9 items-center justify-center text-white"
                         >
                           <svg
                             width="20"
@@ -187,13 +185,37 @@ export default function Home() {
                           </svg>
                         </div>
                         <h3
-                          style={{ fontSize: `0.5rem` }}
-                          className="flex text-center md:h-6 h-6 items-center"
+                          style={{ fontSize: `0.8rem` }}
+                          className="flex text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none"
                         >
-                          Baik Bersih Cantik
+                          Asik Resik Ciamik <br />
+                          Cantik dan Epik
                         </h3>
                       </div>
-                      <div className="flex flex-col w-full space-y-1 text-white items-center justify-center">
+                      <div className="flex flex-col w-full space-y-3 text-white items-center justify-center">
+                        <div
+                          className="flex bg-[#88171d] rounded-full h-9 w-9 items-center justify-center text-white"
+                        >
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 28 28"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="m12.167 17.802l-.006-.014a7.798 7.798 0 0 1-.36-.094l-.009-.003A7.985 7.985 0 0 1 8.708 16a8 8 0 1 1 13.257-6.75c.039.413-.3.75-.715.75c-.414 0-.745-.337-.793-.749A6.5 6.5 0 1 0 11.496 16l.04.017c.2.082.406.154.616.217A2 2 0 0 1 16 17a2 2 0 0 1-3.833.802m-.986 1.272a9.514 9.514 0 0 1-4.53-3.054A3 3 0 0 0 4 19v.715C4 23.433 8.21 26 14 26s10-2.708 10-6.285V19a3 3 0 0 0-3-3h-3.645a3.5 3.5 0 0 1-6.174 3.074M19 10c0-1.512-.67-2.867-1.731-3.784a5 5 0 1 0-5.624 8.195A3.486 3.486 0 0 1 14 13.5a3.49 3.49 0 0 1 2.356.911A5 5 0 0 0 19 10"
+                            />
+                          </svg>
+                        </div>
+                        <h3
+                          style={{ fontSize: `0.8rem` }}
+                          className="flex text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none"
+                        >
+                          Responsive <br /> Catering Consultant
+                        </h3>
+                      </div>
+                      <div className="flex flex-col w-full space-y-3 text-white items-center justify-center">
                         <div
                           className="flex bg-[#88171d] rounded-full h-9 w-9 items-center justify-center text-white"
                         >
@@ -211,9 +233,9 @@ export default function Home() {
                         </div>
                         <h3
                           style={{ fontSize: `0.8rem` }}
-                          className="flex text-center md:h-6 h-6 items-center font-bold text-[#88171d]"
+                          className="flex text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none"
                         >
-                          Segar, Baik dan Halal
+                          Segar, Baik dan <br /> Halal
                         </h3>
                       </div>
                     </div>
