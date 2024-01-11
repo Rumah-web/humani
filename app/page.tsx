@@ -13,6 +13,39 @@ export default function Home() {
 
   const ourCustomer = [1,2,3,4,5,6,7,8]
 
+  const menus = [
+    {
+      title: 'Nasi Box',
+      description: 'Dikemas nuansa klasik cantik, dan hangat yang cocok untuk acara keluarga dan corporate.',
+      imagePath: null
+    },
+    {
+      title: 'Gift Box',
+      description: 'Dikemas nuansa klasik cantik, dan hangat yang cocok untuk acara keluarga dan corporate.',
+      imagePath: null
+    },
+    {
+      title: 'Nasi Bebek',
+      description: 'Dikemas nuansa klasik cantik, dan hangat yang cocok untuk acara keluarga dan corporate.',
+      imagePath: null
+    },
+    {
+      title: 'Hantaran',
+      description: 'Dikemas nuansa klasik cantik, dan hangat yang cocok untuk acara keluarga dan corporate.',
+      imagePath: null
+    },
+    {
+      title: 'Tumpeng Mini',
+      description: 'Dikemas nuansa klasik cantik, dan hangat yang cocok untuk acara keluarga dan corporate.',
+      imagePath: null
+    },
+    {
+      title: 'Snack Box',
+      description: 'Dikemas nuansa klasik cantik, dan hangat yang cocok untuk acara keluarga dan corporate.',
+      imagePath: null
+    }
+  ]
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <section id="wellcome" className='w-full h-screen flex flex-col bg-no-repeat bg-right-bottom 
@@ -242,6 +275,26 @@ export default function Home() {
                   </div>
             </div>
           </div>
+        </div>
+      </section>
+      <section id="menu" className='w-full bg-white flex justify-center'>
+        <div className='flex max-w-5xl w-full flex-col'>
+          <h2 className='text-[#88171d] md:text-4xl text-2xl text-center mt-12 font-bold'>Ragam Menu</h2>
+          <div className='pt-16 pb-8 grid grid-rows-2 grid-flow-col gap-12 text-[#88171d]'>
+            {menus.map((menu, i) => {
+              return <div key={i} className='flex flex-col pb-8 items-center'>
+                <h3 className='font-bold text-xl text-center'>{menu.title}</h3>
+                <div className='w-full h-72 bg-[#88171d] my-2'></div>
+                <div className='pt-2 text-center'>{menu.description}</div>
+              </div>
+            })}
+          </div>
+          <h3 className='text-center text-[#88171d] text-xl'>
+            Acara mepet waktu kepepet, butuh katering yang satset? <br />
+            Segera hub Admin SatSet untuk mendapatkan <br />
+            solusi masalah konsumsi. Satu Setengah Jam Siap Antar <br /> 
+            kemanapun dan kapanpun dengan minimum 10 porsi.
+          </h3>
         </div>
       </section>
       <section id="customer" className='w-full bg-white'>
