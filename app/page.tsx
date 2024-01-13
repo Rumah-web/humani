@@ -288,15 +288,15 @@ export default function Home() {
         </div>
       </section>
       <section id="menu" className='w-full relative bg-white flex justify-center pb-4'>
-        <div className='absolute top-0 left-0 bg-contain bg-no-repeat w-full h-52 bg-left-top' style={{
+        <div className='absolute top-0 left-0 bg-contain bg-no-repeat w-full md:h-52 h-36 bg-left-top' style={{
               backgroundImage: `url(/bg/bg-ragam-menu-left-top.png)`,
             }}></div>
-        <div className='absolute top-0 right-0 bg-contain bg-no-repeat w-full h-52 bg-right-top' style={{
+        <div className='absolute top-0 right-0 bg-contain bg-no-repeat w-full md:h-52 h-36 bg-right-top' style={{
               backgroundImage: `url(/bg/bg-ragam-menu-right-top.png)`,
             }}></div>
         <div className='flex max-w-5xl w-full flex-col'>
           <h2 className='text-[#88171d] md:text-4xl text-2xl text-center mt-12 font-bold'>Ragam Menu</h2>
-          <div className='pt-16 pb-8 grid grid-rows-2 grid-flow-col gap-12 text-[#88171d]'>
+          <div className='pt-16 pb-8 md:grid md:grid-rows-2 md:grid-flow-col flex flex-col gap-12 text-[#88171d] md:px-0 px-24'>
             {menus.map((menu, i) => {
               return <div key={i} className='flex flex-col items-center'>
                 <h3 className='font-bold text-xl text-center pb-2'>{menu.title}</h3>
@@ -307,17 +307,17 @@ export default function Home() {
               </div>
             })}
           </div>
-          <h3 className='text-center text-[#88171d] text-xl my-8'>
+          <h3 className='text-center text-[#88171d] text-xl my-8 px-12'>
             Acara mepet waktu kepepet, butuh katering yang satset? <br />
             Segera hub Admin SatSet untuk mendapatkan <br />
             solusi masalah konsumsi. Satu Setengah Jam Siap Antar <br /> 
             kemanapun dan kapanpun dengan minimum 10 porsi.
           </h3>
         </div>
-        <div className='absolute bottom-0 left-0 bg-contain bg-no-repeat w-full h-1/3 bg-left-bottom' style={{
+        <div className='absolute bottom-0 left-0 bg-contain bg-no-repeat w-full md:h-1/3 h-48 bg-left-bottom' style={{
               backgroundImage: `url(/bg/bg-ragam-menu-left-bottom.png)`,
             }}></div>
-        <div className='absolute bottom-0 right-0 bg-contain bg-no-repeat w-full h-1/3 bg-right-bottom' style={{
+        <div className='absolute bottom-0 right-0 bg-contain bg-no-repeat w-full md:h-1/3 h-48 bg-right-bottom' style={{
               backgroundImage: `url(/bg/bg-ragam-menu-right-bottom.png)`,
             }}></div>
       </section>
