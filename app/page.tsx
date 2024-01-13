@@ -323,10 +323,10 @@ export default function Home() {
       </section>
       <section id="chat-admin" className='relative flex w-full bg-white justify-center overflow-hidden'>
         <div className='absolute -bottom-36 -left-36 bg-contain bg-no-repeat w-full h-72 bg-left-bottom' style={{
-                backgroundImage: `url(/logo-red.png);filter: blur(8px); -webkit-filter: blur(8px);`,
+                filter: `blur(8px)`,WebkitFilter: `blur(8px)`,backgroundImage: `url(/logo-red.png)`,
               }}></div>
         <div className='absolute top-0 -right-72 bg-contain bg-no-repeat w-full h-[36rem] bg-right-top' style={{
-                backgroundImage: `url(/logo-red.png);filter: blur(8px); -webkit-filter: blur(8px);`,
+                filter: `blur(8px)`,WebkitFilter: `blur(8px)`,backgroundImage: `url(/logo-red.png)`,
               }}></div>
         <div className="bg-white opacity-90 absolute w-full h-full"></div>
         <div className="relative flex flex-col space-y-4 item-center text-center py-4 text-[#88171d]">
@@ -375,7 +375,7 @@ export default function Home() {
       </section>
       <section id="review-slider" className='relative w-full flex justify-center bg-no-repeat bg-cover' >
         <div className="bg-[#dfdfdf] opacity-90 absolute w-full h-full" style={{
-              backgroundImage: `url(/bg/bg-menu-service.jpg); filter: blur(8px); -webkit-filter: blur(8px);`
+              backgroundImage: `url(/bg/bg-menu-service.jpg)`, filter: `blur(8px)`,WebkitFilter: `blur(8px)`
         }}></div>
         <div className='py-24 text-white'>
           <div className='relative  w-screen'>
@@ -387,7 +387,7 @@ export default function Home() {
         <h2 className='text-[#88171d] md:text-4xl text-2xl text-center mt-12 font-bold'>Pelanggan Setia Kami</h2>
         <div className="flex flex-col justify-center pt-6 space-y-2 items-center">
               {ourCustomer.map((customer, i) => {
-                return <div key={i} className="w-96 md:px-0 px-4">
+                return <div key={i} className="md:w-full w-96 md:px-0 px-4">
                 <Image
                   src={`/client/customer-${customer}.png`}
                   alt="Humani Food Customer"
@@ -417,8 +417,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section id="kontak-kami" className='bg-[#88171d] flex w-full py-8'>
-          <div className='w-1/6 px-8 flex justify-center'>
+      <section id="kontak-kami" className='bg-[#88171d] flex md:flex-row flex-col w-full py-8'>
+          <div className='md:w-1/6 w-full px-8 flex md:justify-start justify-center'>
             <div>
               <Image
                         src="/logo-white.png"
@@ -429,8 +429,8 @@ export default function Home() {
                       />
             </div>
           </div>
-          <div className='flex justify-between w-5/6 text-white'>
-            <div className='w-full'>
+          <div className='flex md:flex-row flex-col justify-between md:w-5/6 w-full text-white md:pt-0 pt-8 md:gap-0 gap-8'>
+            <div className='w-full md:items-start items-center flex flex-col'>
               <h3 className='text-2xl pb-2'>Layanan Pelanggan</h3>
               <div>Telp dan Whatsapp</div>
               <div className='font-bold cursor-pointer'>
@@ -441,12 +441,12 @@ export default function Home() {
                 <Link href="mailto:info@humanifood.com" rel="noopener noreferrer" target="_blank">info@humanifood.com</Link>
               </div>
             </div>
-            <div className='w-full'>
+            <div className='w-full md:items-start items-center flex flex-col'>
               <h3 className='text-2xl pb-2'>Waktu Pelayanan</h3>
               <div>Senin - Jumat</div>
               <div className='font-bold'>08.00 - 17.00</div>
             </div>
-            <div className='w-full'>
+            <div className='w-full md:items-start items-center flex flex-col'>
               <h3 className='text-2xl pb-2'>Sentra Dapur</h3>
               <div>
                 Jalan Anggrek No. 57C <br /> 
