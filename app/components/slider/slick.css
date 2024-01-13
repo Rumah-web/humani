@@ -1,0 +1,23 @@
+ul.slick-dots {
+  background-color: "#ddd";
+  padding: 10px;
+}
+.slick-dots li {
+  margin: 10px;
+}
+
+.slick-dots li button {
+  border: 3px solid #88171d;
+  border-radius: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.slick-dots li button::before {
+  content: "";
+  color: transparent;
+}
+
+.slick-dots li.slick-active button {
+  background-color: #88171d;
+}

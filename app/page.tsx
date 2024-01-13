@@ -3,12 +3,22 @@
 import Image from 'next/image'
 import Carosel from './components/slider/carosel'
 import Link from 'next/link';
+import Slickslider from './components/slider/slickslider';
 
 export default function Home() {
   const testimoni = [
     `/testimoni/testimoni-1.jpeg`,
     `/testimoni/testimoni-2.jpeg`,
     `/testimoni/testimoni-3.jpeg`,
+  ];
+
+  const review = [
+    `/review/review-1.jpeg`,
+    `/review/review-2.jpeg`,
+    `/review/review-3.png`,
+    `/review/review-1.jpeg`,
+    `/review/review-2.jpeg`,
+    `/review/review-3.png`,
   ];
 
   const ourCustomer = [1,2,3,4,5,6,7,8]
@@ -313,10 +323,10 @@ export default function Home() {
       </section>
       <section id="chat-admin" className='relative flex w-full bg-white justify-center overflow-hidden'>
         <div className='absolute -bottom-36 -left-36 bg-contain bg-no-repeat w-full h-72 bg-left-bottom' style={{
-                backgroundImage: `url(/logo-red.png)`,
+                backgroundImage: `url(/logo-red.png);filter: blur(8px); -webkit-filter: blur(8px);`,
               }}></div>
         <div className='absolute top-0 -right-72 bg-contain bg-no-repeat w-full h-[36rem] bg-right-top' style={{
-                backgroundImage: `url(/logo-red.png)`,
+                backgroundImage: `url(/logo-red.png);filter: blur(8px); -webkit-filter: blur(8px);`,
               }}></div>
         <div className="bg-white opacity-90 absolute w-full h-full"></div>
         <div className="relative flex flex-col space-y-4 item-center text-center py-4 text-[#88171d]">
@@ -363,11 +373,15 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section id="review-slider" className='relative w-full flex justify-center' style={{
-              backgroundImage: `url(/bg/bg-menu-service.jpg)`,
-        }}>
-        <div className="bg-black opacity-25 absolute w-full h-full"></div>
-        <div className='relative py-24 text-white'>REVIEW SLIDER</div>
+      <section id="review-slider" className='relative w-full flex justify-center bg-no-repeat bg-cover' >
+        <div className="bg-[#dfdfdf] opacity-90 absolute w-full h-full" style={{
+              backgroundImage: `url(/bg/bg-menu-service.jpg); filter: blur(8px); -webkit-filter: blur(8px);`
+        }}></div>
+        <div className='py-24 text-white'>
+          <div className='relative  w-screen'>
+            <Slickslider images={review}></Slickslider>
+          </div>
+        </div>
       </section>
       <section id="customer" className='w-full bg-white'>
         <h2 className='text-[#88171d] md:text-4xl text-2xl text-center mt-12 font-bold'>Pelanggan Setia Kami</h2>
