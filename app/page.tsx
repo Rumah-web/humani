@@ -57,13 +57,15 @@ export default function Home() {
   ]
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
-      <section id="wellcome" className='w-full h-screen flex flex-col bg-no-repeat bg-right-bottom 
-            after:content-[url("/bg/bg-top-left.png")] after:leading-none after:absolute 
-            after:-bottom-1 after:left-0 after:w-full after::h-full' style={{
+    <main className="flex min-h-screen relative flex-col items-center justify-between">
+      <section id="wellcome" className='relative w-full h-screen flex flex-col'>
+        <div className='absolute bottom-0 left-0 bg-contain w-28 h-full bg-no-repeat bg-left-bottom md:flex hidden' style={{
+              backgroundImage: `url(/bg/bg-top-left.png)`,
+            }}></div>
+        <div className='absolute bottom-0 right-0 bg-contain w-28 h-full bg-no-repeat bg-right-bottom md:flex hidden' style={{
               backgroundImage: `url(/bg/bg-top-right.png)`,
-            }}>
-        <div className="z-10 w-full font-mono text-sm justify-center flex py-2 bg-[#88171d]">
+            }}></div>      
+        <div className="fixed z-20 w-full font-mono text-sm justify-center flex py-2 bg-[#88171d] lg:px-0 px-4">
           <div className="max-w-5xl w-full flex justify-between">
             <div className=''>
               <Image
@@ -105,11 +107,11 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className='flex w-full justify-center'>
-          <div className='flex max-w-5xl w-full md:flex-row flex-col md:py-24 py-6'>
-            <div className='md:w-1/2 w-full text-[#88171d]'>
-              <div className='lg:w-4/5 w-full'>
-                <h1 className='md:text-5xl text-2xl font-bold tracking-wide'>
+        <div className='flex w-full justify-center mt-16'>
+          <div className='flex max-w-5xl w-full md:flex-row flex-col lg:py-24 md:py-16 py-6'>
+            <div className='md:w-1/2 w-full text-[#88171d] lg:pt-0 pt-4'>
+              <div className='w-full lg:pr-10 lg:px-0 md:px-4 px-4'>
+                <h1 className='lg:text-5xl md:text-4xl text-2xl font-bold tracking-wide md:px-0 px-2'>
                   Acara Mepet dan 
                   Butuh Catering yang 
                   Satset ? Anda Fokus 
@@ -118,27 +120,27 @@ export default function Home() {
                 </h1>
               </div>
               
-              <div className='pt-4'>
-                Bebas pilih waktu, menu, harga, jumlah serta pengantarannya <br />
-                nammun tetap asik menunya, resik prosesnya, ciamik rasanya, <br />
+              <div className='lg:px-0 px-12 md:pt-10 pt-4 w-full md:px-4 px-6'>
+                Bebas pilih waktu, menu, harga, jumlah serta pengantarannya 
+                nammun tetap asik menunya, resik prosesnya, ciamik rasanya, 
                 cantik penyajiannya dan epik pengalamannya.
               </div>
             </div>
-            <div className='md:w-1/2 w-full md:pt-0 pt-4'>
+            <div className='md:w-1/2 w-full lg:pt-0 md:pt-6 pt-4'>
               <Carosel images={testimoni} />
             </div>
           </div>
         </div>
       </section>
       <section id="komitmen-kami" className='relative flex w-full'>
-        <div className='absolute top-0 bg-contain w-full h-20' style={{
+        <div className='absolute top-0 bg-contain w-full h-12 md:bg-repeat bg-no-repeat' style={{
               backgroundImage: `url(/bg/wave-xl.png)`,
             }}></div>
-        <div className='absolute bottom-0 bg-contain w-full h-20 rotate-180' style={{
+        <div className='absolute bottom-0 bg-contain w-full h-12 md:bg-repeat bg-no-repeat rotate-180' style={{
               backgroundImage: `url(/bg/wave-xl.png)`,
             }}></div>
         <div className='flex w-full'>
-          <div className="bg-black opacity-25 absolute w-full h-full"></div>
+          <div className="bg-black opacity-50 absolute w-full h-full"></div>
           <div className='flex w-full justify-center bg-no-repeat bg-cover' style={{
               backgroundImage: `url(/bg/bg-menu-service.jpg)`,
             }}>
@@ -165,7 +167,7 @@ export default function Home() {
               </div>
               <div className='z-10 flex justify-center'>
                 <div
-                      className="border border-white flex items-center justify-between rounded-full px-8 py-2.5 w-4/5 bg-[#e7e8ea] my-4"
+                      className="border border-white flex items-center justify-between rounded-full px-8 py-2.5 md:w-4/5 w-full bg-[#e7e8ea] my-4"
                     >
                       <div className="flex flex-col w-full space-y-3 text-white items-center justify-center">
                         <div
@@ -181,8 +183,7 @@ export default function Home() {
                           </svg>
                         </div>
                         <h3
-                          style={{ fontSize: `0.8rem` }}
-                          className="flex text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none"
+                          className="flex md:text-xs text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none"
                         >
                           Layanan 1,5 Jam <br />
                           (SatSet Service)
@@ -205,8 +206,7 @@ export default function Home() {
                           </svg>
                         </div>
                         <h3
-                          style={{ fontSize: `0.8rem` }}
-                          className="flex text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none"
+                          className="flex md:text-xs text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none"
                         >
                           Tim Berpengalaman <br /> (Super Team)
                         </h3>
@@ -228,8 +228,7 @@ export default function Home() {
                           </svg>
                         </div>
                         <h3
-                          style={{ fontSize: `0.8rem` }}
-                          className="flex text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none"
+                          className="flex md:text-xs text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none"
                         >
                           Asik Resik Ciamik <br />
                           Cantik dan Epik
@@ -252,8 +251,7 @@ export default function Home() {
                           </svg>
                         </div>
                         <h3
-                          style={{ fontSize: `0.8rem` }}
-                          className="flex text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none"
+                          className="flex md:text-xs text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none"
                         >
                           Responsive <br /> Catering Consultant
                         </h3>
@@ -275,8 +273,7 @@ export default function Home() {
                           </svg>
                         </div>
                         <h3
-                          style={{ fontSize: `0.8rem` }}
-                          className="flex text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none"
+                          className="flex md:text-xs text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none"
                         >
                           Segar, Baik dan <br /> Halal
                         </h3>
@@ -387,7 +384,7 @@ export default function Home() {
         <h2 className='text-[#88171d] md:text-4xl text-2xl text-center mt-12 font-bold'>Pelanggan Setia Kami</h2>
         <div className="flex flex-col justify-center pt-6 space-y-2 items-center">
               {ourCustomer.map((customer, i) => {
-                return <div key={i} className="md:w-full w-96 md:px-0 px-4">
+                return <div key={i} className="w-96 md:px-0 px-4">
                 <Image
                   src={`/client/customer-${customer}.png`}
                   alt="Humani Food Customer"
