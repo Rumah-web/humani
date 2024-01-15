@@ -5,17 +5,17 @@ import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import "./slick.css"
 
-const Slickslider = ({images, size = 'cover'}: any) => {
+const Slickslider = ({images, size = 'cover', centerMode = true, slidesToShow = 3, dots = true, className = `lg:mx-10`}: any) => {
     const settings = {
         className: "center",
-        centerMode: true,
+        centerMode,
         infinite: true,
         centerPadding: "60px",
         arrows: false,
         autoplay: true,
-        slidesToShow: 3,
+        slidesToShow,
         speed: 500,
-        dots: true,
+        dots,
         appendDots: (dots: number) => (
             <div
               style={{
@@ -53,7 +53,7 @@ const Slickslider = ({images, size = 'cover'}: any) => {
             <Slider {...settings}>
                 {(images || []).map((image: string, i: number) => {
                     return <div key={i}>
-                        <div className="bg-[#88171d] mx-10 p-4 h-48 rounded-lg border border-white bg-cover" style={{
+                        <div className={`bg-[#88171d] p-4 h-48 rounded-lg border border-white bg-${size} ${className} `} style={{
                             backgroundImage: `url(${image})`,
                             }}>
                         </div>
