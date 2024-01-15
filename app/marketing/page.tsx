@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion"
 import Carosel from "../components/slider/carosel";
 
-export default function Iklan() {
+export default function Marketing() {
   const ourCustomer = [1,2,3,4,5,6,7,8,9]
   const transitionValues = {
     duration: 0.8,
