@@ -376,7 +376,7 @@ export default function Home() {
         }}></div>
         <div className='py-24 text-white'>
           <div className='relative  w-screen'>
-            <Slickslider images={review}></Slickslider>
+            <Slickslider images={review} className={`mx-4`}></Slickslider>
           </div>
         </div>
       </section>

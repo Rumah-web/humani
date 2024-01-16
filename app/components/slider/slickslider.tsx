@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import "./slick.css"
 
-const Slickslider = ({images, size = 'cover', centerMode = true, slidesToShow = 3, dots = true, className = `lg:mx-10`}: any) => {
+const Slickslider = ({images, size = 'cover', centerMode = true, slidesToShow = 4, dots = true, className = `lg:mx-10`}: any) => {
     const settings = {
         className: "center",
         centerMode,
@@ -30,13 +30,13 @@ const Slickslider = ({images, size = 'cover', centerMode = true, slidesToShow = 
             {
               breakpoint: 1024,
               settings: {
-                slidesToShow: 2,
+                slidesToShow: 3,
               }
             },
             {
               breakpoint: 600,
               settings: {
-                slidesToShow: 1,
+                slidesToShow: 2,
               }
             },
             {
