@@ -293,7 +293,7 @@ export default function Home() {
             }}></div>
         <div className='flex max-w-5xl w-full flex-col'>
           <h2 className='text-[#88171d] md:text-4xl text-2xl text-center mt-12 font-bold'>Ragam Menu</h2>
-          <div className='pt-16 pb-8 md:grid md:grid-rows-2 md:grid-flow-col flex flex-col gap-12 text-[#88171d] md:px-0 px-24'>
+          <div className='pt-16 pb-8 md:grid md:grid-rows-2 md:grid-flow-col flex flex-col gap-12 text-[#88171d] md:px-0 px-12'>
             {menus.map((menu, i) => {
               return <div key={i} className='flex flex-col items-center'>
                 <h3 className='font-bold text-xl text-center pb-2'>{menu.title}</h3>

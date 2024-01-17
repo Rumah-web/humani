@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Carosel from '../components/slider/carosel';
 import Slickslider from '../components/slider/slickslider';
 import { UIEvent, useEffect, useState } from 'react';
+import Productslider from '../components/slider/productslider';
 
 export default function Menu() {
   const [showHeaderBg, setShowHeaderBg] = useState(true)
@@ -135,14 +136,14 @@ export default function Menu() {
           </div>
         </div>
       </section>
-      <section id="review-top" className='relative'>
+      {/* <section id="review-top" className='relative'>
         <div className="bg-[#88171d] opacity-50 absolute w-full h-full" style={{
               filter: `blur(8px)`,WebkitFilter: `blur(8px)`
         }}></div>
         <div className='relative w-screen py-8'>
             <Slickslider images={review} size="cover" centerMode={false} slidesToShow={5} dots={false} className={`mx-4`}></Slickslider>
         </div>
-      </section>
+      </section> */}
       <section id="hcs" className='relative py-8 w-full bg-white text-[#88171d]'>
         <div className='absolute top-0 left-0 bg-contain bg-no-repeat w-full md:h-72 bg-left-top' style={{
               backgroundImage: `url(/bg/hcs-top-left.png)`,
@@ -150,8 +151,8 @@ export default function Menu() {
         <div className='absolute top-0 right-0 bg-contain bg-no-repeat w-full md:h-72 bg-right-top' style={{
               backgroundImage: `url(/bg/hcs-top-right.png)`,
             }}></div> 
-        <div>
-          <h2 className='text-4xl text-center font-bold'>HCS (Humani Catering Service)</h2>
+        <div className='px-8'>
+          <h2 className='md:text-4xl text-3xl text-center font-bold'>HCS (Humani Catering Service)</h2>
           <h3 className='text-center font-bold text-3xl'>1 Jam Kirim</h3>
         </div>
         <div className='pt-16'>
@@ -169,13 +170,8 @@ export default function Menu() {
             }}></div> 
       </section>
       <section id='best-seller' className='flex w-full bg-white relative md:-mt-12 -mt-24 flex-col'>
+        <Productslider items={bestsellers} size={`contain`} dots={false} className={`lg:mx-0`} />
             <div className='flex md:flex-row flex-col justify-center md:space-x-8 md:space-y-0 space-y-8'>
-              {bestsellers.map((item, i) => {
-                return <div key={i} className='flex flex-col items-center'>
-                  <h3 className='text-center text-[#88171d] pb-2 text-xl'>{item.title}</h3>
-                  <div className='bg-[#88171d] w-48 h-48'></div>
-                </div>
-              })}
             </div>
             <div className='relative w-full md:px-12 px-4 md:mt-36 mt-20 h-full flex flex-col items-center pt-12'>
                 <div className='relative w-full h-12 rounded-full bg-[#88171d]'></div>
@@ -338,15 +334,15 @@ export default function Menu() {
         <div className='flex max-w-5xl w-full md:justify-between items-center  md:flex-row flex-col md:space-x-20 space-y-4'>
           <div className='md:w-1/3 w-1/2 md:py-16 pt-16 pb-8'>
             <h3 className='text-center text-[#88171d] font-bold text-xl pb-2'>Kerupuk Udang</h3>
-            <div className='h-72 bg-[#88171d]'></div>
+            <div className='md:h-72 h-52 bg-[#88171d]'></div>
           </div>
           <div className='md:w-1/3 w-1/2 md:py-16 py-4'>
             <h3 className='text-center text-[#88171d] font-bold text-xl pb-2'>Extra</h3>
-            <div className='h-72 bg-[#88171d]'></div>
+            <div className='md:h-72 h-52 bg-[#88171d]'></div>
           </div>
           <div className='md:w-1/3 w-1/2 md:py-16 py-4'>
             <h3 className='text-center text-[#88171d] font-bold text-xl pb-2'>Paper Bag</h3>
-            <div className='h-72 bg-[#88171d]'></div>
+            <div className='md:h-72 h-52 bg-[#88171d]'></div>
           </div>
         </div>
       </section>
