@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Carosel from './components/slider/carosel'
 import Link from 'next/link';
 import Slickslider from './components/slider/slickslider';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function Home() {
   const testimoni = [
@@ -58,7 +59,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen relative flex-col items-center justify-between">
-      <section id="wellcome" className='relative w-full h-screen flex flex-col'>
+      <section id="wellcome" className='relative w-full h-screen flex flex-col bg-white'>
         <div className='absolute bottom-0 left-0 bg-contain w-28 h-full bg-no-repeat bg-left-bottom md:flex hidden' style={{
               backgroundImage: `url(/bg/bg-top-left.png)`,
             }}></div>
@@ -141,7 +142,7 @@ export default function Home() {
             }}></div>
         <div className='flex w-full'>
           <div className="bg-black opacity-50 absolute w-full h-full"></div>
-          <div className='flex w-full justify-center bg-no-repeat bg-cover' style={{
+          <div className='flex w-full justify-center bg-no-repeat bg-cover bg-fixed' style={{
               backgroundImage: `url(/bg/bg-menu-service.jpg)`,
             }}>
             <div className='flex max-w-5xl w-full flex-col'>
