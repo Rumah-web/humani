@@ -384,15 +384,18 @@ export default function Home() {
         <h2 className='text-[#88171d] md:text-4xl text-2xl text-center mt-12 font-bold'>Pelanggan Setia Kami</h2>
         <div className="flex flex-col justify-center pt-6 space-y-2 items-center">
               {ourCustomer.map((customer, i) => {
-                return <div key={i} className="w-96 md:px-0 px-4">
-                <Image
-                  src={`/client/customer-${customer}.png`}
-                  alt="Humani Food Customer"
-                  width={100}
-                  height={24}
-                  priority
-                  style={{ width: `100%` }}
-                /></div>
+                return <div key={i} className='w-full flex justify-center'>
+                  <div className="md:w-96 w-full md:px-0 px-4">
+                    <Image
+                      src={`/client/customer-${customer}.png`}
+                      alt="Humani Food Customer"
+                      width={100}
+                      height={24}
+                      priority
+                      style={{ width: `100%` }}
+                    />
+                  </div>
+                </div>
               })}
             </div>
       </section>
