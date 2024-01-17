@@ -82,7 +82,7 @@ export default function Menu() {
                   />
             </div>
             <div className='flex items-center'>
-              <div className=''>
+              <div className='md:w-16 w-12 flex justify-center'>
                 <Image
                       src="/icon/iso.png"
                       alt="Humani Food ISO 22000"
@@ -91,7 +91,7 @@ export default function Menu() {
                       priority
                     />
               </div>
-              <div className=''>
+              <div className='md:w-16 w-12 flex justify-center'>
                 <Image
                       src="/icon/halal.png"
                       alt="Humani Food Sertifikat HALAL"
@@ -100,7 +100,7 @@ export default function Menu() {
                       priority
                     />
               </div>
-              <div className=''>
+              <div className='md:w-16 w-12 flex justify-center'>
                 <Image
                       src="/icon/slhs.png"
                       alt="Humani Food Sertifikat SLHS"
