@@ -142,7 +142,7 @@ export default function Home() {
             }}></div>
         <div className='flex w-full'>
           <div className="bg-black opacity-50 absolute w-full h-full"></div>
-          <div className='flex w-full justify-center bg-no-repeat bg-cover bg-fixed' style={{
+          <div className='flex w-full justify-center bg-no-repeat bg-cover md:bg-fixed bg-local' style={{
               backgroundImage: `url(/bg/bg-menu-service.jpg)`,
             }}>
             <div className='flex max-w-5xl w-full flex-col'>
