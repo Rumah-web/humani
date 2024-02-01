@@ -2,15 +2,16 @@
 FROM ubuntu:latest as base
 WORKDIR /usr/src
 
-COPY . .
+COPY package*.json ./
 
-ARG NODE_VERSION=18
+
+ARG NODE_VERSION=20
 
 RUN apt-get update && \
     apt-get install -y curl && \
     apt-get install unzip
 
-RUN curl -fsSL https://bun.sh/install | bash -s "bun-v1.0.18" && \
+RUN curl -fsSL https://bun.sh/install | bash -s "bun-v1.0.25" && \
     ln -s $HOME/.bun/bin/bun /usr/local/bin/bun
 RUN curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o n && \
     bash n $NODE_VERSION && \
@@ -21,5 +22,9 @@ RUN npm install -g pm2
 RUN bun --version
 RUN bun install
 
+COPY . .
+
+RUN bun run build
+
 EXPOSE 3000
-CMD [ "pm2-runtime", "bun run build" ]
+CMD [ "pm2-runtime", "bun run start"]
