@@ -22,4 +22,4 @@ RUN bun --version
 RUN bun install
 
 EXPOSE 3000
-CMD [ "pm2-runtime", "bun run prod" ]
+CMD [ "pm2-runtime", "bun run build" ]
