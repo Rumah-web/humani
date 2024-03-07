@@ -4,6 +4,8 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Carosel from "../components/slider/carosel";
 import { WaCS } from "../components/help/waCS";
+import { OpenCloseCS } from "../components/help/openCloseCS";
+import { MulaiBerbagi } from "../components/mulaiBerbagi";
 
 export default function Marketing() {
 	const ourCustomer = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -510,8 +512,13 @@ export default function Marketing() {
 					</section>
 					<section
 						id='help'
-						className=''>
-						<WaCS />
+						className='relative'>
+						<OpenCloseCS />
+					</section>
+					<section
+						id='mulai-berbagi'
+						className='relative'>
+						<MulaiBerbagi />
 					</section>
 				</div>
 			</div>
