@@ -6,12 +6,26 @@ import Link from "next/link";
 import Slickslider from "./components/slider/slickslider";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { WaCS } from "./components/help/waCS";
+import { poppins, rancho } from "./font";
 
 export default function Home() {
 	const testimoni = [
-		`/testimoni/testimoni-1.jpeg`,
-		`/testimoni/testimoni-2.jpeg`,
-		`/testimoni/testimoni-3.jpeg`,
+		`/testimoni/testimoni-1.jpg`,
+		`/testimoni/testimoni-2.jpg`,
+		`/testimoni/testimoni-3.jpg`,
+		`/testimoni/testimoni-4.jpg`,
+		`/testimoni/testimoni-5.jpg`,
+		`/testimoni/testimoni-6.jpg`,
+	];
+
+	const gallery = [
+		`/gallery/gallery-1.jpg`,
+		`/gallery/gallery-2.jpg`,
+		`/gallery/gallery-3.jpg`,
+		`/gallery/gallery-4.jpg`,
+		`/gallery/gallery-5.jpg`,
+		`/gallery/gallery-6.jpg`,
+		`/gallery/gallery-7.jpg`,
 	];
 
 	const review = [
@@ -27,39 +41,45 @@ export default function Home() {
 
 	const menus = [
 		{
+			prefix: null,
 			title: "Nasi Box",
 			description:
-				"Dikemas nuansa klasik cantik, dan hangat yang cocok untuk acara keluarga dan corporate.",
+				"Aneka nasih box kami sajikan dengan citarasa nusantara terbaik seperti Nasi Besek, Nasi Tumpeng Mini, Nasi Padang, Nasi Menggono dan banyak pilihan lainnya.",
 			imagePath: null,
 		},
 		{
-			title: "Gift Box",
-			description:
-				"Dikemas nuansa klasik cantik, dan hangat yang cocok untuk acara keluarga dan corporate.",
-			imagePath: null,
-		},
-		{
-			title: "Nasi Bebek",
-			description:
-				"Dikemas nuansa klasik cantik, dan hangat yang cocok untuk acara keluarga dan corporate.",
-			imagePath: null,
-		},
-		{
-			title: "Hantaran",
-			description:
-				"Dikemas nuansa klasik cantik, dan hangat yang cocok untuk acara keluarga dan corporate.",
-			imagePath: null,
-		},
-		{
-			title: "Tumpeng Mini",
-			description:
-				"Dikemas nuansa klasik cantik, dan hangat yang cocok untuk acara keluarga dan corporate.",
-			imagePath: null,
-		},
-		{
+			prefix: null,
 			title: "Snack Box",
 			description:
-				"Dikemas nuansa klasik cantik, dan hangat yang cocok untuk acara keluarga dan corporate.",
+				"Kudapan dalam kotak mini yang dihidangkan dengan ragam jenis rasa, baik manis asin maupun gurih berasal dari selera tradisional maupun modern.",
+			imagePath: null,
+		},
+		{
+			prefix: null,
+			title: "Gift Box",
+			description:
+				"Pilihan paket makanan terbaik dari kami untuk segala acara keluarga dan kerabat untuk sebuah pencapaian maupun kebahagian bersama.",
+			imagePath: null,
+		},
+		{
+			prefix: "Layanan",
+			title: "Prasmanan",
+			description:
+				"Paket prasmanan kami meliputi hidangan pembuka, hidangan utama, hidangan penutup, hingga hidangan pelengkap dengan sajian dan selera nusantara.",
+			imagePath: null,
+		},
+		{
+			prefix: "Layanan",
+			title: "Perusahaan & Sekolah",
+			description:
+				"Kami juga menyediakan pelayanan in house untuk kebutuhan perusahaan maupun sekolah dengan kapasitas dan kualitas layanan profesional.",
+			imagePath: null,
+		},
+		{
+			prefix: "Layanan",
+			title: "Berbagi Makanan",
+			description:
+				"Kebutuhan akan berbagi sesama buat masyarakat kita makin besar dan butuh layanan berbagi makanan yang halalan toyiban namun amanah dan terpercaya.",
 			imagePath: null,
 		},
 	];
@@ -123,22 +143,42 @@ export default function Home() {
 				</div>
 				<div className='flex w-full justify-center mt-16'>
 					<div className='flex max-w-5xl w-full md:flex-row flex-col lg:py-24 md:py-16 py-6'>
-						<div className='md:w-1/2 w-full text-[#88171d] lg:pt-0 pt-4'>
+						<div className='md:w-1/2 w-full text-[#88171d] lg:pt-0 pt-4 flex flex-col justify-between'>
 							<div className='w-full lg:pr-10 lg:px-0 md:px-4 px-4'>
-								<h1 className='lg:text-5xl md:text-4xl text-2xl font-bold tracking-wide md:px-0 px-2'>
-									Acara Mepet dan Butuh Catering yang Satset ? Anda Fokus
-									Acaranya, Kami Urus Sajiannya
+								<h1
+									className={`lg:text-5xl md:text-4xl text-2xl font-bold tracking-wide md:px-0 px-2 flex flex-col flex-nowrap space-y-2 ${rancho.className}`}>
+									<span>
+										Apapun Acaranya ... <br />
+									</span>
+									<span>
+										Berapapun Jumlahnya ... <br />
+									</span>
+									<span>
+										Kapanpun Waktunya ... <br />
+									</span>
+									<span>
+										Beragampun Menunya ... <br />
+									</span>
+									<span>
+										Berapapun Biayanya ... <br />
+									</span>
 								</h1>
 							</div>
 
-							<div className='lg:px-0 px-12 md:pt-10 pt-4 w-full md:px-4 px-6'>
-								Bebas pilih waktu, menu, harga, jumlah serta pengantarannya
-								nammun tetap asik menunya, resik prosesnya, ciamik rasanya,
-								cantik penyajiannya dan epik pengalamannya.
+							<div
+								className={`lg:px-0 px-12 md:pt-10 pt-4 w-full md:px-4 px-6 text-sm ${poppins.className}`}>
+								Humani Catering Service (HCS) selalu siap untuk solusi sajian
+								Anda. <br />
+								Konsultasikan dengan Catering Consultant HCS untuk mendapatkan{" "}
+								<br />
+								solusi masalah catering atau konsumsi acara Anda.
 							</div>
 						</div>
 						<div className='md:w-1/2 w-full lg:pt-0 md:pt-6 pt-4'>
-							<Carosel images={testimoni} />
+							<Carosel
+								images={testimoni}
+								size={`contain`}
+							/>
 						</div>
 					</div>
 				</div>
@@ -164,37 +204,67 @@ export default function Home() {
 							backgroundImage: `url(/bg/bg-menu-service.jpg)`,
 						}}>
 						<div className='flex max-w-5xl w-full flex-col'>
-							<div className='relative w-fit mt-36'>
-								<div className='absolute bg-[#88171d] opacity-80 w-full h-full rounded-[1rem]'></div>
-								<div className='relative flex flex-col text-right text-white px-12 py-10 gap-2'>
+							<div className='relative w-fit mt-28 mb-20'>
+								<div className='absolute bg-[#88171d] opacity-70 w-full h-full rounded-[1rem]'></div>
+								<div
+									className={`relative flex flex-col text-right text-white px-12 py-10 gap-2 ${rancho.className}`}>
 									<div>
-										<h3 className='text-2xl'>+10 tahun</h3>
-										<h4>melayani jabodetabek</h4>
+										<h3 className='text-4xl'>+10 tahun</h3>
+										<h4 className='text-2xl'>melayani jabodetabek</h4>
 									</div>
 									<div>
-										<h3 className='text-2xl'>+25.000</h3>
-										<h4>acara telah kami dampingi</h4>
+										<h3 className='text-4xl'>+25.000</h3>
+										<h4 className='text-2xl'>acara telah kami dampingi</h4>
 									</div>
 									<div>
-										<h3 className='text-2xl'>+2.000.000</h3>
-										<h4>
+										<h3 className='text-4xl'>+2.000.000</h3>
+										<h4 className='text-2xl'>
 											porsi telah dinikmati Sahabat Humani Catering Service
 										</h4>
 									</div>
 								</div>
 							</div>
-							<div className='relative'>
-								<h2 className='text-white md:text-4xl text-2xl text-center mt-12 font-bold'>
-									Komitmen Kami
-								</h2>
-							</div>
-							<div className='z-10 flex justify-center'>
-								<div className='border border-white flex items-center justify-between rounded-full px-8 py-2.5 md:w-4/5 w-full bg-[#e7e8ea] my-4'>
+							<div className={`z-10 flex justify-center ${poppins.className}`}>
+								<div className='border border-white flex items-center justify-between rounded-full px-8 pt-4 pb-2.5 md:w-4/5 w-full bg-[#e7e8ea] my-4'>
 									<div className='flex flex-col w-full space-y-3 text-white items-center justify-center'>
-										<div className='flex bg-[#88171d] rounded-full h-9 w-9 items-center justify-center text-white'>
+										<div className='flex bg-[#88171d] rounded-full h-12 w-12 items-center justify-center text-white'>
 											<svg
-												width='20'
-												height='20'
+												width='30'
+												height='30'
+												viewBox='0 0 28 28'
+												xmlns='http://www.w3.org/2000/svg'>
+												<path
+													fill='currentColor'
+													d='m12.167 17.802l-.006-.014a7.798 7.798 0 0 1-.36-.094l-.009-.003A7.985 7.985 0 0 1 8.708 16a8 8 0 1 1 13.257-6.75c.039.413-.3.75-.715.75c-.414 0-.745-.337-.793-.749A6.5 6.5 0 1 0 11.496 16l.04.017c.2.082.406.154.616.217A2 2 0 0 1 16 17a2 2 0 0 1-3.833.802m-.986 1.272a9.514 9.514 0 0 1-4.53-3.054A3 3 0 0 0 4 19v.715C4 23.433 8.21 26 14 26s10-2.708 10-6.285V19a3 3 0 0 0-3-3h-3.645a3.5 3.5 0 0 1-6.174 3.074M19 10c0-1.512-.67-2.867-1.731-3.784a5 5 0 1 0-5.624 8.195A3.486 3.486 0 0 1 14 13.5a3.49 3.49 0 0 1 2.356.911A5 5 0 0 0 19 10'
+												/>
+											</svg>
+										</div>
+										<h3 className='flex md:text-sm text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none'>
+											Catering Consultant
+										</h3>
+									</div>
+									<div className='flex flex-col w-full space-y-3 text-white items-center justify-center'>
+										<div className='flex bg-[#88171d] rounded-full h-12 w-12 items-center justify-center text-white'>
+											<svg
+												width='30'
+												height='30'
+												viewBox='0 0 20 20'
+												xmlns='http://www.w3.org/2000/svg'>
+												<path
+													fill='currentColor'
+													d='M7 4.5c-.3 0-.5.3-.5.5v2.5h-1V5c0-.3-.2-.5-.5-.5s-.5.3-.5.5v2.5h-1V5c0-.3-.2-.5-.5-.5s-.5.3-.5.5v3.3c0 .9.7 1.6 1.5 1.7v7c0 .6.4 1 1 1s1-.4 1-1v-7c.8-.1 1.5-.8 1.5-1.7V5c0-.2-.2-.5-.5-.5M9 5v6h1v6c0 .6.4 1 1 1s1-.4 1-1V2c-1.7 0-3 1.3-3 3m7-1c-1.4 0-2.5 1.5-2.5 3.3c-.1 1.2.5 2.3 1.5 3V17c0 .6.4 1 1 1s1-.4 1-1v-6.7c1-.7 1.6-1.8 1.5-3C18.5 5.5 17.4 4 16 4'
+												/>
+											</svg>
+										</div>
+										<h3 className='flex md:text-sm text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none'>
+											Super Team
+										</h3>
+									</div>
+									<div className='flex flex-col w-full space-y-3 text-white items-center justify-center'>
+										<div className='flex bg-[#88171d] rounded-full h-12 w-12 items-center justify-center text-white'>
+											<svg
+												width='30'
+												height='30'
 												viewBox='0 0 24 24'
 												xmlns='http://www.w3.org/2000/svg'>
 												<g
@@ -216,68 +286,15 @@ export default function Home() {
 												</g>
 											</svg>
 										</div>
-										<h3 className='flex md:text-xs text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none'>
-											Layanan 1,5 Jam <br />
-											(SatSet Service)
+										<h3 className='flex md:text-sm text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none'>
+											SatSet Service
 										</h3>
 									</div>
 									<div className='flex flex-col w-full space-y-3 text-white items-center justify-center'>
-										<div className='flex bg-[#88171d] rounded-full h-9 w-9 items-center justify-center text-white'>
+										<div className='flex bg-[#88171d] rounded-full h-12 w-12 items-center justify-center text-white'>
 											<svg
-												width='20'
-												height='20'
-												viewBox='0 0 20 20'
-												xmlns='http://www.w3.org/2000/svg'>
-												<path
-													fill='currentColor'
-													d='M7 4.5c-.3 0-.5.3-.5.5v2.5h-1V5c0-.3-.2-.5-.5-.5s-.5.3-.5.5v2.5h-1V5c0-.3-.2-.5-.5-.5s-.5.3-.5.5v3.3c0 .9.7 1.6 1.5 1.7v7c0 .6.4 1 1 1s1-.4 1-1v-7c.8-.1 1.5-.8 1.5-1.7V5c0-.2-.2-.5-.5-.5M9 5v6h1v6c0 .6.4 1 1 1s1-.4 1-1V2c-1.7 0-3 1.3-3 3m7-1c-1.4 0-2.5 1.5-2.5 3.3c-.1 1.2.5 2.3 1.5 3V17c0 .6.4 1 1 1s1-.4 1-1v-6.7c1-.7 1.6-1.8 1.5-3C18.5 5.5 17.4 4 16 4'
-												/>
-											</svg>
-										</div>
-										<h3 className='flex md:text-xs text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none'>
-											Tim Berpengalaman <br /> (Super Team)
-										</h3>
-									</div>
-									<div className='flex flex-col w-full space-y-3 text-white items-center justify-center'>
-										<div className='flex bg-[#88171d] rounded-full h-9 w-9 items-center justify-center text-white'>
-											<svg
-												width='20'
-												height='20'
-												viewBox='0 0 512 512'
-												xmlns='http://www.w3.org/2000/svg'>
-												<path
-													fill='currentColor'
-													d='M104 224H24c-13.255 0-24 10.745-24 24v240c0 13.255 10.745 24 24 24h80c13.255 0 24-10.745 24-24V248c0-13.255-10.745-24-24-24M64 472c-13.255 0-24-10.745-24-24s10.745-24 24-24s24 10.745 24 24s-10.745 24-24 24M384 81.452c0 42.416-25.97 66.208-33.277 94.548h101.723c33.397 0 59.397 27.746 59.553 58.098c.084 17.938-7.546 37.249-19.439 49.197l-.11.11c9.836 23.337 8.237 56.037-9.308 79.469c8.681 25.895-.069 57.704-16.382 74.757c4.298 17.598 2.244 32.575-6.148 44.632C440.202 511.587 389.616 512 346.839 512l-2.845-.001c-48.287-.017-87.806-17.598-119.56-31.725c-15.957-7.099-36.821-15.887-52.651-16.178c-6.54-.12-11.783-5.457-11.783-11.998v-213.77c0-3.2 1.282-6.271 3.558-8.521c39.614-39.144 56.648-80.587 89.117-113.111c14.804-14.832 20.188-37.236 25.393-58.902C282.515 39.293 291.817 0 312 0c24 0 72 8 72 81.452'
-												/>
-											</svg>
-										</div>
-										<h3 className='flex md:text-xs text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none'>
-											Asik Resik Ciamik <br />
-											Cantik dan Epik
-										</h3>
-									</div>
-									<div className='flex flex-col w-full space-y-3 text-white items-center justify-center'>
-										<div className='flex bg-[#88171d] rounded-full h-9 w-9 items-center justify-center text-white'>
-											<svg
-												width='20'
-												height='20'
-												viewBox='0 0 28 28'
-												xmlns='http://www.w3.org/2000/svg'>
-												<path
-													fill='currentColor'
-													d='m12.167 17.802l-.006-.014a7.798 7.798 0 0 1-.36-.094l-.009-.003A7.985 7.985 0 0 1 8.708 16a8 8 0 1 1 13.257-6.75c.039.413-.3.75-.715.75c-.414 0-.745-.337-.793-.749A6.5 6.5 0 1 0 11.496 16l.04.017c.2.082.406.154.616.217A2 2 0 0 1 16 17a2 2 0 0 1-3.833.802m-.986 1.272a9.514 9.514 0 0 1-4.53-3.054A3 3 0 0 0 4 19v.715C4 23.433 8.21 26 14 26s10-2.708 10-6.285V19a3 3 0 0 0-3-3h-3.645a3.5 3.5 0 0 1-6.174 3.074M19 10c0-1.512-.67-2.867-1.731-3.784a5 5 0 1 0-5.624 8.195A3.486 3.486 0 0 1 14 13.5a3.49 3.49 0 0 1 2.356.911A5 5 0 0 0 19 10'
-												/>
-											</svg>
-										</div>
-										<h3 className='flex md:text-xs text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none'>
-											Responsive <br /> Catering Consultant
-										</h3>
-									</div>
-									<div className='flex flex-col w-full space-y-3 text-white items-center justify-center'>
-										<div className='flex bg-[#88171d] rounded-full h-9 w-9 items-center justify-center text-white'>
-											<svg
-												width='20'
-												height='20'
+												width='30'
+												height='30'
 												viewBox='0 0 24 24'
 												xmlns='http://www.w3.org/2000/svg'>
 												<path
@@ -286,8 +303,8 @@ export default function Home() {
 												/>
 											</svg>
 										</div>
-										<h3 className='flex md:text-xs text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none'>
-											Segar, Baik dan <br /> Halal
+										<h3 className='flex md:text-sm text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none'>
+											Thayyiban
 										</h3>
 									</div>
 								</div>
@@ -310,34 +327,51 @@ export default function Home() {
 						backgroundImage: `url(/bg/bg-ragam-menu-right-top.png)`,
 					}}></div>
 				<div className='flex max-w-5xl w-full flex-col'>
-					<h2 className='text-[#88171d] md:text-4xl text-2xl text-center mt-12 font-bold'>
-						Ragam Menu
+					<h2
+						className={`text-[#88171d] md:text-5xl text-2xl text-center mt-12 font-bold ${rancho.className}`}>
+						Ragam Menu dan Layanan
 					</h2>
-					<div className='pt-16 pb-8 md:grid md:grid-rows-2 md:grid-flow-col flex flex-col gap-12 text-[#88171d] md:px-0 px-12'>
+					<div
+						className={`pt-16 pb-8 md:grid md:grid-cols-3 md:grid-flow-row flex flex-row gap-12 text-[#88171d] md:px-0 px-12 ${poppins.className}`}>
 						{menus.map((menu, i) => {
 							return (
 								<div
 									key={i}
 									className='flex flex-col items-center'>
-									<h3 className='font-bold text-xl text-center pb-2'>
-										{menu.title}
+									{menu.prefix && (
+										<h3 className='font-medium text-xl text-center'>
+											{menu.prefix}
+										</h3>
+									)}
+									<h3 className='font-medium text-xl text-center pb-2'>
+										<span>{menu.title}</span>
 									</h3>
 									<div
 										className='w-full bg-[#88171d] my-2 h-72 bg-cover bg-no-repeat bg-center'
 										style={{
-											backgroundImage: `url(/menu/menu-tumpeng-mini.png)`,
+											backgroundImage: `url(/menu/menu-${i + 1}.jpg)`,
 										}}></div>
 									<div className='pt-2 text-center'>{menu.description}</div>
 								</div>
 							);
 						})}
 					</div>
-					<h3 className='text-center text-[#88171d] text-xl my-8 px-12'>
-						Acara mepet waktu kepepet, butuh katering yang satset? <br />
-						Segera hub Admin SatSet untuk mendapatkan <br />
-						solusi masalah konsumsi. Satu Setengah Jam Siap Antar <br />
-						kemanapun dan kapanpun dengan minimum 10 porsi.
+					<h3
+						className={`text-center text-[#88171d] text-xl my-8 px-12 ${poppins.className}`}>
+						Dari acara keluarga hingga pelayanan perusahaan, beragam pilihan
+						<br />
+						menu eksotik lokal, satu setengah jam siap kirim dengan SatSet
+						Service,
+						<br />
+						pemesanan mulai 5 porsi hingga ribuan porsi, siap 24 jam
+						<br />
+						waktu pengantaran dan fleksibel tentukan biaya.
 					</h3>
+
+					<h2
+						className={`text-center text-[#88171d] text-xl my-8 px-12 font-bold ${poppins.className}`}>
+						Silahkan Anda fokus acaranya, biar kami urus sajiannya.
+					</h2>
 				</div>
 				<div
 					className='absolute bottom-0 left-0 bg-contain bg-no-repeat w-full md:h-1/3 h-48 bg-left-bottom'
@@ -413,7 +447,7 @@ export default function Home() {
 										d='M23.328 19.177c-.401-.203-2.354-1.156-2.719-1.292c-.365-.13-.63-.198-.896.203c-.26.391-1.026 1.286-1.26 1.547s-.464.281-.859.104c-.401-.203-1.682-.62-3.203-1.984c-1.188-1.057-1.979-2.359-2.214-2.76c-.234-.396-.026-.62.172-.818c.182-.182.401-.458.604-.698c.193-.24.255-.401.396-.661c.13-.281.063-.5-.036-.698s-.896-2.161-1.229-2.943c-.318-.776-.651-.677-.896-.677c-.229-.021-.495-.021-.76-.021s-.698.099-1.063.479c-.365.401-1.396 1.359-1.396 3.297c0 1.943 1.427 3.823 1.625 4.104c.203.26 2.807 4.26 6.802 5.979c.953.401 1.693.641 2.271.839c.953.302 1.823.26 2.51.161c.76-.125 2.354-.964 2.688-1.901c.339-.943.339-1.724.24-1.901c-.099-.182-.359-.281-.76-.458zM16.083 29h-.021c-2.365 0-4.703-.641-6.745-1.839l-.479-.286l-5 1.302l1.344-4.865l-.323-.5a13.166 13.166 0 0 1-2.021-7.01c0-7.26 5.943-13.182 13.255-13.182c3.542 0 6.865 1.38 9.365 3.88a13.058 13.058 0 0 1 3.88 9.323C29.328 23.078 23.39 29 16.088 29zM27.359 4.599C24.317 1.661 20.317 0 16.062 0C7.286 0 .14 7.115.135 15.859c0 2.792.729 5.516 2.125 7.927L0 32l8.448-2.203a16.13 16.13 0 0 0 7.615 1.932h.005c8.781 0 15.927-7.115 15.932-15.865c0-4.234-1.651-8.219-4.661-11.214z'
 									/>
 								</svg>
-								<div className='text-xl pl-2'>Chat Admin Disini Yaa!</div>
+								<div className='text-xl pl-2'>Chat Aja Dulu Yuuk</div>
 							</div>
 						</div>
 					</div>
@@ -440,38 +474,29 @@ export default function Home() {
 			<section
 				id='customer'
 				className='w-full bg-white'>
-				<h2 className='text-[#88171d] md:text-4xl text-2xl text-center mt-12 font-bold'>
+				<h2
+					className={`text-[#88171d] md:text-5xl text-2xl text-center mt-12 font-bold ${rancho.className}`}>
 					Pelanggan Setia Kami
 				</h2>
 				<div className='flex flex-col justify-center pt-6 space-y-2 items-center'>
-					{ourCustomer.map((customer, i) => {
-						return (
-							<div
-								key={i}
-								className='w-full flex justify-center'>
-								<div className='md:w-96 w-full md:px-0 px-4'>
-									<Image
-										src={`/client/customer-${customer}.png`}
-										alt='Humani Food Customer'
-										width={100}
-										height={24}
-										priority
-										style={{ width: `100%` }}
-									/>
-								</div>
-							</div>
-						);
-					})}
+					<div className='w-full flex justify-center h-[30rem]'>
+						<div
+							className={`md:w-1/2 w-full md:px-0 px-4 bg-cover bg-[url('/client/pelanggan-kami.jpg')]`}></div>
+					</div>
 				</div>
 			</section>
 			<section
 				id='gallery'
 				className='w-full bg-white'>
-				<h2 className='text-[#88171d] md:text-4xl text-2xl text-center mt-12 font-bold'>
+				<h2
+					className={`text-[#88171d] md:text-5xl text-2xl text-center mt-12 font-bold ${rancho.className}`}>
 					Gallery Humani Catering Service
 				</h2>
 				<div className='pt-8 pb-2'>
-					<Carosel images={testimoni} />
+					<Carosel
+						images={gallery}
+						size={"contain"}
+					/>
 				</div>
 			</section>
 			<section
@@ -490,7 +515,7 @@ export default function Home() {
 									d='M23.328 19.177c-.401-.203-2.354-1.156-2.719-1.292c-.365-.13-.63-.198-.896.203c-.26.391-1.026 1.286-1.26 1.547s-.464.281-.859.104c-.401-.203-1.682-.62-3.203-1.984c-1.188-1.057-1.979-2.359-2.214-2.76c-.234-.396-.026-.62.172-.818c.182-.182.401-.458.604-.698c.193-.24.255-.401.396-.661c.13-.281.063-.5-.036-.698s-.896-2.161-1.229-2.943c-.318-.776-.651-.677-.896-.677c-.229-.021-.495-.021-.76-.021s-.698.099-1.063.479c-.365.401-1.396 1.359-1.396 3.297c0 1.943 1.427 3.823 1.625 4.104c.203.26 2.807 4.26 6.802 5.979c.953.401 1.693.641 2.271.839c.953.302 1.823.26 2.51.161c.76-.125 2.354-.964 2.688-1.901c.339-.943.339-1.724.24-1.901c-.099-.182-.359-.281-.76-.458zM16.083 29h-.021c-2.365 0-4.703-.641-6.745-1.839l-.479-.286l-5 1.302l1.344-4.865l-.323-.5a13.166 13.166 0 0 1-2.021-7.01c0-7.26 5.943-13.182 13.255-13.182c3.542 0 6.865 1.38 9.365 3.88a13.058 13.058 0 0 1 3.88 9.323C29.328 23.078 23.39 29 16.088 29zM27.359 4.599C24.317 1.661 20.317 0 16.062 0C7.286 0 .14 7.115.135 15.859c0 2.792.729 5.516 2.125 7.927L0 32l8.448-2.203a16.13 16.13 0 0 0 7.615 1.932h.005c8.781 0 15.927-7.115 15.932-15.865c0-4.234-1.651-8.219-4.661-11.214z'
 								/>
 							</svg>
-							<div className='text-xl pl-2'>Chat Admin Disini Yaa!</div>
+							<div className='text-xl pl-2'>Chat Aja Dulu Yuuk</div>
 						</div>
 					</div>
 				</div>
@@ -511,9 +536,11 @@ export default function Home() {
 				</div>
 				<div className='flex md:flex-row flex-col justify-between md:w-5/6 w-full text-white md:pt-0 pt-8 md:gap-0 gap-8'>
 					<div className='w-full md:items-start items-center flex flex-col'>
-						<h3 className='text-2xl pb-2'>Layanan Pelanggan</h3>
-						<div>Telp dan Whatsapp</div>
-						<div className='font-bold cursor-pointer'>
+						<h3 className={`text-4xl pb-2 ${rancho.className}`}>
+							Layanan Pelanggan
+						</h3>
+						<div className={`${poppins.className}`}>Whatsapp</div>
+						<div className={`font-bold cursor-pointer ${poppins.className}`}>
 							<Link
 								href='https://wa.me/+6287888111778?text=Saya%20ingin%20mendapatkan%20informasi%20katering%20terbaru'
 								rel='noopener noreferrer'
@@ -521,10 +548,10 @@ export default function Home() {
 								0811 9119 200
 							</Link>
 						</div>
-						<div className='pt-4'>Email</div>
-						<div className='font-bold cursor-pointer'>
+						<div className={`pt-4 ${poppins.className}`}>Email</div>
+						<div className={`font-bold cursor-pointer ${poppins.className}`}>
 							<Link
-								href='mailto:info@humanifood.com'
+								href='mailto:info@humanifood.co.id'
 								rel='noopener noreferrer'
 								target='_blank'>
 								info@humanifood.com
@@ -532,13 +559,19 @@ export default function Home() {
 						</div>
 					</div>
 					<div className='w-full md:items-start items-center flex flex-col'>
-						<h3 className='text-2xl pb-2'>Waktu Pelayanan</h3>
-						<div>Senin - Jumat</div>
-						<div className='font-bold'>08.00 - 17.00</div>
+						<h3 className={`text-4xl pb-2 ${rancho.className}`}>
+							Waktu Pelayanan
+						</h3>
+						<div className={poppins.className}>Senin - Jumat</div>
+						<div className={`font-bold ${poppins.className}`}>
+							08.00 - 17.00
+						</div>
 					</div>
 					<div className='w-full md:items-start items-center flex flex-col'>
-						<h3 className='text-2xl pb-2'>Sentra Dapur</h3>
-						<div>
+						<h3 className={`text-4xl pb-2 ${rancho.className}`}>
+							Sentra Dapur
+						</h3>
+						<div className={poppins.className}>
 							Jalan Anggrek No. 57C <br />
 							Cimanggis Depok <br />
 							Jawa Barat - 16453
@@ -550,7 +583,7 @@ export default function Home() {
 				id='footer'
 				className='pt-16 pb-6 text-[#88171d] w-full'>
 				<div className='text-center'>
-					<h4>&#169; 2024 Humanifood</h4>
+					<h4>&#169;2024 Humanifood</h4>
 				</div>
 				<div className='flex justify-center pt-8'>
 					<Image
