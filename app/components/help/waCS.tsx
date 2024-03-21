@@ -2,7 +2,7 @@ import { FC } from "react";
 
 export const WaCS: FC<{ no: string; content: string }> = ({ no, content }) => {
 	return (
-		<div className='flex mx-2 my-4 cursor-pointer hover:opacity-85 z-40 items-center fixed right-0 bottom-0 rounded-full p-2 drop-shadow-2xl text-green-500 bg-white'>
+		<div className='flex mx-2 my-4 cursor-pointer hover:opacity-85 z-40 items-center fixed right-0 md:bottom-0 bottom-40 rounded-full p-2 drop-shadow-2xl text-green-500 bg-white'>
 			<svg
 				width='50'
 				height='50'
