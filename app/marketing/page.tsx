@@ -361,7 +361,7 @@ export default function Marketing() {
 						</div>
 						<Carosel
 							images={menufavorit}
-							size='contain'
+							size='bg-contain'
 						/>
 					</section>
 					<section

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./carosel.css";
 
-const Carosel = ({ images, size = "cover" }: any) => {
+const Carosel = ({ images, size = "bg-cover" }: any) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [direction, setDirection] = useState(null as any);
 
@@ -60,9 +60,8 @@ const Carosel = ({ images, size = "cover" }: any) => {
 						key={currentIndex}
 						style={{
 							backgroundImage: `url(${images[currentIndex]})`,
-							backgroundSize: size,
 						}}
-						className='img'
+						className={`img ${size}`}
 						initial={direction === "right" ? "hiddenRight" : "hiddenLeft"}
 						animate='visible'
 						exit='exit'

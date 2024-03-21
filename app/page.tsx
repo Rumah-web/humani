@@ -88,7 +88,7 @@ export default function Home() {
 		<main className='flex min-h-screen relative flex-col items-center justify-between relative'>
 			<section
 				id='wellcome'
-				className='relative w-full h-screen flex flex-col bg-white'>
+				className='relative w-full md:h-screen flex flex-col bg-white'>
 				<div
 					className='absolute bottom-0 left-0 bg-contain w-28 h-full bg-no-repeat bg-left-bottom md:flex hidden'
 					style={{
@@ -141,8 +141,8 @@ export default function Home() {
 						</div>
 					</div>
 				</div>
-				<div className='flex w-full justify-center mt-16'>
-					<div className='flex max-w-5xl w-full md:flex-row flex-col lg:py-24 md:py-16 py-6'>
+				<div className='flex w-full justify-center md:mt-16 mt-16'>
+					<div className='flex max-w-5xl w-full md:flex-row flex-col lg:py-24 md:py-16 py-0'>
 						<div className='md:w-1/2 w-full text-[#88171d] lg:pt-0 pt-4 flex flex-col justify-between'>
 							<div className='w-full lg:pr-10 lg:px-0 md:px-4 px-4'>
 								<h1
@@ -166,7 +166,7 @@ export default function Home() {
 							</div>
 
 							<div
-								className={`lg:px-0 px-12 md:pt-10 pt-4 w-full md:px-4 px-6 text-sm ${poppins.className}`}>
+								className={`lg:px-0 px-12 md:pt-10 pt-4 w-full md:px-4 px-6 text-sm md:pb-0 pb-4 ${poppins.className}`}>
 								Humani Catering Service (HCS) selalu siap untuk solusi sajian
 								Anda. <br />
 								Konsultasikan dengan Catering Consultant HCS untuk mendapatkan{" "}
@@ -174,10 +174,10 @@ export default function Home() {
 								solusi masalah catering atau konsumsi acara Anda.
 							</div>
 						</div>
-						<div className='md:w-1/2 w-full lg:pt-0 md:pt-6 pt-4'>
+						<div className='-order-1  md:w-1/2 w-full lg:pt-0 md:pt-6 pt-4'>
 							<Carosel
 								images={testimoni}
-								size={`contain`}
+								size={`md:bg-contain bg-cover`}
 							/>
 						</div>
 					</div>
@@ -224,10 +224,11 @@ export default function Home() {
 									</div>
 								</div>
 							</div>
-							<div className={`z-10 flex justify-center ${poppins.className}`}>
-								<div className='border border-white flex items-center justify-between rounded-full px-8 pt-4 pb-2.5 md:w-4/5 w-full bg-[#e7e8ea] my-4'>
-									<div className='flex flex-col w-full space-y-3 text-white items-center justify-center'>
-										<div className='flex bg-[#88171d] rounded-full h-12 w-12 items-center justify-center text-white'>
+							<div
+								className={`z-10 flex justify-center ${poppins.className} md:px-0 px-4`}>
+								<div className='border border-white flex items-center justify-between rounded-full px-8 md:pt-4 pt-2 pb-2.5 md:w-4/5 w-full bg-[#e7e8ea] my-4'>
+									<div className='flex flex-col w-full md:space-y-3 space-y-1 text-white items-center justify-center'>
+										<div className='flex bg-[#88171d] rounded-full md:h-12 md:w-12 h-10 w-10 items-center justify-center text-white'>
 											<svg
 												width='30'
 												height='30'
@@ -243,8 +244,8 @@ export default function Home() {
 											Catering Consultant
 										</h3>
 									</div>
-									<div className='flex flex-col w-full space-y-3 text-white items-center justify-center'>
-										<div className='flex bg-[#88171d] rounded-full h-12 w-12 items-center justify-center text-white'>
+									<div className='flex flex-col w-full md:space-y-3 space-y-1 text-white items-center justify-center'>
+										<div className='flex bg-[#88171d] rounded-full md:h-12 md:w-12 h-10 w-10 items-center justify-center text-white'>
 											<svg
 												width='30'
 												height='30'
@@ -260,8 +261,8 @@ export default function Home() {
 											Super Team
 										</h3>
 									</div>
-									<div className='flex flex-col w-full space-y-3 text-white items-center justify-center'>
-										<div className='flex bg-[#88171d] rounded-full h-12 w-12 items-center justify-center text-white'>
+									<div className='flex flex-col w-full md:space-y-3 space-y-1 text-white items-center justify-center'>
+										<div className='flex bg-[#88171d] rounded-full md:h-12 md:w-12 h-10 w-10 items-center justify-center text-white'>
 											<svg
 												width='30'
 												height='30'
@@ -290,8 +291,8 @@ export default function Home() {
 											SatSet Service
 										</h3>
 									</div>
-									<div className='flex flex-col w-full space-y-3 text-white items-center justify-center'>
-										<div className='flex bg-[#88171d] rounded-full h-12 w-12 items-center justify-center text-white'>
+									<div className='flex flex-col w-full md:space-y-3 space-y-1 text-white items-center justify-center'>
+										<div className='flex bg-[#88171d] rounded-full md:h-12 md:w-12 h-10 w-10 items-center justify-center text-white'>
 											<svg
 												width='30'
 												height='30'
@@ -332,7 +333,7 @@ export default function Home() {
 						Ragam Menu dan Layanan
 					</h2>
 					<div
-						className={`pt-16 pb-8 md:grid md:grid-cols-3 md:grid-flow-row flex flex-row gap-12 text-[#88171d] md:px-0 px-12 ${poppins.className}`}>
+						className={`pt-16 pb-8 md:grid md:grid-cols-3 grid-cols-1  md:grid-flow-row grid-flow-column flex md:flex-row flex-col gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}>
 						{menus.map((menu, i) => {
 							return (
 								<div
@@ -351,13 +352,15 @@ export default function Home() {
 										style={{
 											backgroundImage: `url(/menu/menu-${i + 1}.jpg)`,
 										}}></div>
-									<div className='pt-2 text-center'>{menu.description}</div>
+									<div className='pt-2 text-center md:px-0 px-4'>
+										{menu.description}
+									</div>
 								</div>
 							);
 						})}
 					</div>
 					<h3
-						className={`text-center text-[#88171d] text-xl my-8 px-12 ${poppins.className}`}>
+						className={`text-center text-[#88171d] text-xl my-8 md:px-12 px-6 ${poppins.className}`}>
 						Dari acara keluarga hingga pelayanan perusahaan, beragam pilihan
 						<br />
 						menu eksotik lokal, satu setengah jam siap kirim dengan SatSet
@@ -479,7 +482,7 @@ export default function Home() {
 					Pelanggan Setia Kami
 				</h2>
 				<div className='flex flex-col justify-center pt-6 space-y-2 items-center'>
-					<div className='w-full flex justify-center h-[30rem]'>
+					<div className='w-full flex justify-center md:h-[30rem] h-[10rem]'>
 						<div
 							className={`md:w-1/2 w-full md:px-0 px-4 bg-cover bg-[url('/client/pelanggan-kami.jpg')]`}></div>
 					</div>
@@ -492,10 +495,10 @@ export default function Home() {
 					className={`text-[#88171d] md:text-5xl text-2xl text-center mt-12 font-bold ${rancho.className}`}>
 					Gallery Humani Catering Service
 				</h2>
-				<div className='pt-8 pb-2'>
+				<div className='md:pt-8 pt-4 pb-2'>
 					<Carosel
 						images={gallery}
-						size={"contain"}
+						size={"md:bg-contain bg-cover"}
 					/>
 				</div>
 			</section>
