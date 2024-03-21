@@ -6,6 +6,10 @@ import Carosel from "../components/slider/carosel";
 import { WaCS } from "../components/help/waCS";
 
 export default function Marketing() {
+	const customerService = {
+		wa: `+6287888111778`,
+		content: `Saya ingin mendapatkan informasi katering terbaru`,
+	};
 	const ourCustomer = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 	const transitionValues = {
 		duration: 0.8,
@@ -511,7 +515,10 @@ export default function Marketing() {
 					<section
 						id='help'
 						className=''>
-						<WaCS />
+						<WaCS
+							no={customerService.wa}
+							content={customerService.content}
+						/>
 					</section>
 				</div>
 			</div>

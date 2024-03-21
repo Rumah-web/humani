@@ -10,6 +10,12 @@ import { WaCS } from "../components/help/waCS";
 
 export default function Menu() {
 	const [showHeaderBg, setShowHeaderBg] = useState(true);
+
+	const customerService = {
+		wa: `+6287888111778`,
+		content: `Saya ingin mendapatkan informasi katering terbaru`,
+	};
+
 	const testimoni = [
 		`/testimoni/testimoni-1.jpeg`,
 		`/testimoni/testimoni-2.jpeg`,
@@ -549,7 +555,10 @@ export default function Menu() {
 				</div>
 			</section>
 			<section id='help'>
-				<WaCS />
+				<WaCS
+					no={customerService.wa}
+					content={customerService.content}
+				/>
 			</section>
 		</main>
 	);

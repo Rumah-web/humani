@@ -9,6 +9,10 @@ import { WaCS } from "./components/help/waCS";
 import { poppins, rancho } from "./font";
 
 export default function Home() {
+	const customerService = {
+		wa: `+6287888111778`,
+		content: `Saya ingin mendapatkan informasi katering terbaru`,
+	};
 	const testimoni = [
 		`/testimoni/testimoni-1.jpg`,
 		`/testimoni/testimoni-2.jpg`,
@@ -174,7 +178,7 @@ export default function Home() {
 								solusi masalah catering atau konsumsi acara Anda.
 							</div>
 						</div>
-						<div className='-order-1  md:w-1/2 w-full lg:pt-0 md:pt-6 pt-4'>
+						<div className='md:order-last -order-1  md:w-1/2 w-full lg:pt-0 md:pt-6 pt-4'>
 							<Carosel
 								images={testimoni}
 								size={`md:bg-contain bg-cover`}
@@ -545,7 +549,7 @@ export default function Home() {
 						<div className={`${poppins.className}`}>Whatsapp</div>
 						<div className={`font-bold cursor-pointer ${poppins.className}`}>
 							<Link
-								href='https://wa.me/+6287888111778?text=Saya%20ingin%20mendapatkan%20informasi%20katering%20terbaru'
+								href={`https://wa.me/${customerService.wa}?text=${customerService.content}`}
 								rel='noopener noreferrer'
 								target='_blank'>
 								0811 9119 200
@@ -716,7 +720,10 @@ export default function Home() {
 				</div>
 			</section>
 			<section id='help'>
-				<WaCS />
+				<WaCS
+					no={customerService.wa}
+					content={customerService.content}
+				/>
 			</section>
 		</main>
 	);
