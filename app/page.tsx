@@ -7,8 +7,10 @@ import Slickslider from "./components/slider/slickslider";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { WaCS } from "./components/help/waCS";
 import { poppins, rancho } from "./font";
+import { useEffect, useRef } from "react";
 
 export default function Home() {
+	const listInnerRef = useRef(null);
 	const customerService = {
 		wa: `+6287888111778`,
 		content: `Saya ingin mendapatkan informasi katering terbaru`,
@@ -33,12 +35,17 @@ export default function Home() {
 	];
 
 	const review = [
-		`/review/review-1.jpeg`,
-		`/review/review-2.jpeg`,
+		`/review/review-1.png`,
+		`/review/review-2.png`,
 		`/review/review-3.png`,
-		`/review/review-1.jpeg`,
-		`/review/review-2.jpeg`,
-		`/review/review-3.png`,
+		`/review/review-4.png`,
+		`/review/review-5.png`,
+		`/review/review-6.png`,
+		`/review/review-7.png`,
+		`/review/review-8.png`,
+		`/review/review-9.png`,
+		`/review/review-10.png`,
+		`/review/review-11.png`,
 	];
 
 	const ourCustomer = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -83,13 +90,42 @@ export default function Home() {
 			prefix: "Layanan",
 			title: "Berbagi Makanan",
 			description:
-				"Kebutuhan akan berbagi sesama buat masyarakat kita makin besar dan butuh layanan berbagi makanan yang halalan toyiban namun amanah dan terpercaya.",
+				"Keinginan berbagi makanan antar sesama di masyarakat kita semakin besar sehingga butuh layanan yang halalan toyiban, amanah dan terpercaya.",
 			imagePath: null,
 		},
 	];
 
+	useEffect(() => {
+		const listInnerElement = listInnerRef.current as any;
+
+		if (listInnerElement) {
+			listInnerElement.addEventListener("scroll", onScroll);
+
+			// Clean-up
+			return () => {
+				listInnerElement.removeEventListener("scroll", onScroll);
+			};
+		}
+	}, []);
+
+	const onScroll = () => {
+		console.log("scroll bottom");
+		if (listInnerRef.current) {
+			const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current;
+			const isNearBottom = scrollTop + clientHeight >= scrollHeight;
+
+			if (isNearBottom) {
+				console.log("Reached bottom");
+				// DO SOMETHING HERE
+			}
+		}
+	};
+
 	return (
-		<main className='flex min-h-screen relative flex-col items-center justify-between relative'>
+		<main
+			className='flex min-h-screen relative flex-col items-center justify-between relative overflow-y-scroll'
+			ref={listInnerRef}
+			onScroll={() => console.log("click")}>
 			<section
 				id='wellcome'
 				className='relative w-full md:h-screen flex flex-col bg-white'>
@@ -474,6 +510,7 @@ export default function Home() {
 					<div className='relative  w-screen'>
 						<Slickslider
 							images={review}
+							size={"cover"}
 							className={`mx-4`}></Slickslider>
 					</div>
 				</div>
