@@ -12,7 +12,7 @@ import { useEffect, useRef } from "react";
 export default function Home() {
 	const listInnerRef = useRef(null);
 	const customerService = {
-		wa: `+6287888111778`,
+		wa: `+6208119119200`,
 		content: `Saya ingin mendapatkan informasi katering terbaru`,
 	};
 	const testimoni = [
@@ -477,7 +477,14 @@ export default function Home() {
 							/>
 						</div>
 					</div>
-					<div className='flex justify-center pb-4'>
+					<div
+						className='flex justify-center pb-4 cursor-pointer'
+						onClick={() => {
+							window.open(
+								`https://wa.me/${customerService.wa}?text=${customerService.content}`,
+								"_blank"
+							);
+						}}>
 						<div className='border border-[#88171d] py-1.5 px-1.5 rounded-full'>
 							<div className='flex pl-6 pr-4 py-2.5 rounded-full items-center text-white bg-gradient-to-r from-[#88171d] to-[#d83831]'>
 								<svg
@@ -546,7 +553,14 @@ export default function Home() {
 			<section
 				id='chat-wa'
 				className='py-8 bg-white w-full flex justify-center'>
-				<div className='w-fit'>
+				<div
+					className='w-fit cursor-pointer'
+					onClick={() => {
+						window.open(
+							`https://wa.me/${customerService.wa}?text=${customerService.content}`,
+							"_blank"
+						);
+					}}>
 					<div className='border border-[#88171d] py-1.5 px-1.5 rounded-full'>
 						<div className='flex pl-6 pr-4 py-2.5 rounded-full items-center text-white bg-gradient-to-r from-[#88171d] to-[#d83831]'>
 							<svg
@@ -687,7 +701,7 @@ export default function Home() {
 					</div>
 					<div className='cursor-pointer'>
 						<Link
-							href='https://www.instagram.com/humanifoods.family/'
+							href='https://www.instagram.com/humanifood.id'
 							rel='noopener noreferrer'
 							target='_blank'>
 							<svg
