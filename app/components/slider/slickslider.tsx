@@ -19,7 +19,7 @@ const Slickslider = ({
 		infinite: true,
 		centerPadding: "0px",
 		arrows: false,
-		autoplay: false,
+		autoplay: true,
 		slidesToShow,
 		speed: 500,
 		dots,

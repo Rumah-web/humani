@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./carosel.css";
 
-const Carosel = ({ images, size = "bg-cover" }: any) => {
+const Carosel = ({ images, size = "bg-cover", auto = true }: any) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [direction, setDirection] = useState(null as any);
 
@@ -52,6 +52,18 @@ const Carosel = ({ images, size = "bg-cover" }: any) => {
 		);
 	};
 
+	useEffect(() => {
+		if (auto) {
+			setInterval(() => {
+				setCurrentIndex((prevIndex) => {
+					console.log("prevIndex : ", prevIndex);
+
+					return prevIndex + 1 === images.length ? 0 : prevIndex + 1;
+				});
+			}, 4000);
+		}
+	}, []);
+
 	return (
 		<div className='carousel'>
 			<div className='carousel-images'>
@@ -68,7 +80,7 @@ const Carosel = ({ images, size = "bg-cover" }: any) => {
 						variants={slideVariants}
 					/>
 				</AnimatePresence>
-				<div className='slide_direction'>
+				{/* <div className='slide_direction'>
 					<motion.div
 						variants={slidersVariants}
 						whileHover='hover'
@@ -101,7 +113,7 @@ const Carosel = ({ images, size = "bg-cover" }: any) => {
 							/>
 						</svg>
 					</motion.div>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);
