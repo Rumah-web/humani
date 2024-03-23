@@ -56,8 +56,6 @@ const Carosel = ({ images, size = "bg-cover", auto = true }: any) => {
 		if (auto) {
 			setInterval(() => {
 				setCurrentIndex((prevIndex) => {
-					console.log("prevIndex : ", prevIndex);
-
 					return prevIndex + 1 === images.length ? 0 : prevIndex + 1;
 				});
 			}, 4000);

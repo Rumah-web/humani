@@ -9,6 +9,12 @@ import { MulaiBerbagi } from "../components/mulaiBerbagi";
 
 export default function Marketing() {
 	const ourCustomer = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+	const customerService = {
+		wa: `+6208119119200`,
+		content: `Saya ingin mendapatkan informasi katering terbaru`,
+	};
+
 	const transitionValues = {
 		duration: 0.8,
 		yoyo: Infinity,
@@ -513,7 +519,10 @@ export default function Marketing() {
 					<section
 						id='help'
 						className='relative'>
-						<OpenCloseCS />
+						<OpenCloseCS
+							no={customerService.wa}
+							content={customerService.content}
+						/>
 					</section>
 					<section
 						id='mulai-berbagi'

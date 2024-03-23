@@ -4,51 +4,39 @@ import Image from "next/image";
 import Carosel from "./components/slider/carosel";
 import Link from "next/link";
 import Slickslider from "./components/slider/slickslider";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { WaCS } from "./components/help/waCS";
 import { poppins, rancho } from "./font";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { OpenCloseCS } from "./components/help/openCloseCS";
 
 export default function Home() {
 	const listInnerRef = useRef(null);
+	const [lastPosition, setLastPosition] = useState(0);
+	const [scrollDirection, setScrollDirection] = useState(
+		"down" as "down" | "up" | "end"
+	);
+
 	const customerService = {
 		wa: `+6208119119200`,
 		content: `Saya ingin mendapatkan informasi katering terbaru`,
 	};
-	const testimoni = [
-		`/testimoni/testimoni-1.jpg`,
-		`/testimoni/testimoni-2.jpg`,
-		`/testimoni/testimoni-3.jpg`,
-		`/testimoni/testimoni-4.jpg`,
-		`/testimoni/testimoni-5.jpg`,
-		`/testimoni/testimoni-6.jpg`,
-	];
+	const testimoni = () => {
+		return Array.from({ length: 6 }).map(
+			(_, i) => `/testimoni/testimoni-${i + 1}.jpg`
+		);
+	};
 
-	const gallery = [
-		`/gallery/gallery-1.jpg`,
-		`/gallery/gallery-2.jpg`,
-		`/gallery/gallery-3.jpg`,
-		`/gallery/gallery-4.jpg`,
-		`/gallery/gallery-5.jpg`,
-		`/gallery/gallery-6.jpg`,
-		`/gallery/gallery-7.jpg`,
-	];
+	const gallery = () => {
+		return Array.from({ length: 7 }).map(
+			(_, i) => `/gallery/gallery-${i + 1}.jpg`
+		);
+	};
 
-	const review = [
-		`/review/review-1.png`,
-		`/review/review-2.png`,
-		`/review/review-3.png`,
-		`/review/review-4.png`,
-		`/review/review-5.png`,
-		`/review/review-6.png`,
-		`/review/review-7.png`,
-		`/review/review-8.png`,
-		`/review/review-9.png`,
-		`/review/review-10.png`,
-		`/review/review-11.png`,
-	];
-
-	const ourCustomer = [1, 2, 3, 4, 5, 6, 7, 8];
+	const review = () => {
+		return Array.from({ length: 11 }).map(
+			(_, i) => `/review/review-${i + 1}.png`
+		);
+	};
 
 	const menus = [
 		{
@@ -95,26 +83,19 @@ export default function Home() {
 		},
 	];
 
-	useEffect(() => {
-		const listInnerElement = listInnerRef.current as any;
-
-		if (listInnerElement) {
-			listInnerElement.addEventListener("scroll", onScroll);
-
-			// Clean-up
-			return () => {
-				listInnerElement.removeEventListener("scroll", onScroll);
-			};
-		}
-	}, []);
-
 	const onScroll = () => {
-		console.log("scroll bottom");
 		if (listInnerRef.current) {
 			const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current;
 			const isNearBottom = scrollTop + clientHeight >= scrollHeight;
+			if (scrollTop < lastPosition) {
+				setScrollDirection("up");
+			} else {
+				setScrollDirection("down");
+			}
 
+			setLastPosition(scrollTop);
 			if (isNearBottom) {
+				setScrollDirection("end");
 				console.log("Reached bottom");
 				// DO SOMETHING HERE
 			}
@@ -123,9 +104,9 @@ export default function Home() {
 
 	return (
 		<main
-			className='flex min-h-screen relative flex-col items-center justify-between relative overflow-y-scroll'
+			className='flex h-screen relative flex-col items-center justify-between relative overflow-y-scroll'
 			ref={listInnerRef}
-			onScroll={() => console.log("click")}>
+			onScroll={onScroll}>
 			<section
 				id='wellcome'
 				className='relative w-full md:h-screen flex flex-col bg-white'>
@@ -216,7 +197,7 @@ export default function Home() {
 						</div>
 						<div className='md:order-last -order-1  md:w-1/2 w-full lg:pt-0 md:pt-6 pt-4'>
 							<Carosel
-								images={testimoni}
+								images={testimoni()}
 								size={`md:bg-contain bg-cover`}
 							/>
 						</div>
@@ -516,7 +497,7 @@ export default function Home() {
 				<div className='py-24 text-white'>
 					<div className='relative  w-screen'>
 						<Slickslider
-							images={review}
+							images={review()}
 							size={"cover"}
 							className={`mx-4`}></Slickslider>
 					</div>
@@ -545,7 +526,7 @@ export default function Home() {
 				</h2>
 				<div className='md:pt-8 pt-4 pb-2'>
 					<Carosel
-						images={gallery}
+						images={gallery()}
 						size={"md:bg-contain bg-cover"}
 					/>
 				</div>
@@ -772,12 +753,16 @@ export default function Home() {
 						</Link>
 					</div>
 				</div>
-			</section>
-			<section id='help'>
-				<WaCS
-					no={customerService.wa}
-					content={customerService.content}
-				/>
+				<section
+					id='help'
+					className={`${
+						scrollDirection === "up" ? `flex` : `hidden`
+					} relative`}>
+					<OpenCloseCS
+						no={customerService.wa}
+						content={customerService.content}
+					/>
+				</section>
 			</section>
 		</main>
 	);
