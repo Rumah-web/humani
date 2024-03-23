@@ -433,16 +433,16 @@ export default function Home() {
 				<div
 					className='absolute -bottom-36 -left-36 bg-contain bg-no-repeat w-full h-72 bg-left-bottom'
 					style={{
-						filter: `blur(8px)`,
+						filter: `blur(8px) invert(85%) sepia(30%) saturate(3460%) hue-rotate(321deg) brightness(98%) contrast(100%)`,
 						WebkitFilter: `blur(8px)`,
-						backgroundImage: `url(/logo-red.png)`,
+						backgroundImage: `url(/logo-white.png)`,
 					}}></div>
 				<div
 					className='absolute top-0 -right-72 bg-contain bg-no-repeat w-full h-[36rem] bg-right-top'
 					style={{
-						filter: `blur(8px)`,
+						filter: `blur(8px) invert(85%) sepia(30%) saturate(3460%) hue-rotate(321deg) brightness(98%) contrast(100%)`,
 						WebkitFilter: `blur(8px)`,
-						backgroundImage: `url(/logo-red.png)`,
+						backgroundImage: `url(/logo-white.png)`,
 					}}></div>
 				<div className='bg-white opacity-90 absolute w-full h-full'></div>
 				<div className='relative flex flex-col space-y-4 item-center text-center py-4 text-[#88171d]'>
@@ -631,8 +631,11 @@ export default function Home() {
 				</div>
 				<div className='flex justify-center pt-8'>
 					<Image
-						src='/logo-red.png'
+						src='/logo-white.png'
 						alt='Humani Food Logo'
+						style={{
+							filter: `invert(85%) sepia(30%) saturate(3460%) hue-rotate(321deg) brightness(98%) contrast(100%)`,
+						}}
 						width={250}
 						height={50}
 						priority
