@@ -369,7 +369,7 @@ export default function Home() {
 										<span>{menu.title}</span>
 									</h3>
 									<div
-										className='w-full bg-[#88171d] my-2 h-72 bg-cover bg-no-repeat bg-center'
+										className='w-full bg-[#88171d] my-2 h-72 bg-contain bg-no-repeat bg-center'
 										style={{
 											backgroundImage: `url(/menu/menu-${i + 1}.jpg)`,
 										}}></div>
@@ -610,7 +610,7 @@ export default function Home() {
 						<h3 className={`text-4xl pb-2 ${rancho.className}`}>
 							Sentra Dapur
 						</h3>
-						<div className={poppins.className}>
+						<div className={`${poppins.className} md:text-left text-center`}>
 							Jalan Anggrek No. 57C <br />
 							Cimanggis Depok <br />
 							Jawa Barat - 16453
