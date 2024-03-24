@@ -369,7 +369,7 @@ export default function Home() {
 										<span>{menu.title}</span>
 									</h3>
 									<div
-										className='w-full bg-[#88171d] my-2 h-72 bg-contain bg-no-repeat bg-center'
+										className='w-full my-2 h-72 bg-contain bg-no-repeat bg-center'
 										style={{
 											backgroundImage: `url(/menu/menu-${i + 1}.jpg)`,
 										}}></div>
