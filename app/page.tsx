@@ -116,7 +116,11 @@ export default function Home() {
 			<section
 				id='wellcome'
 				className='relative w-full md:h-screen h-screen flex flex-col bg-white'>
-				<div className='w-full'>
+				<div
+					className={`w-full cover-video`}
+					style={{
+						backgroundImage: `url(/bg/bg-menu-service.jpg)`,
+					}}>
 					<video
 						className='video-bg md:relative absolute'
 						muted
