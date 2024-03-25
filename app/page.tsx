@@ -8,6 +8,10 @@ import { WaCS } from "./components/help/waCS";
 import { poppins, rancho } from "./font";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { OpenCloseCS } from "./components/help/openCloseCS";
+import { iconHalal } from "./components/icon/halal/halal";
+import { iconSatset } from "./components/icon/satset/satset";
+import { iconTeam } from "./components/icon/team/team";
+import { iconConsult } from "./components/icon/consult/consult";
 
 export default function Home() {
 	const listInnerRef = useRef(null);
@@ -110,18 +114,22 @@ export default function Home() {
 			<section
 				id='wellcome'
 				className='relative w-full md:h-screen flex flex-col bg-white'>
-				<div
-					className='absolute bottom-0 left-0 bg-contain w-28 h-full bg-no-repeat bg-left-bottom md:flex hidden'
-					style={{
-						backgroundImage: `url(/bg/bg-top-left.png)`,
-					}}></div>
-				<div
-					className='absolute bottom-0 right-0 bg-contain w-28 h-full bg-no-repeat bg-right-bottom md:flex hidden'
-					style={{
-						backgroundImage: `url(/bg/bg-top-right.png)`,
-					}}></div>
-				<div className='fixed z-20 w-full font-mono text-sm justify-center flex py-2 bg-[#88171d] lg:px-0 px-4'>
-					<div className='max-w-5xl w-full flex justify-between'>
+				<div className='w-full'>
+					<video
+						className='w-full'
+						muted
+						autoPlay
+						loop
+						playsInline>
+						<source
+							src='/video/catering-profile.mp4'
+							type='video/mp4'
+						/>
+					</video>
+				</div>
+				<div className='fixed z-20 w-full font-mono text-sm justify-center flex md:py-0 py-2 lg:px-0 px-4'>
+					<div className='bg-header after:h-36 opacity-80'></div>
+					<div className='max-w-5xl w-full flex justify-between relative py-2'>
 						<div className=''>
 							<Image
 								src='/logo-white.png'
@@ -162,9 +170,9 @@ export default function Home() {
 						</div>
 					</div>
 				</div>
-				<div className='flex w-full justify-center md:mt-16 mt-16'>
+				<div className='flex w-full justify-center md:mt-0 mt-16 absolute top-36 cover-slide'>
 					<div className='flex max-w-5xl w-full md:flex-row flex-col lg:py-24 md:py-16 py-0'>
-						<div className='md:w-1/2 w-full text-[#88171d] lg:pt-0 pt-4 flex flex-col justify-between'>
+						<div className='md:w-full w-full text-[#ffffff] lg:pt-0 pt-4 flex flex-col '>
 							<div className='w-full lg:pr-10 lg:px-0 md:px-4 px-4'>
 								<h1
 									className={`lg:text-5xl md:text-4xl text-2xl font-bold tracking-wide md:px-0 px-2 flex flex-col flex-nowrap space-y-2 ${rancho.className}`}>
@@ -187,19 +195,25 @@ export default function Home() {
 							</div>
 
 							<div
-								className={`lg:px-0 px-12 md:pt-10 pt-4 w-full md:px-4 px-6 text-sm md:pb-0 pb-4 ${poppins.className}`}>
-								Humani Catering Service (HCS) selalu siap untuk solusi sajian
-								Anda. <br />
-								Konsultasikan dengan Catering Consultant HCS untuk mendapatkan{" "}
-								<br />
-								solusi masalah catering atau konsumsi acara Anda.
+								className={`w-full lg:px-0 px-12 md:pt-10 pt-4 w-full md:px-4 px-6 text-sm md:pb-0 pb-4 ${poppins.className}`}>
+								<div className=''>
+									Humani Catering Service (HCS) selalu siap untuk solusi sajian
+									Anda. <br />
+									Konsultasikan dengan Catering Consultant HCS untuk mendapatkan{" "}
+									<br />
+									solusi masalah catering atau konsumsi acara Anda.
+								</div>
+								<div
+									className='underline text-white py-2 rounded-full cursor-pointer'
+									onClick={() => {
+										window.open(
+											`https://wa.me/${customerService.wa}?text=${customerService.content}`,
+											"_blank"
+										);
+									}}>
+									More Info
+								</div>
 							</div>
-						</div>
-						<div className='md:order-last -order-1  md:w-1/2 w-full lg:pt-0 md:pt-6 pt-4'>
-							<Carosel
-								images={testimoni()}
-								size={`md:bg-contain bg-cover`}
-							/>
 						</div>
 					</div>
 				</div>
@@ -250,16 +264,7 @@ export default function Home() {
 								<div className='border border-white flex items-center justify-between rounded-full px-8 md:pt-4 pt-2 pb-2.5 md:w-4/5 w-full bg-[#e7e8ea] my-4'>
 									<div className='flex flex-col w-full md:space-y-3 space-y-1 text-white items-center justify-center'>
 										<div className='flex bg-[#88171d] rounded-full md:h-12 md:w-12 h-10 w-10 items-center justify-center text-white'>
-											<svg
-												width='30'
-												height='30'
-												viewBox='0 0 28 28'
-												xmlns='http://www.w3.org/2000/svg'>
-												<path
-													fill='currentColor'
-													d='m12.167 17.802l-.006-.014a7.798 7.798 0 0 1-.36-.094l-.009-.003A7.985 7.985 0 0 1 8.708 16a8 8 0 1 1 13.257-6.75c.039.413-.3.75-.715.75c-.414 0-.745-.337-.793-.749A6.5 6.5 0 1 0 11.496 16l.04.017c.2.082.406.154.616.217A2 2 0 0 1 16 17a2 2 0 0 1-3.833.802m-.986 1.272a9.514 9.514 0 0 1-4.53-3.054A3 3 0 0 0 4 19v.715C4 23.433 8.21 26 14 26s10-2.708 10-6.285V19a3 3 0 0 0-3-3h-3.645a3.5 3.5 0 0 1-6.174 3.074M19 10c0-1.512-.67-2.867-1.731-3.784a5 5 0 1 0-5.624 8.195A3.486 3.486 0 0 1 14 13.5a3.49 3.49 0 0 1 2.356.911A5 5 0 0 0 19 10'
-												/>
-											</svg>
+											{iconConsult}
 										</div>
 										<h3 className='flex md:text-sm text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none'>
 											Catering Consultant
@@ -267,16 +272,7 @@ export default function Home() {
 									</div>
 									<div className='flex flex-col w-full md:space-y-3 space-y-1 text-white items-center justify-center'>
 										<div className='flex bg-[#88171d] rounded-full md:h-12 md:w-12 h-10 w-10 items-center justify-center text-white'>
-											<svg
-												width='30'
-												height='30'
-												viewBox='0 0 20 20'
-												xmlns='http://www.w3.org/2000/svg'>
-												<path
-													fill='currentColor'
-													d='M7 4.5c-.3 0-.5.3-.5.5v2.5h-1V5c0-.3-.2-.5-.5-.5s-.5.3-.5.5v2.5h-1V5c0-.3-.2-.5-.5-.5s-.5.3-.5.5v3.3c0 .9.7 1.6 1.5 1.7v7c0 .6.4 1 1 1s1-.4 1-1v-7c.8-.1 1.5-.8 1.5-1.7V5c0-.2-.2-.5-.5-.5M9 5v6h1v6c0 .6.4 1 1 1s1-.4 1-1V2c-1.7 0-3 1.3-3 3m7-1c-1.4 0-2.5 1.5-2.5 3.3c-.1 1.2.5 2.3 1.5 3V17c0 .6.4 1 1 1s1-.4 1-1v-6.7c1-.7 1.6-1.8 1.5-3C18.5 5.5 17.4 4 16 4'
-												/>
-											</svg>
+											{iconTeam}
 										</div>
 										<h3 className='flex md:text-sm text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none'>
 											Super Team
@@ -284,29 +280,7 @@ export default function Home() {
 									</div>
 									<div className='flex flex-col w-full md:space-y-3 space-y-1 text-white items-center justify-center'>
 										<div className='flex bg-[#88171d] rounded-full md:h-12 md:w-12 h-10 w-10 items-center justify-center text-white'>
-											<svg
-												width='30'
-												height='30'
-												viewBox='0 0 24 24'
-												xmlns='http://www.w3.org/2000/svg'>
-												<g
-													fill='none'
-													stroke='currentColor'
-													strokeLinecap='round'
-													strokeWidth='1.5'>
-													<path
-														strokeLinejoin='round'
-														strokeMiterlimit='1.5'
-														d='M8 19a2 2 0 1 0 0-4a2 2 0 0 0 0 4m10 0a2 2 0 1 0 0-4a2 2 0 0 0 0 4'
-													/>
-													<path d='M10.05 17H15V6.6a.6.6 0 0 0-.6-.6H1m4.65 11H3.6a.6.6 0 0 1-.6-.6v-4.9' />
-													<path
-														strokeLinejoin='round'
-														d='M2 9h4'
-													/>
-													<path d='M15 9h5.61a.6.6 0 0 1 .548.356l1.79 4.028a.6.6 0 0 1 .052.243V16.4a.6.6 0 0 1-.6.6h-1.9M15 17h1' />
-												</g>
-											</svg>
+											{iconSatset}
 										</div>
 										<h3 className='flex md:text-sm text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none'>
 											SatSet Service
@@ -314,16 +288,7 @@ export default function Home() {
 									</div>
 									<div className='flex flex-col w-full md:space-y-3 space-y-1 text-white items-center justify-center'>
 										<div className='flex bg-[#88171d] rounded-full md:h-12 md:w-12 h-10 w-10 items-center justify-center text-white'>
-											<svg
-												width='30'
-												height='30'
-												viewBox='0 0 24 24'
-												xmlns='http://www.w3.org/2000/svg'>
-												<path
-													fill='currentColor'
-													d='M7 5v10c0 1.11-.89 2-2 2H4c-.55 0-1-.45-1-1v-3H1v3c0 1.66 1.34 3 3 3h1c2.21 0 4-1.79 4-4V5m14 8.38l-1.23-1.23A3.905 3.905 0 0 0 19 11h-2v2h2c.5 0 1 .2 1.35.56l.35.35l-1.2.69c-.46.26-.97.4-1.5.4h-1c-.56 0-1-.44-1-1V6h-2v3.81l-.62-.69C12.7 8.37 11.6 8 10.59 8H10v2h.59c.64 0 1.25.25 1.7.71l1.71 1.7V14c0 1.12-.88 2-2 2h-2v2h2c1.37 0 2.5-.7 3.17-1.76A2.5 2.5 0 0 0 17 17h1c.88 0 1.74-.23 2.5-.67l2.5-1.44Z'
-												/>
-											</svg>
+											{iconHalal}
 										</div>
 										<h3 className='flex md:text-sm text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none'>
 											Thayyiban
@@ -484,7 +449,7 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-			<section
+			{/* <section
 				id='review-slider'
 				className='relative w-full flex justify-center bg-no-repeat bg-cover'>
 				<div
@@ -502,7 +467,7 @@ export default function Home() {
 							className={`mx-4`}></Slickslider>
 					</div>
 				</div>
-			</section>
+			</section> */}
 			<section
 				id='customer'
 				className='w-full bg-white'>
@@ -511,9 +476,9 @@ export default function Home() {
 					Pelanggan Setia Kami
 				</h2>
 				<div className='flex flex-col justify-center pt-6 space-y-2 items-center'>
-					<div className='w-full flex justify-center md:h-[30rem] h-[10rem]'>
+					<div className='w-full flex justify-center md:h-[30rem] h-[15rem]'>
 						<div
-							className={`md:w-1/2 w-full md:px-0 px-4 bg-cover bg-[url('/client/pelanggan-kami.jpg')]`}></div>
+							className={`md:w-1/2 w-full md:px-0 px-4 bg-contain bg-no-repeat bg-[url('/client/pelanggan-kami.jpg')]`}></div>
 					</div>
 				</div>
 			</section>
