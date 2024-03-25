@@ -18,7 +18,8 @@
     "react-dom": "^18",
     "react-lazy-load-image-component": "^1.6.0",
     "react-slick": "^0.29.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "typewriter-effect": "^2.21.0"
   },
   "devDependencies": {
     "@types/node": "^20",

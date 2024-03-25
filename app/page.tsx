@@ -13,6 +13,7 @@ import { iconSatset } from "./components/icon/satset/satset";
 import { iconTeam } from "./components/icon/team/team";
 import { iconConsult } from "./components/icon/consult/consult";
 import { iconRight } from "./components/icon";
+import Typewriter from "typewriter-effect";
 
 export default function Home() {
 	const listInnerRef = useRef(null);
@@ -172,27 +173,25 @@ export default function Home() {
 					</div>
 				</div>
 				<div className='absolute w-full h-full bg-black opacity-50'></div>
-				<div className='flex w-full justify-center md:mt-0 mt-16 absolute md:top-36 top-16 cover-slide'>
+				<div className='flex w-full justify-center md:mt-0 mt-16 absolute md:top-36 top-24 cover-slide'>
 					<div className='flex max-w-5xl w-full md:flex-row flex-col lg:py-24 md:py-16 py-0'>
 						<div className='md:w-full w-full text-[#ffffff] lg:pt-0 pt-4 flex flex-col '>
 							<div className='w-full lg:pr-10 lg:px-0 md:px-4 px-4'>
 								<h1
-									className={`lg:text-5xl md:text-4xl text-2xl font-bold tracking-wide md:px-0 px-2 flex flex-col flex-nowrap space-y-2 ${rancho.className}`}>
-									<span>
-										Apapun Acaranya ... <br />
-									</span>
-									<span>
-										Berapapun Jumlahnya ... <br />
-									</span>
-									<span>
-										Kapanpun Waktunya ... <br />
-									</span>
-									<span>
-										Beragampun Menunya ... <br />
-									</span>
-									<span>
-										Berapapun Biayanya ... <br />
-									</span>
+									className={`min-h-8 lg:text-5xl md:text-4xl text-3xl font-bold tracking-wide md:px-0 px-2 flex flex-col flex-nowrap space-y-2 ${rancho.className}`}>
+									<Typewriter
+										options={{
+											strings: [
+												"Apapun Acaranya ...",
+												"Berapapun Jumlahnya ...",
+												"Kapanpun Waktunya ...",
+												"Beragampun Menunya ...",
+												"Berapapun Biayanya ...",
+											],
+											autoStart: true,
+											loop: true,
+										}}
+									/>
 								</h1>
 							</div>
 
