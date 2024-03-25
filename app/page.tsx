@@ -205,7 +205,7 @@ export default function Home() {
 									solusi masalah catering atau konsumsi acara Anda.
 								</div>
 								<div
-									className='text-[#88171d] hover:underline py-2 rounded-full cursor-pointer'
+									className='text-[white] hover:underline py-2 rounded-full cursor-pointer'
 									onClick={() => {
 										window.open(
 											`https://wa.me/${customerService.wa}?text=${customerService.content}`,

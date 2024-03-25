@@ -48,7 +48,7 @@ body {
 .bg-button {
 	background: linear-gradient(
 		90deg,
-		#ffffff 100%,
+		#88171d 80%,
 		rgba(132, 64, 64, 0.1) 100%
 	) !important;
 }
