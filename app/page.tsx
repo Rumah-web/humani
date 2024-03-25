@@ -12,6 +12,7 @@ import { iconHalal } from "./components/icon/halal/halal";
 import { iconSatset } from "./components/icon/satset/satset";
 import { iconTeam } from "./components/icon/team/team";
 import { iconConsult } from "./components/icon/consult/consult";
+import { iconRight } from "./components/icon";
 
 export default function Home() {
 	const listInnerRef = useRef(null);
@@ -108,15 +109,15 @@ export default function Home() {
 
 	return (
 		<main
-			className='flex h-screen relative flex-col items-center justify-between relative overflow-y-scroll'
+			className='flex md:h-screen relative flex-col items-center justify-between relative overflow-y-scroll'
 			ref={listInnerRef}
 			onScroll={onScroll}>
 			<section
 				id='wellcome'
-				className='relative w-full md:h-screen flex flex-col bg-white'>
+				className='relative w-full md:h-screen h-screen flex flex-col bg-white'>
 				<div className='w-full'>
 					<video
-						className='w-full'
+						className='video-bg md:relative absolute'
 						muted
 						autoPlay
 						loop
@@ -128,7 +129,7 @@ export default function Home() {
 					</video>
 				</div>
 				<div className='fixed z-20 w-full font-mono text-sm justify-center flex md:py-0 py-2 lg:px-0 px-4'>
-					<div className='bg-header after:h-36 opacity-80'></div>
+					<div className='bg-header after:md:h-36 after:h-52 opacity-80'></div>
 					<div className='max-w-5xl w-full flex justify-between relative py-2'>
 						<div className=''>
 							<Image
@@ -170,7 +171,7 @@ export default function Home() {
 						</div>
 					</div>
 				</div>
-				<div className='flex w-full justify-center md:mt-0 mt-16 absolute top-36 cover-slide'>
+				<div className='flex w-full justify-center md:mt-0 mt-16 absolute md:top-36 top-36 cover-slide'>
 					<div className='flex max-w-5xl w-full md:flex-row flex-col lg:py-24 md:py-16 py-0'>
 						<div className='md:w-full w-full text-[#ffffff] lg:pt-0 pt-4 flex flex-col '>
 							<div className='w-full lg:pr-10 lg:px-0 md:px-4 px-4'>
@@ -195,7 +196,7 @@ export default function Home() {
 							</div>
 
 							<div
-								className={`w-full lg:px-0 px-12 md:pt-10 pt-4 w-full md:px-4 px-6 text-sm md:pb-0 pb-4 ${poppins.className}`}>
+								className={`w-full space-y-4 lg:px-0 px-12 md:pt-10 pt-4 w-full md:px-4 px-6 text-sm md:pb-0 pb-4 ${poppins.className}`}>
 								<div className=''>
 									Humani Catering Service (HCS) selalu siap untuk solusi sajian
 									Anda. <br />
@@ -204,14 +205,16 @@ export default function Home() {
 									solusi masalah catering atau konsumsi acara Anda.
 								</div>
 								<div
-									className='underline text-white py-2 rounded-full cursor-pointer'
+									className='text-[#88171d] hover:underline py-2 rounded-full cursor-pointer'
 									onClick={() => {
 										window.open(
 											`https://wa.me/${customerService.wa}?text=${customerService.content}`,
 											"_blank"
 										);
 									}}>
-									More Info
+									<div className='bg-white items-center flex w-fit px-6 py-2 rounded-full bg-button'>
+										More Info {iconRight}
+									</div>
 								</div>
 							</div>
 						</div>
