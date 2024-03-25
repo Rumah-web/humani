@@ -117,7 +117,7 @@ export default function Home() {
 				id='wellcome'
 				className='relative w-full md:h-screen h-screen flex flex-col bg-white'>
 				<div
-					className={`w-full cover-video`}
+					className={`w-full cover-video h-full`}
 					style={{
 						backgroundImage: `url(/bg/bg-menu-service.jpg)`,
 					}}>
