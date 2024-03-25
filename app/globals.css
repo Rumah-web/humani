@@ -34,16 +34,16 @@ body {
 	top: 0;
 	left: 0;
 	bottom: 0;
-	background: rgba(132, 64, 64, 0.1) 100% !important;
+	/* background: rgba(132, 64, 64, 0.1) 100% !important; */
 }
 
 .cover-slide {
 	height: 100%;
-	background: linear-gradient(
+	/* background: linear-gradient(
 		0deg,
 		#88171d 35%,
 		rgba(132, 64, 64, 0.1) 100%
-	) !important;
+	) !important; */
 }
 .bg-button {
 	background: linear-gradient(
