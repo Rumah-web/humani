@@ -14,6 +14,8 @@ import { iconTeam } from "./components/icon/team/team";
 import { iconConsult } from "./components/icon/consult/consult";
 import { iconRight, iconSatSetService, iconSuperTeam } from "./components/icon";
 import Typewriter from "typewriter-effect";
+import { useAnimation, motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 export default function Home() {
 	const listInnerRef = useRef(null);
@@ -22,6 +24,12 @@ export default function Home() {
 	const [scrollDirection, setScrollDirection] = useState(
 		"down" as "down" | "up" | "end"
 	);
+	const controls = useAnimation();
+	const controlsService = useAnimation();
+	const controlsPelanggan = useAnimation();
+	const [ref, inView] = useInView();
+	const [refService, inViewService] = useInView();
+	const [refPelanggan, inViewPelanggan] = useInView();
 
 	const customerService = {
 		wa: `+6208119119200`,
@@ -112,16 +120,39 @@ export default function Home() {
 		}
 	};
 
+	const squareVariants = {
+		visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
+		hidden: { opacity: 0, scale: 0 },
+	};
+
+	useEffect(() => {
+		if (inView) {
+			controls.start("visible");
+		}
+	}, [controls, inView, inViewService]);
+
+	useEffect(() => {
+		if (inViewService) {
+			controlsService.start("visible");
+		}
+	}, [controlsService, inViewService]);
+
+	useEffect(() => {
+		if (inViewPelanggan) {
+			controlsPelanggan.start("visible");
+		}
+	}, [controlsPelanggan, inViewPelanggan]);
+
 	return (
 		<main
-			className='flex md:h-screen flex-col items-center justify-between relative overflow-y-scroll'
+			className='flex md:h-screen h-screen flex-col items-center justify-between relative overflow-y-scroll'
 			ref={listInnerRef}
 			onScroll={onScroll}>
 			<section
 				id='wellcome'
 				className='relative w-full md:h-screen h-screen flex flex-col bg-white'>
 				<div
-					className={`w-full cover-video h-full`}
+					className={`w-full cover-video md:h-full h-screen`}
 					style={{
 						backgroundImage: `url(/bg/bg-menu-service.jpg)`,
 					}}>
@@ -137,7 +168,7 @@ export default function Home() {
 						/>
 					</video>
 				</div>
-				<div className='fixed z-20 w-full font-mono text-sm justify-center flex md:py-0 py-2 lg:px-0 px-4'>
+				<div className='fixed z-20 w-full font-mono text-sm justify-center flex md:py-0 py-0 lg:px-0 px-4'>
 					<div
 						className={`bg-header`}
 						style={{ opacity }}></div>
@@ -252,7 +283,12 @@ export default function Home() {
 							backgroundImage: `url(/bg/bg-menu-service.jpg)`,
 						}}>
 						<div className='flex max-w-5xl w-full flex-col'>
-							<div className='relative w-fit mt-28 mb-20'>
+							<motion.div
+								ref={refService}
+								animate={controlsService}
+								initial='hidden'
+								variants={squareVariants}
+								className='relative w-fit mt-28 mb-20'>
 								<div className='absolute bg-[#88171d] opacity-70 w-full h-full rounded-[1rem]'></div>
 								<div
 									className={`relative flex flex-col text-right text-white px-12 py-10 gap-2 ${rancho.className}`}>
@@ -271,7 +307,7 @@ export default function Home() {
 										</h4>
 									</div>
 								</div>
-							</div>
+							</motion.div>
 							<div
 								className={`z-10 flex justify-center ${poppins.className} md:px-0 px-4`}>
 								<div className='border border-white flex items-center justify-between rounded-full px-8 md:pt-4 pt-2 pb-2.5 md:w-4/5 w-full bg-[#e7e8ea] my-4'>
@@ -326,16 +362,22 @@ export default function Home() {
 					style={{
 						backgroundImage: `url(/bg/bg-ragam-menu-right-top.png)`,
 					}}></div>
-				<div className='flex max-w-5xl w-full flex-col'>
+				<div
+					className='flex max-w-5xl w-full flex-col'
+					ref={ref}>
 					<h2
 						className={`text-[#88171d] md:text-5xl text-2xl text-center mt-12 font-bold ${rancho.className}`}>
 						Ragam Menu dan Layanan
 					</h2>
-					<div
+					<motion.div
 						className={`pt-16 pb-8 md:grid md:grid-cols-3 grid-cols-1  md:grid-flow-row grid-flow-column flex md:flex-row flex-col gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}>
 						{menus.map((menu, i) => {
 							return (
-								<div
+								<motion.div
+									ref={ref}
+									animate={controls}
+									initial='hidden'
+									variants={squareVariants}
 									key={i}
 									className='flex flex-col items-center'>
 									{menu.prefix && (
@@ -354,10 +396,10 @@ export default function Home() {
 									<div className='pt-2 text-center md:px-0 px-4'>
 										{menu.description}
 									</div>
-								</div>
+								</motion.div>
 							);
 						})}
-					</div>
+					</motion.div>
 					<h3
 						className={`text-center text-[#88171d] text-xl my-8 md:px-12 px-6 ${poppins.className}`}>
 						Dari acara keluarga hingga pelayanan perusahaan, beragam pilihan
@@ -462,36 +504,21 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-			{/* <section
-				id='review-slider'
-				className='relative w-full flex justify-center bg-no-repeat bg-cover'>
-				<div
-					className='bg-[#dfdfdf] opacity-90 absolute w-full h-full'
-					style={{
-						backgroundImage: `url(/bg/bg-menu-service.jpg)`,
-						filter: `blur(8px)`,
-						WebkitFilter: `blur(8px)`,
-					}}></div>
-				<div className='py-24 text-white'>
-					<div className='relative  w-screen'>
-						<Slickslider
-							images={review()}
-							size={"cover"}
-							className={`mx-4`}></Slickslider>
-					</div>
-				</div>
-			</section> */}
 			<section
 				id='customer'
 				className='w-full bg-white'>
 				<h2
+					ref={refPelanggan}
 					className={`text-[#88171d] md:text-5xl text-2xl text-center mt-12 font-bold ${rancho.className}`}>
 					Pelanggan Setia Kami
 				</h2>
 				<div className='flex flex-col justify-center pt-6 space-y-2 items-center'>
 					<div className='w-full flex justify-center md:h-[30rem] h-[15rem]'>
-						<div
-							className={`md:w-1/2 w-full md:px-0 px-4 bg-contain bg-no-repeat bg-[url('/client/pelanggan-kami.jpg')]`}></div>
+						<motion.div
+							animate={controlsPelanggan}
+							initial='hidden'
+							variants={squareVariants}
+							className={`md:w-1/2 w-full md:px-0 px-4 bg-contain bg-no-repeat bg-[url('/client/pelanggan-kami.jpg')]`}></motion.div>
 					</div>
 				</div>
 			</section>
