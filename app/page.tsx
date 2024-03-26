@@ -18,6 +18,7 @@ import Typewriter from "typewriter-effect";
 export default function Home() {
 	const listInnerRef = useRef(null);
 	const [lastPosition, setLastPosition] = useState(0);
+	const [opacity, setOpacity] = useState(0);
 	const [scrollDirection, setScrollDirection] = useState(
 		"down" as "down" | "up" | "end"
 	);
@@ -93,6 +94,7 @@ export default function Home() {
 		if (listInnerRef.current) {
 			const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current;
 			const isNearBottom = scrollTop + clientHeight >= scrollHeight;
+
 			if (scrollTop < lastPosition) {
 				setScrollDirection("up");
 			} else {
@@ -100,6 +102,8 @@ export default function Home() {
 			}
 
 			setLastPosition(scrollTop);
+			setOpacity(scrollTop / 4 / 100);
+
 			if (isNearBottom) {
 				setScrollDirection("end");
 				console.log("Reached bottom");
@@ -110,7 +114,7 @@ export default function Home() {
 
 	return (
 		<main
-			className='flex md:h-screen relative flex-col items-center justify-between relative overflow-y-scroll'
+			className='flex md:h-screen flex-col items-center justify-between relative overflow-y-scroll'
 			ref={listInnerRef}
 			onScroll={onScroll}>
 			<section
@@ -134,7 +138,9 @@ export default function Home() {
 					</video>
 				</div>
 				<div className='fixed z-20 w-full font-mono text-sm justify-center flex md:py-0 py-2 lg:px-0 px-4'>
-					<div className='bg-header after:md:h-36 after:h-36 opacity-80'></div>
+					<div
+						className={`bg-header`}
+						style={{ opacity }}></div>
 					<div className='max-w-5xl w-full flex justify-between relative py-2'>
 						<div className=''>
 							<Image
