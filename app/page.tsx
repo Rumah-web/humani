@@ -12,7 +12,7 @@ import { iconHalal } from "./components/icon/halal/halal";
 import { iconSatset } from "./components/icon/satset/satset";
 import { iconTeam } from "./components/icon/team/team";
 import { iconConsult } from "./components/icon/consult/consult";
-import { iconRight } from "./components/icon";
+import { iconRight, iconSatSetService, iconSuperTeam } from "./components/icon";
 import Typewriter from "typewriter-effect";
 
 export default function Home() {
@@ -201,7 +201,7 @@ export default function Home() {
 
 							<div
 								className={`w-full space-y-4 lg:px-0 px-12 md:pt-10 pt-4 w-full md:px-4 px-6 text-sm md:pb-0 pb-4 ${poppins.className}`}>
-								<div className=''>
+								<div className='text-base'>
 									Humani Catering Service (HCS) selalu siap untuk solusi sajian
 									Anda. <br />
 									Konsultasikan dengan Catering Consultant HCS untuk mendapatkan{" "}
@@ -279,7 +279,7 @@ export default function Home() {
 									</div>
 									<div className='flex flex-col w-full md:space-y-3 space-y-1 text-white items-center justify-center'>
 										<div className='flex bg-[#88171d] rounded-full md:h-12 md:w-12 h-10 w-10 items-center justify-center text-white'>
-											{iconTeam}
+											{iconSuperTeam}
 										</div>
 										<h3 className='flex md:text-sm text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none'>
 											Super Team
@@ -287,7 +287,7 @@ export default function Home() {
 									</div>
 									<div className='flex flex-col w-full md:space-y-3 space-y-1 text-white items-center justify-center'>
 										<div className='flex bg-[#88171d] rounded-full md:h-12 md:w-12 h-10 w-10 items-center justify-center text-white'>
-											{iconSatset}
+											{iconSatSetService}
 										</div>
 										<h3 className='flex md:text-sm text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none'>
 											SatSet Service
