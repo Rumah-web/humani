@@ -3,14 +3,10 @@
 import Image from "next/image";
 import Carosel from "./components/slider/carosel";
 import Link from "next/link";
-import Slickslider from "./components/slider/slickslider";
-import { WaCS } from "./components/help/waCS";
 import { poppins, rancho } from "./font";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { OpenCloseCS } from "./components/help/openCloseCS";
 import { iconHalal } from "./components/icon/halal/halal";
-import { iconSatset } from "./components/icon/satset/satset";
-import { iconTeam } from "./components/icon/team/team";
 import { iconConsult } from "./components/icon/consult/consult";
 import { iconRight, iconSatSetService, iconSuperTeam } from "./components/icon";
 import Typewriter from "typewriter-effect";
@@ -58,7 +54,7 @@ export default function Home() {
 			prefix: null,
 			title: "Nasi Box",
 			description:
-				"Aneka nasih box kami sajikan dengan citarasa nusantara terbaik seperti Nasi Besek, Nasi Tumpeng Mini, Nasi Padang, Nasi Menggono dan banyak pilihan lainnya.",
+				"Aneka nasi box kami sajikan dengan citarasa nusantara terbaik seperti Nasi Besek, Nasi Tumpeng Mini, Nasi Padang, Nasi Menggono dan banyak pilihan lainnya.",
 			imagePath: null,
 		},
 		{
@@ -283,31 +279,33 @@ export default function Home() {
 							backgroundImage: `url(/bg/bg-menu-service.jpg)`,
 						}}>
 						<div className='flex max-w-5xl w-full flex-col'>
-							<motion.div
-								ref={refService}
-								animate={controlsService}
-								initial='hidden'
-								variants={squareVariants}
-								className='relative w-fit mt-28 mb-20'>
-								<div className='absolute bg-[#88171d] opacity-70 w-full h-full rounded-[1rem]'></div>
-								<div
-									className={`relative flex flex-col text-right text-white px-12 py-10 gap-2 ${rancho.className}`}>
-									<div>
-										<h3 className='text-4xl'>+10 tahun</h3>
-										<h4 className='text-2xl'>melayani jabodetabek</h4>
+							<div className='flex justify-end'>
+								<motion.div
+									ref={refService}
+									animate={controlsService}
+									initial='hidden'
+									variants={squareVariants}
+									className='relative w-fit mt-28 mb-20'>
+									<div className='absolute bg-[#88171d] opacity-70 w-full h-full rounded-[1rem]'></div>
+									<div
+										className={`relative flex flex-col text-right text-white px-12 py-10 gap-2 ${rancho.className}`}>
+										<div>
+											<h3 className='text-4xl'>+10 tahun</h3>
+											<h4 className='text-2xl'>melayani jabodetabek</h4>
+										</div>
+										<div>
+											<h3 className='text-4xl'>+25.000</h3>
+											<h4 className='text-2xl'>acara telah kami dampingi</h4>
+										</div>
+										<div>
+											<h3 className='text-4xl'>+2.000.000</h3>
+											<h4 className='text-2xl'>
+												porsi telah dinikmati Sahabat Humani Catering Service
+											</h4>
+										</div>
 									</div>
-									<div>
-										<h3 className='text-4xl'>+25.000</h3>
-										<h4 className='text-2xl'>acara telah kami dampingi</h4>
-									</div>
-									<div>
-										<h3 className='text-4xl'>+2.000.000</h3>
-										<h4 className='text-2xl'>
-											porsi telah dinikmati Sahabat Humani Catering Service
-										</h4>
-									</div>
-								</div>
-							</motion.div>
+								</motion.div>
+							</div>
 							<div
 								className={`z-10 flex justify-center ${poppins.className} md:px-0 px-4`}>
 								<div className='border border-white flex items-center justify-between rounded-full px-8 md:pt-4 pt-2 pb-2.5 md:w-4/5 w-full bg-[#e7e8ea] my-4'>
@@ -407,14 +405,14 @@ export default function Home() {
 						menu eksotik lokal, satu setengah jam siap kirim dengan SatSet
 						Service,
 						<br />
-						pemesanan mulai 5 porsi hingga ribuan porsi, siap 24 jam
+						pemesanan mulai 10 porsi hingga ribuan porsi, siap 24 jam
 						<br />
 						waktu pengantaran dan fleksibel tentukan biaya.
 					</h3>
 
 					<h2
 						className={`text-center text-[#88171d] text-xl my-8 px-12 font-bold ${poppins.className}`}>
-						Silahkan Anda fokus acaranya, biar kami urus sajiannya.
+						Anda Fokus Acaranya, Kami Urus Sajiannya.
 					</h2>
 				</div>
 				<div
