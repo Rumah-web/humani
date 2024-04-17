@@ -38,7 +38,7 @@ export default function Home() {
 	};
 
 	const gallery = () => {
-		return Array.from({ length: 7 }).map(
+		return Array.from({ length: 2 }).map(
 			(_, i) => `/gallery/gallery-${i + 1}.jpg`
 		);
 	};
@@ -279,14 +279,40 @@ export default function Home() {
 							backgroundImage: `url(/bg/bg-menu-service.jpg)`,
 						}}>
 						<div className='flex max-w-5xl w-full flex-col'>
-							<div className='flex justify-end'>
+							<div className='flex md:flex-row flex-col  justify-between space-x-4'>
 								<motion.div
 									ref={refService}
 									animate={controlsService}
 									initial='hidden'
 									variants={squareVariants}
-									className='relative w-fit mt-28 mb-20'>
-									<div className='absolute bg-[#88171d] opacity-70 w-full h-full rounded-[1rem]'></div>
+									className='flex relative w-fit md:mt-28 mt-20 md:mr-0 mr-4 md:mb-20'>
+									<div className='absolute bg-[#88171d] opacity-70 w-full h-full md:rounded-[1rem] rounded-tr-[1rem] rounded-br-[1rem]'></div>
+									<div
+										className={`relative text-2xl flex flex-col text-left text-white px-12 py-10 gap-2 ${rancho.className}`}>
+										<p>
+											PT. Ghaniya Berkah berdiri sejak bulan Oktober 2012 di
+											Jakarta dan saat ini kami berdomisili usaha di Depok Jawa
+											Barat.
+										</p>
+										<p>
+											Dengan bendera Humanifood kami melayani perusahaan dari
+											berbagai industri dari pertelevisian, energi, telko,
+											farmasi dan sebagainya.
+										</p>
+										<p>
+											Dengan dukungan tim yang terdiri dari 60an tenaga
+											profesional, kami selalu siap melayani kebutuhan katering
+											dalam kapasitas kecil maupun besar.
+										</p>
+									</div>
+								</motion.div>
+								<motion.div
+									ref={refService}
+									animate={controlsService}
+									initial='hidden'
+									variants={squareVariants}
+									className='relative w-fit md:mt-28 mt-10 md:mb-20 mb-10'>
+									<div className='absolute bg-[#88171d] opacity-70 w-full h-full md:rounded-[1rem] rounded-tl-[1rem] rounded-bl-[1rem]'></div>
 									<div
 										className={`relative flex flex-col text-right text-white px-12 py-10 gap-2 ${rancho.className}`}>
 										<div>
@@ -530,7 +556,7 @@ export default function Home() {
 				<div className='md:pt-8 pt-4 pb-2'>
 					<Carosel
 						images={gallery()}
-						size={"md:bg-contain bg-cover"}
+						size={"bg-contain"}
 					/>
 				</div>
 			</section>

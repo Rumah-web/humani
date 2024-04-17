@@ -64,7 +64,7 @@ const Carosel = ({ images, size = "bg-cover", auto = true }: any) => {
 
 	return (
 		<div className='carousel'>
-			<div className='carousel-images'>
+			<div className='carousel-images md:h-[30rem] h-72'>
 				<AnimatePresence>
 					<motion.div
 						key={currentIndex}
