@@ -38,7 +38,7 @@ export default function Home() {
 	};
 
 	const gallery = () => {
-		return Array.from({ length: 2 }).map(
+		return Array.from({ length: 10 }).map(
 			(_, i) => `/gallery/gallery-${i + 1}.jpg`
 		);
 	};
