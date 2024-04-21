@@ -22,9 +22,11 @@ export default function Home() {
 	);
 	const controls = useAnimation();
 	const controlsService = useAnimation();
+	const controlsServiceStat = useAnimation();
 	const controlsPelanggan = useAnimation();
 	const [ref, inView] = useInView();
-	const [refService, inViewService] = useInView();
+	const [refService, inViewService, entryService] = useInView();
+	const [refServiceStat, inViewServiceStat, entryServiceStat] = useInView();
 	const [refPelanggan, inViewPelanggan] = useInView();
 
 	const customerService = {
@@ -125,13 +127,19 @@ export default function Home() {
 		if (inView) {
 			controls.start("visible");
 		}
-	}, [controls, inView, inViewService]);
+	}, [controls, inView]);
 
 	useEffect(() => {
-		if (inViewService) {
+		if (entryService) {
 			controlsService.start("visible");
 		}
-	}, [controlsService, inViewService]);
+	}, [controlsService, entryService]);
+
+	useEffect(() => {
+		if (inViewServiceStat) {
+			controlsServiceStat.start("visible");
+		}
+	}, [controlsServiceStat, inViewServiceStat]);
 
 	useEffect(() => {
 		if (inViewPelanggan) {
@@ -307,8 +315,8 @@ export default function Home() {
 									</div>
 								</motion.div>
 								<motion.div
-									ref={refService}
-									animate={controlsService}
+									ref={refServiceStat}
+									animate={controlsServiceStat}
 									initial='hidden'
 									variants={squareVariants}
 									className='relative w-fit md:mt-28 mt-10 md:mb-20 mb-10'>
