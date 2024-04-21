@@ -689,7 +689,7 @@ export default function Home() {
 					</div>
 					<div className='cursor-pointer'>
 						<Link
-							href='#'
+							href='https://www.tiktok.com/@humanicatering'
 							rel='noopener noreferrer'
 							target='_blank'>
 							<svg
