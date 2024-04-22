@@ -676,7 +676,7 @@ export default function Home() {
 				<div className='flex justify-center pt-10 gap-4'>
 					<div className='cursor-pointer'>
 						<Link
-							href='https://www.facebook.com/Humanifood-100278535022728/'
+							href='https://www.facebook.com/profile.php?id=100051028230101&mibextid=rS40aB7S9Ucbxw6v'
 							rel='noopener noreferrer'
 							target='_blank'>
 							<svg
