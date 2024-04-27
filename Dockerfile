@@ -24,6 +24,9 @@ RUN bun install
 
 COPY . .
 
+# prisma generate and db pull
+RUN cd ./prisma && npx prisma db pull && npx prisma generate
+
 RUN bun run build
 
 EXPOSE 3000
