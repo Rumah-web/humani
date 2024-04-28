@@ -340,6 +340,7 @@ const MenuLayanan = () => {
 												return (
 													<div
 														className='w-full my-2 h-72 bg-contain bg-no-repeat bg-center'
+														key={i}
 														style={{
 															backgroundImage: `url(${menu_file.m_files.path})`,
 														}}></div>
