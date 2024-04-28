@@ -5,12 +5,9 @@ type ResponseData = {
 };
 
 export async function POST(request: Request) {
-	const { slug } = await request.json();
 	const assets_api = process.env.API_ASSETS_HOST + "/view";
 
-	console.log(slug);
-
-	const data = await db.m_menu_category.findFirst({
+	let datas = await db.m_menu_category.findMany({
 		include: {
 			m_files: {
 				select: {
@@ -20,19 +17,26 @@ export async function POST(request: Request) {
 			},
 		},
 		where: {
-			slug,
 			status: "published",
+			slug: {
+				notIn: ["ramadhan"],
+			},
 		},
 	});
 
-	if (data?.m_files) {
-		data.m_files = {
-			...data.m_files,
-			path: assets_api + "/" + data?.m_files.uuid,
-		};
+	if (datas) {
+		datas = datas.map((item, i) => {
+			if (item?.m_files) {
+				item.m_files = {
+					...item.m_files,
+					path: assets_api + "/" + item?.m_files.uuid,
+				};
+			}
+			return item;
+		});
 	}
 
 	return Response.json({
-		data,
+		data: datas,
 	});
 }

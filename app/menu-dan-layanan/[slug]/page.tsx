@@ -9,13 +9,16 @@ import { OpenCloseCS } from "../../components/help/openCloseCS";
 
 import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import Skeleton from "@/app/components/loading/skeleton";
+import { IMenu } from "@/app/typing";
 
 const MenuLayanan = () => {
 	const params = useParams<{ slug: string }>();
 	const listInnerRef = useRef(null);
 	const [lastPosition, setLastPosition] = useState(0);
 	const [loading, setLoading] = useState(false);
-	const [data, setData] = useState([] as any);
+	const [category, setCategory] = useState([] as any);
+	const [data, setData] = useState([] as Array<IMenu>);
 	const [opacity, setOpacity] = useState(0);
 	const [scrollDirection, setScrollDirection] = useState(
 		"down" as "down" | "up" | "end"
@@ -132,9 +135,11 @@ const MenuLayanan = () => {
 
 	useEffect(() => {
 		(async () => {
+			setLoading(true);
+
 			const req = await fetch("/menu-dan-layanan/api/by-slug", {
 				method: "POST",
-				body: JSON.stringify({ uuid: params.slug }),
+				body: JSON.stringify({ slug: params.slug }),
 				headers: {
 					"content-type": "application/json",
 				},
@@ -142,9 +147,28 @@ const MenuLayanan = () => {
 
 			if (req) {
 				const { data } = await req.json();
-				setData(data);
-				setLoading(false);
+
+				if (data) {
+					setCategory(data);
+					const menuByCategory = await fetch("/menu/api/by-category", {
+						method: "POST",
+						body: JSON.stringify({ m_menu_category_id: data.id }),
+						headers: {
+							"content-type": "application/json",
+						},
+					});
+
+					if (menuByCategory) {
+						const { data } = await menuByCategory.json();
+
+						setData(data);
+
+						console.log("menu : ", data);
+					}
+				}
 			}
+
+			setLoading(false);
 		})();
 	}, []);
 
@@ -222,23 +246,8 @@ const MenuLayanan = () => {
 						style={{
 							backgroundImage: `url(/bg/bg-menu-service.jpg)`,
 						}}>
-						<div className='flex max-w-5xl w-full flex-col'>
+						<div className='flex max-w-5xl w-full flex-col items-center'>
 							<div className='flex md:flex-row flex-col  justify-between space-x-4'>
-								<motion.div
-									ref={refServiceStat}
-									animate={controlsServiceStat}
-									initial='hidden'
-									variants={squareVariants}
-									className='relative w-fit md:mt-28 mt-10 md:mb-20 mb-10 flex'>
-									<div className='absolute bg-[#88171d] opacity-70 w-full h-full md:rounded-[1rem] rounded-tl-[1rem] rounded-bl-[1rem]'></div>
-									<div
-										className={`relative flex flex-col text-right text-white h-36 w-72 bg-contain bg-no-repeat bg-center m-2`}
-										style={{
-											backgroundImage: `url(${
-												data.m_files && data.m_files.path
-											})`,
-										}}></div>
-								</motion.div>
 								<motion.div
 									ref={refService}
 									animate={controlsService}
@@ -247,8 +256,17 @@ const MenuLayanan = () => {
 									className='flex relative w-fit md:mt-28 mt-20 md:mr-0 mr-4 md:mb-20'>
 									<div className='absolute bg-[#88171d] opacity-70 w-full h-full md:rounded-[1rem] rounded-tr-[1rem] rounded-br-[1rem]'></div>
 									<div
+										className={`relative flex flex-col text-right text-white h-36 w-72 bg-contain bg-no-repeat bg-center m-2`}
+										style={{
+											backgroundImage: `url(${
+												category.m_files && category.m_files.path
+											})`,
+										}}></div>
+									<div
 										className={`relative text-2xl flex flex-col text-left text-white px-12 py-10 gap-2 ${rancho.className}`}>
-										<p dangerouslySetInnerHTML={{ __html: data.description }} />
+										<p
+											dangerouslySetInnerHTML={{ __html: category.description }}
+										/>
 									</div>
 								</motion.div>
 							</div>
@@ -290,35 +308,53 @@ const MenuLayanan = () => {
 					</h4>
 
 					<motion.div
-						className={`pt-16 pb-8 md:grid md:grid-cols-3 grid-cols-1  md:grid-flow-row grid-flow-column flex md:flex-row flex-col gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}>
-						{menus.map((menu, i) => {
-							return (
-								<motion.div
-									ref={ref}
-									animate={controls}
-									initial='hidden'
-									variants={squareVariants}
-									key={i}
-									className='flex flex-col items-center'>
-									{menu.prefix && (
-										<h3 className='font-medium text-xl text-center'>
-											{menu.prefix}
-										</h3>
-									)}
-									<h3 className='font-medium text-xl text-center pb-2'>
-										<span>{menu.title}</span>
-									</h3>
-									<div
-										className='w-full my-2 h-72 bg-contain bg-no-repeat bg-center'
-										style={{
-											backgroundImage: `url(/menu/menu-${i + 1}.jpg)`,
-										}}></div>
-									<div className='pt-2 text-center md:px-0 px-4'>
-										{menu.description}
-									</div>
-								</motion.div>
-							);
-						})}
+						ref={ref}
+						animate={controls}
+						initial='hidden'
+						variants={squareVariants}
+						className=''>
+						{loading ? (
+							<div className='flex w-full md:space-x-4 space-x-0 md:space-y-0 space-y-4 py-12 md:flex-row flex-col'>
+								{[1, 2, 3].map((_, i) => {
+									return (
+										<div
+											key={i}
+											className='flex w-full'>
+											<Skeleton />
+										</div>
+									);
+								})}
+							</div>
+						) : (
+							<div
+								className={`pt-16 pb-8 md:grid md:grid-cols-3 grid-cols-1  md:grid-flow-row grid-flow-column flex md:flex-row flex-col gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}>
+								{data.map((menu, i) => {
+									return (
+										<motion.div
+											key={i}
+											className='flex flex-col items-center'>
+											<h3 className='font-medium text-xl text-center pb-2'>
+												<span>{menu.name}</span>
+											</h3>
+											{menu.m_menu_files.map((menu_file: any, i: number) => {
+												return (
+													<div
+														className='w-full my-2 h-72 bg-contain bg-no-repeat bg-center'
+														style={{
+															backgroundImage: `url(${menu_file.m_files.path})`,
+														}}></div>
+												);
+											})}
+
+											<div
+												className='pt-2 text-center md:px-0 px-4'
+												dangerouslySetInnerHTML={{ __html: menu.description }}
+											/>
+										</motion.div>
+									);
+								})}
+							</div>
+						)}
 					</motion.div>
 				</div>
 				<div

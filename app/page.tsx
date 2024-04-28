@@ -12,10 +12,14 @@ import { iconRight, iconSatSetService, iconSuperTeam } from "./components/icon";
 import Typewriter from "typewriter-effect";
 import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import Skeleton from "./components/loading/skeleton";
+import { IData } from "./typing";
 
 export default function Home() {
 	const listInnerRef = useRef(null);
 	const [lastPosition, setLastPosition] = useState(0);
+	const [loading, setLoading] = useState(false);
+	const [data, setData] = useState([] as Array<IData>);
 	const [opacity, setOpacity] = useState(0);
 	const [scrollDirection, setScrollDirection] = useState(
 		"down" as "down" | "up" | "end"
@@ -146,6 +150,48 @@ export default function Home() {
 			controlsPelanggan.start("visible");
 		}
 	}, [controlsPelanggan, inViewPelanggan]);
+
+	useEffect(() => {
+		(async () => {
+			setLoading(true);
+			let datas = [] as Array<IData>;
+			const req = await fetch("/menu-dan-layanan/api/list", {
+				method: "POST",
+				headers: {
+					"content-type": "application/json",
+				},
+			});
+
+			if (req) {
+				const { data } = await req.json();
+
+				datas = data.map((item: any, i: number) => {
+					const sliceName = item.name.split(" ");
+					let prefix = null;
+					let title = item.name;
+
+					if (sliceName && sliceName.length > 0) {
+						prefix = sliceName[0];
+						title = sliceName
+							.filter((name: any, i: number) => {
+								if (i > 0) {
+									return name;
+								}
+							})
+							.join(" ");
+					}
+
+					return {
+						...item,
+						prefix,
+						title,
+					};
+				});
+				setData(datas);
+				setLoading(false);
+			}
+		})();
+	}, []);
 
 	return (
 		<main
@@ -402,36 +448,55 @@ export default function Home() {
 						Ragam Menu dan Layanan
 					</h2>
 					<motion.div
-						className={`pt-16 pb-8 md:grid md:grid-cols-3 grid-cols-1  md:grid-flow-row grid-flow-column flex md:flex-row flex-col gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}>
-						{menus.map((menu, i) => {
-							return (
-								<motion.div
-									ref={ref}
-									animate={controls}
-									initial='hidden'
-									variants={squareVariants}
-									key={i}
-									className='flex flex-col items-center'>
-									{menu.prefix && (
-										<h3 className='font-medium text-xl text-center'>
-											{menu.prefix}
-										</h3>
-									)}
-									<h3 className='font-medium text-xl text-center pb-2'>
-										<span>{menu.title}</span>
-									</h3>
-									<div
-										className='w-full my-2 h-72 bg-contain bg-no-repeat bg-center'
-										style={{
-											backgroundImage: `url(/menu/menu-${i + 1}.jpg)`,
-										}}></div>
-									<div className='pt-2 text-center md:px-0 px-4'>
-										{menu.description}
-									</div>
-								</motion.div>
-							);
-						})}
+						ref={ref}
+						animate={controls}
+						initial='hidden'
+						variants={squareVariants}
+						className=''>
+						{loading ? (
+							<div className='flex w-full md:space-x-4 space-x-0 md:space-y-0 space-y-4 py-12 md:flex-row flex-col'>
+								{[1, 2, 3].map((_, i) => {
+									return (
+										<div
+											key={i}
+											className='flex w-full'>
+											<Skeleton />
+										</div>
+									);
+								})}
+							</div>
+						) : (
+							<div
+								className={`pt-16 pb-8 md:grid md:grid-cols-3 grid-cols-1  md:grid-flow-row grid-flow-column flex md:flex-row flex-col gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}>
+								{data.map((menu, i) => {
+									return (
+										<motion.div
+											key={i}
+											className='flex flex-col items-center'>
+											{menu.prefix && (
+												<h3 className='font-medium text-xl text-center'>
+													{menu.prefix}
+												</h3>
+											)}
+											<h3 className='font-medium text-xl text-center pb-2'>
+												<span>{menu.title}</span>
+											</h3>
+											<div
+												className='w-full my-2 h-72 bg-contain bg-no-repeat bg-center'
+												style={{
+													backgroundImage: `url(/menu/menu-${i + 1}.jpg)`,
+												}}></div>
+											<div
+												className='pt-2 text-center md:px-0 px-4'
+												dangerouslySetInnerHTML={{ __html: menu.description }}
+											/>
+										</motion.div>
+									);
+								})}
+							</div>
+						)}
 					</motion.div>
+
 					<h3
 						className={`text-center text-[#88171d] text-xl my-8 md:px-12 px-6 ${poppins.className}`}>
 						Dari acara keluarga hingga pelayanan perusahaan, beragam pilihan
