@@ -28,7 +28,7 @@ export async function POST(request: Request) {
 	if (data?.m_files) {
 		data.m_files = {
 			...data.m_files,
-			path: assets_api + "/" + data?.m_files.uuid,
+			path: assets_api + "/" + data?.m_files.uuid + "?width=400",
 		};
 	}
 

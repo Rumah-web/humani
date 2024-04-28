@@ -244,7 +244,9 @@ const MenuLayanan = () => {
 					<div
 						className='flex w-full justify-center bg-no-repeat bg-cover md:bg-fixed bg-local'
 						style={{
-							backgroundImage: `url(/bg/bg-menu-service.jpg)`,
+							backgroundImage: `url(${
+								category.m_files && category.m_files.path
+							})`,
 						}}>
 						<div className='flex max-w-5xl w-full flex-col items-center'>
 							<div className='flex md:flex-row flex-col  justify-between space-x-4'>
@@ -253,17 +255,17 @@ const MenuLayanan = () => {
 									animate={controlsService}
 									initial='hidden'
 									variants={squareVariants}
-									className='flex relative w-fit md:mt-28 mt-20 md:mr-0 mr-4 md:mb-20'>
-									<div className='absolute bg-[#88171d] opacity-70 w-full h-full md:rounded-[1rem] rounded-tr-[1rem] rounded-br-[1rem]'></div>
+									className='flex md:flex-row flex-col relative w-full md:mt-28 mt-20 md:mr-0 mr-4 md:mb-20 md:items-left items-center'>
+									<div className='absolute bg-[#88171d] opacity-70 w-full h-full'></div>
 									<div
-										className={`relative flex flex-col text-right text-white h-36 w-72 bg-contain bg-no-repeat bg-center m-2`}
+										className={`relative flex flex-col text-right text-white h-36 w-72 bg-contain bg-no-repeat md:bg-left bg-center md:m-2 m-8`}
 										style={{
 											backgroundImage: `url(${
 												category.m_files && category.m_files.path
 											})`,
 										}}></div>
 									<div
-										className={`relative text-2xl flex flex-col text-left text-white px-12 py-10 gap-2 ${rancho.className}`}>
+										className={`relative text-2xl flex flex-col md:text-left text-center text-white px-8 md:pt-10 md:pb-10 pb-8 pt-0 ${rancho.className}`}>
 										<p
 											dangerouslySetInnerHTML={{ __html: category.description }}
 										/>
@@ -327,7 +329,7 @@ const MenuLayanan = () => {
 							</div>
 						) : (
 							<div
-								className={`pt-16 pb-8 md:grid md:grid-cols-3 grid-cols-1  md:grid-flow-row grid-flow-column flex md:flex-row flex-col gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}>
+								className={`md:pt-16 pt-4 pb-8 md:grid md:grid-cols-3 grid-cols-1  md:grid-flow-row grid-flow-column flex md:flex-row flex-col gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}>
 								{data.map((menu, i) => {
 									return (
 										<motion.div
