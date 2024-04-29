@@ -344,9 +344,9 @@ export default function Home() {
 									<div
 										className={`relative text-2xl flex flex-col text-left text-white px-12 py-10 gap-2 ${rancho.className}`}>
 										<p>
-											PT. Ghaniya Berkah berdiri sejak bulan Oktober 2012 di
-											Jakarta dan saat ini kami berdomisili usaha di Depok Jawa
-											Barat.
+											Humani Catering Service berdiri sejak bulan Oktober 2012
+											di Jakarta dan saat ini kami berdomisili usaha di Depok
+											Jawa Barat.
 										</p>
 										<p>
 											Dengan bendera Humanifood kami melayani perusahaan dari
@@ -354,9 +354,9 @@ export default function Home() {
 											farmasi dan sebagainya.
 										</p>
 										<p>
-											Dengan dukungan tim yang terdiri dari 60an tenaga
-											profesional, kami selalu siap melayani kebutuhan katering
-											dalam kapasitas kecil maupun besar.
+											Dengan dukungan tim yang terdiri dari tenaga profesional,
+											kami selalu siap melayani kebutuhan katering dalam
+											kapasitas kecil maupun besar.
 										</p>
 									</div>
 								</motion.div>
@@ -370,7 +370,7 @@ export default function Home() {
 									<div
 										className={`relative flex flex-col text-right text-white px-12 py-10 gap-2 ${rancho.className}`}>
 										<div>
-											<h3 className='text-4xl'>+10 tahun</h3>
+											<h3 className='text-4xl'>+12 tahun</h3>
 											<h4 className='text-2xl'>melayani jabodetabek</h4>
 										</div>
 										<div>
@@ -378,7 +378,7 @@ export default function Home() {
 											<h4 className='text-2xl'>acara telah kami dampingi</h4>
 										</div>
 										<div>
-											<h3 className='text-4xl'>+2.000.000</h3>
+											<h3 className='text-4xl'>+20.000.000</h3>
 											<h4 className='text-2xl'>
 												porsi telah dinikmati Sahabat Humani Catering Service
 											</h4>
