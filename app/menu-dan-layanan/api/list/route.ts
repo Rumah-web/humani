@@ -18,9 +18,7 @@ export async function POST(request: Request) {
 		},
 		where: {
 			status: "published",
-			slug: {
-				notIn: ["ramadhan"],
-			},
+			is_show: true,
 		},
 		orderBy: {
 			order: "asc",
