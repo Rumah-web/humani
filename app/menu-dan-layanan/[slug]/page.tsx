@@ -11,6 +11,7 @@ import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Skeleton from "@/app/components/loading/skeleton";
 import { IMenu } from "@/app/typing";
+import { m_item, m_menu, m_menu_files, m_menu_item } from "@prisma/client";
 
 const MenuLayanan = () => {
 	const params = useParams<{ slug: string }>();
@@ -18,7 +19,14 @@ const MenuLayanan = () => {
 	const [lastPosition, setLastPosition] = useState(0);
 	const [loading, setLoading] = useState(false);
 	const [category, setCategory] = useState([] as any);
-	const [data, setData] = useState([] as Array<IMenu>);
+	const [data, setData] = useState(
+		[] as Array<
+			m_menu & {
+				m_menu_files: m_menu_files[];
+				m_menu_item: Partial<m_menu_item & { m_item: m_item }>[];
+			}
+		>
+	);
 	const [opacity, setOpacity] = useState(0);
 	const [scrollDirection, setScrollDirection] = useState(
 		"down" as "down" | "up" | "end"
@@ -336,7 +344,7 @@ const MenuLayanan = () => {
 											key={i}
 											className='flex flex-col items-center'>
 											<h3 className='font-medium text-xl text-center pb-2'>
-												<span>{menu.name}</span>
+												<span className=''>{menu.name}</span>
 											</h3>
 											{menu.m_menu_files.map((menu_file: any, i: number) => {
 												return (
@@ -349,10 +357,29 @@ const MenuLayanan = () => {
 												);
 											})}
 
-											<div
-												className='pt-2 text-center md:px-0 px-4'
-												dangerouslySetInnerHTML={{ __html: menu.description }}
-											/>
+											<div className='flex w-full flex-col md:px-0 px-12 pt-4'>
+												<div className='font-semibold underline md:text-left text-center'>{`Rp. ${menu.price
+													.toString()
+													.replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`}</div>
+												<div className='flex w-full flex-col py-2'>
+													{menu.m_menu_item.map((item, i) => {
+														return (
+															<div
+																key={i}
+																className='flex'>
+																<div className='w-6'>{`${i + 1}.`}</div>
+																<div className='text-left flex-1'>
+																	{item.m_item?.name}
+																</div>
+															</div>
+														);
+													})}
+												</div>
+												{/* <div
+													className='pt-2 text-left md:px-0 px-4 flex-1'
+													dangerouslySetInnerHTML={{ __html: menu.description }}
+												/> */}
+											</div>
 										</motion.div>
 									);
 								})}
