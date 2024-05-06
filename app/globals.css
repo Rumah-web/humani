@@ -67,3 +67,49 @@ body {
 	top: 0;
 	bottom: 0;
 }
+
+.badge-corner,
+.badge-corner-not-paid {
+	position: fixed;
+	margin: 20px auto;
+	width: 100%;
+	z-index: 99;
+}
+
+.badge-corner::after,
+.badge-corner-not-paid::after {
+	position: absolute;
+	content: "";
+	top: -1.5rem;
+	right: 0;
+	border: 45px solid transparent;
+}
+
+.badge-corner::before,
+.badge-corner-not-paid::before {
+	transform: rotate(45deg);
+	font-size: 18px;
+	color: #fff;
+	position: absolute;
+	top: -0.4rem;
+	right: 0.5rem;
+	z-index: 1;
+}
+
+.badge-corner::before {
+	content: "PAID";
+}
+
+.badge-corner-not-paid::before {
+	content: "NOT PAID";
+}
+
+.badge-corner::after {
+	border-top-color: rgb(22 163 74);
+	border-right-color: rgb(22 163 74);
+}
+
+.badge-corner-not-paid::after {
+	border-top-color: rgb(127 29 29);
+	border-right-color: rgb(127 29 29);
+}

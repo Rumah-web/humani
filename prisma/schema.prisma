@@ -9,30 +9,34 @@ datasource db {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model customer {
-  id         Int      @id @default(autoincrement())
-  uuid       String   @unique(map: "customer_uuid") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  name       String   @db.VarChar(100)
-  phone      String   @unique(map: "customer_wa") @db.VarChar(30)
-  address    String
-  created_at DateTime @db.Timestamp(6)
-  order      order[]
+  id             Int      @id @default(autoincrement())
+  uuid           String   @unique(map: "customer_uuid") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name           String   @db.VarChar(100)
+  phone          String   @unique(map: "customer_wa") @db.VarChar(30)
+  address        String
+  created_at     DateTime @default(now()) @db.Timestamp(6)
+  status         String   @default("draft") @db.VarChar
+  affiliate_code String?  @db.VarChar(50)
+  m_user         m_user?  @relation(fields: [affiliate_code], references: [affiliate_code], onDelete: NoAction, onUpdate: NoAction)
+  order          order[]
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model invoice {
-  id               Int      @id @default(autoincrement())
-  uuid             String   @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  order_id         Int
-  payment_method   String   @default("manual transfer") @db.VarChar
-  invoice_date     DateTime @db.Timestamp(6)
-  invoice_due_date DateTime @db.Timestamp(6)
-  status           String   @default("new") @db.VarChar(50)
-  total            Decimal  @db.Decimal
-  ppn              Int
-  discount         Int
-  delivery_charge  Decimal  @db.Decimal
-  description      String
-  order            order    @relation(fields: [order_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  id               Int       @id @default(autoincrement())
+  uuid             String    @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  order_id         Int?
+  invoice_date     DateTime  @default(now()) @db.Timestamp(6)
+  invoice_due_date DateTime  @default(now()) @db.Timestamp(6)
+  status           String    @default("draft") @db.VarChar(50)
+  total            Decimal   @default(0) @db.Decimal
+  ppn              Decimal   @default(0) @db.Decimal
+  discount         Decimal   @default(0) @db.Decimal
+  delivery_charge  Decimal   @default(0) @db.Decimal
+  description      String?
+  invoice_no       String?
+  order            order?    @relation(fields: [order_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  payment          payment[]
 }
 
 model m_files {
@@ -46,6 +50,7 @@ model m_files {
   m_menu_category m_menu_category[]
   m_menu_files    m_menu_files[]
   m_user          m_user[]
+  payment_detail  payment_detail[]
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -98,8 +103,10 @@ model m_user {
   image          Int?
   status         String         @default("draft") @db.VarChar(30)
   user_owner     Int?
+  customer       customer[]
   m_files        m_files?       @relation(fields: [image], references: [id], onDelete: NoAction, onUpdate: NoAction)
   m_user_roles   m_user_roles[]
+  order          order[]
 }
 
 model m_user_roles {
@@ -114,31 +121,38 @@ model m_user_roles {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model order {
-  id             Int            @id @default(autoincrement())
-  uuid           String         @unique(map: "order_uuid") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  order_no       Int
-  notes          String
-  customer_id    Int
-  status         String         @default("draft") @db.VarChar(20)
-  created_at     DateTime       @default(now()) @db.Timestamp(6)
-  source         String?        @db.VarChar(50)
-  affiliate_code String?        @db.VarChar(50)
-  user_created   Int?
-  invoice        invoice[]
-  customer       customer       @relation(fields: [customer_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  order_detail   order_detail[]
+  id                   Int                    @id @default(autoincrement())
+  uuid                 String                 @unique(map: "order_uuid") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  order_no             String?
+  notes                String?
+  customer_id          Int?
+  status               String                 @default("draft") @db.VarChar(20)
+  created_at           DateTime               @default(now()) @db.Timestamp(6)
+  source               String?                @db.VarChar(50)
+  affiliate_code       String?                @db.VarChar(50)
+  user_created         Int?
+  status_process       String                 @default("draft") @db.VarChar(50)
+  invoice              invoice[]
+  m_user               m_user?                @relation(fields: [affiliate_code], references: [affiliate_code], onDelete: NoAction, onUpdate: NoAction)
+  customer             customer?              @relation(fields: [customer_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  order_detail         order_detail[]
+  order_status_history order_status_history[]
 }
 
 model order_detail {
-  id        Int     @id @default(autoincrement())
-  order_id  Int
-  m_menu_id Int
-  qty       Int     @default(1)
-  discount  Decimal @default(0) @db.Decimal
-  price     Decimal @db.Decimal
-  notes     String
-  m_menu    m_menu  @relation(fields: [m_menu_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  order     order   @relation(fields: [order_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  id                     Int                      @id @default(autoincrement())
+  order_id               Int
+  m_menu_id              Int?
+  qty                    Int                      @default(1)
+  discount               Decimal                  @default(0) @db.Decimal
+  total                  Decimal                  @default(0) @db.Decimal
+  notes                  String?
+  menu_name              String?                  @db.VarChar
+  status                 String                   @default("draft") @db.VarChar
+  menu_price             Decimal                  @default(0) @db.Decimal
+  m_menu                 m_menu?                  @relation(fields: [m_menu_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  order                  order                    @relation(fields: [order_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  order_detail_menu_item order_detail_menu_item[]
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -165,6 +179,8 @@ model m_item {
   created_at  DateTime      @default(now()) @db.Timestamp(6)
   status      String        @default("draft") @db.VarChar(50)
   description String?
+  price       Decimal       @default(0) @db.Decimal
+  category    String        @default("menu utama") @db.VarChar(50)
   m_menu_item m_menu_item[]
 
   @@unique([name, status], map: "m_item_name_status")
@@ -189,4 +205,60 @@ model m_menu_price {
   m_menu_id  Int
   created_at DateTime @default(now()) @db.Timestamp(6)
   m_menu     m_menu   @relation(fields: [m_menu_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model order_detail_menu_item {
+  id              Int          @id @default(autoincrement())
+  order_detail_id Int
+  name            String       @db.VarChar
+  order           Int?
+  order_detail    order_detail @relation(fields: [order_detail_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model order_status_history {
+  id         Int      @id(map: "order_process_pkey") @default(autoincrement())
+  uuid       String   @unique(map: "order_process_uuid") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  order_id   Int
+  status     String   @default("new") @db.VarChar(50)
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  order      order    @relation(fields: [order_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "order_process_order_id_fkey")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model payment {
+  id                     Int                      @id @default(autoincrement())
+  invoice_id             Int
+  total                  Decimal                  @default(0) @db.Decimal
+  created_at             DateTime                 @default(now()) @db.Timestamp(6)
+  status                 String                   @default("draft") @db.VarChar
+  uuid                   String                   @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  paid_date              DateTime?                @db.Timestamp(6)
+  invoice                invoice                  @relation(fields: [invoice_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  payment_detail         payment_detail[]
+  payment_status_history payment_status_history[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model payment_detail {
+  id               Int      @id @default(autoincrement())
+  payment_id       Int
+  payment_method   String   @default("manual_transfer") @db.VarChar
+  nominal          Decimal  @default(0) @db.Decimal
+  created_at       DateTime @default(now()) @db.Timestamp(6)
+  status           String   @default("draft") @db.VarChar
+  description      String?
+  proof_of_payment Int?
+  uuid             String   @unique(map: "payment_detail_uuid") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  payment          payment  @relation(fields: [payment_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  m_files          m_files? @relation(fields: [proof_of_payment], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model payment_status_history {
+  id         Int      @id(map: "payment_history_pkey") @default(autoincrement())
+  uuid       String   @unique(map: "payment_status_history_uuid") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  payment_id Int
+  status     String   @default("new") @db.VarChar(50)
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  payment    payment  @relation(fields: [payment_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
