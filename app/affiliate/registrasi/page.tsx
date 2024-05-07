@@ -2,7 +2,7 @@
 
 import { OpenCloseCS } from "@/app/components/help/openCloseCS";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm, Resolver } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import InputPassword from "@/app/components/input/Password";
@@ -24,6 +24,7 @@ export default function AffiliateRegistrasi() {
 
 	const [isSubmit, setSubmit] = useState(false);
 	const [isSuccess, setSuccess] = useState(false);
+	const [isOpenRegistrastion, setOpenRegistrastion] = useState(false);
 
 	const customerService = {
 		wa: `+6287888111778`,
@@ -50,6 +51,23 @@ export default function AffiliateRegistrasi() {
 			setSuccess(success);
 		}
 	});
+
+	useEffect(() => {
+		(async () => {
+			const check = await fetch("/affiliate/registrasi/api/check", {
+				method: "POST",
+				body: JSON.stringify({}),
+				headers: {
+					"content-type": "application/json",
+				},
+			});
+
+			if (check) {
+				const { success, message } = await check.json();
+				setOpenRegistrastion(success);
+			}
+		})();
+	}, []);
 
 	return (
 		<main className='flex flex-col items-center justify-between md:px-24 px-0'>
@@ -120,7 +138,9 @@ export default function AffiliateRegistrasi() {
 											<div className='w-fit border border-[#88171d] py-1.5 px-1.5 rounded-full'>
 												<div className='flex pl-6 pr-4 py-2.5 rounded-full items-center text-white bg-gradient-to-r from-[#88171d] to-[#d83831]'>
 													<div className='md:text-xl text-base pl-2'>
-														Daftar Sekarang Sebelum Di Tutup
+														{isOpenRegistrastion
+															? `Daftar Sekarang Sebelum Di Tutup`
+															: `Pendaftaran Di Tutup`}
 													</div>
 												</div>
 											</div>
@@ -129,224 +149,243 @@ export default function AffiliateRegistrasi() {
 								</div>
 							</section>
 
-							<section
-								id='service'
-								className='bg-white'>
-								<div className='relative top-1'>
-									<Image
-										src='/bg/wave.png'
-										alt='Wave Background'
-										style={{ width: `100%` }}
-										width={100}
-										height={50}
-										priority
-									/>
-								</div>
+							{isOpenRegistrastion && (
+								<>
+									<section
+										id='service'
+										className='bg-white'>
+										<div className='relative top-1'>
+											<Image
+												src='/bg/wave.png'
+												alt='Wave Background'
+												style={{ width: `100%` }}
+												width={100}
+												height={50}
+												priority
+											/>
+										</div>
 
-								<div className='relative md:-top-9 -top-7 md:-mb-10 -mb-8 z-20'>
-									<Image
-										src='/bg/wave.png'
-										alt='Wave Background'
-										style={{ width: `100%` }}
-										width={200}
-										height={80}
-										priority
-									/>
-								</div>
-							</section>
-							<section
-								id='why-us'
-								className='text-white text-2xl font-bold pb-12 bg-[#88171d]'>
-								<h2 className='text-center py-8'>Kenapa Harus</h2>
-								<div className='flex justify-center pb-12'>
-									<Image
-										src='/logo.png'
-										alt='Humani Food Logo'
-										width={150}
-										height={50}
-										priority
-									/>
-								</div>
+										<div className='relative md:-top-9 -top-7 md:-mb-10 -mb-8 z-20'>
+											<Image
+												src='/bg/wave.png'
+												alt='Wave Background'
+												style={{ width: `100%` }}
+												width={200}
+												height={80}
+												priority
+											/>
+										</div>
+									</section>
+									<section
+										id='why-us'
+										className='text-white text-2xl font-bold pb-12 bg-[#88171d]'>
+										<h2 className='text-center py-8'>Kenapa Harus</h2>
+										<div className='flex justify-center pb-12'>
+											<Image
+												src='/logo.png'
+												alt='Humani Food Logo'
+												width={150}
+												height={50}
+												priority
+											/>
+										</div>
 
-								<div className='flex justify-center  pt-0'>
-									<div className='flex w-1/2 text-center justify-between'>
-										<div>
-											<Image
-												src='/icon/iso.png'
-												alt='Humani Food ISO 22000'
-												width={70}
-												height={24}
-												priority
-											/>
+										<div className='flex justify-center  pt-0'>
+											<div className='flex w-1/2 text-center justify-between'>
+												<div>
+													<Image
+														src='/icon/iso.png'
+														alt='Humani Food ISO 22000'
+														width={70}
+														height={24}
+														priority
+													/>
+												</div>
+												<div>
+													<Image
+														src='/icon/halal.png'
+														alt='Humani Food Sertifikat HALAL'
+														width={70}
+														height={24}
+														priority
+													/>
+												</div>
+												<div>
+													<Image
+														src='/icon/slhs.png'
+														alt='Humani Food Sertifikat SLHS'
+														width={70}
+														height={24}
+														priority
+													/>
+												</div>
+											</div>
 										</div>
-										<div>
-											<Image
-												src='/icon/halal.png'
-												alt='Humani Food Sertifikat HALAL'
-												width={70}
-												height={24}
-												priority
-											/>
+										<div className='flex flex-col space-y-8 pt-12'>
+											<div className='text-center space-y-2'>
+												<div className='flex justify-center'>
+													<h3 className='bg-white px-6 py-1 rounded-full text-[#88171d]'>
+														10+ Tahun
+													</h3>
+												</div>
+												<h4 className='text-lg'>melayani jabodetabek</h4>
+											</div>
+											<div className='text-center space-y-2'>
+												<div className='flex justify-center'>
+													<h3 className='bg-white px-6 py-1 rounded-full text-[#88171d]'>
+														25.000
+													</h3>
+												</div>
+												<h4 className='text-lg'>acara telah kami dampingi</h4>
+											</div>
+											<div className='text-center space-y-2'>
+												<div className='flex justify-center'>
+													<h3 className='bg-white px-6 py-1 rounded-full text-[#88171d]'>
+														+2.000.000
+													</h3>
+												</div>
+												<h4 className='text-lg'>
+													porsi telah dinikmati Sahabat <br />
+													Humani Catering Service
+												</h4>
+											</div>
 										</div>
-										<div>
-											<Image
-												src='/icon/slhs.png'
-												alt='Humani Food Sertifikat SLHS'
-												width={70}
-												height={24}
-												priority
-											/>
-										</div>
-									</div>
-								</div>
-								<div className='flex flex-col space-y-8 pt-12'>
-									<div className='text-center space-y-2'>
-										<div className='flex justify-center'>
-											<h3 className='bg-white px-6 py-1 rounded-full text-[#88171d]'>
-												10+ Tahun
-											</h3>
-										</div>
-										<h4 className='text-lg'>melayani jabodetabek</h4>
-									</div>
-									<div className='text-center space-y-2'>
-										<div className='flex justify-center'>
-											<h3 className='bg-white px-6 py-1 rounded-full text-[#88171d]'>
-												25.000
-											</h3>
-										</div>
-										<h4 className='text-lg'>acara telah kami dampingi</h4>
-									</div>
-									<div className='text-center space-y-2'>
-										<div className='flex justify-center'>
-											<h3 className='bg-white px-6 py-1 rounded-full text-[#88171d]'>
-												+2.000.000
-											</h3>
-										</div>
-										<h4 className='text-lg'>
-											porsi telah dinikmati Sahabat <br />
-											Humani Catering Service
-										</h4>
-									</div>
-								</div>
-							</section>
+									</section>
+								</>
+							)}
 
 							<section
 								id='form-registrasi'
 								className='relative'>
 								<div className='bg-white md:px-10 px-2.5 pb-2 pt-8'>
-									<h4 className='md:text-3xl text-2xl text-center font-bold md:pt-8 md:pb-6 pt-4 px-2 text-[#88171d]'>
-										Form Registrasi Affiliate
-									</h4>
+									{isOpenRegistrastion ? (
+										<>
+											<h4 className='md:text-3xl text-2xl text-center font-bold md:pt-8 md:pb-6 pt-4 px-2 text-[#88171d]'>
+												Form Registrasi Affiliate
+											</h4>
 
-									<div className='md:pt-4 pt-8 md:px-0 px-4 pb-8'>
-										<form
-											className='flex flex-col space-y-4'
-											onSubmit={onSubmit}>
-											<div className='flex flex-col space-y-1'>
-												<label
-													htmlFor='name'
-													className='text-[#88171d]'>
-													Nama
-												</label>
-												<input
-													{...register("name", {
-														required: "Nama harus diisi",
-													})}
-													placeholder='Nama Langkap Anda'
-													className='w-full placeholder:font-normal placeholder:text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
-												/>
-												{errors.name && <p>{errors.name.message as any}</p>}
-											</div>
-											<div className='flex flex-col space-y-1'>
-												<label
-													htmlFor='username'
-													className='text-[#88171d]'>
-													No WhatsApp
-												</label>
-												<input
-													{...register("username", {
-														required: "No whatsApp harus diisi",
-													})}
-													placeholder='Pastikan No WhatsApp Aktif'
-													className='w-full placeholder:font-normal placeholder:text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
-													onChange={(e) => null}
-												/>
-												{errors.username && (
-													<p>{errors.username.message as any}</p>
-												)}
-											</div>
-											<div className='flex flex-col space-y-1'>
-												<label
-													htmlFor='password'
-													className='text-[#88171d]'>
-													Password
-												</label>
-												<div className='relative'>
-													<InputPassword
-														props={{
-															...register("password", {
-																required: "Password harus diisi",
-																validate: (val: string) => {
-																	let pattern =
-																		/^(?=.*\d)(?=.*[a-z])(?=.*[^a-zA-Z0-9])(?!.*\s).{7,15}$/;
+											<div className='md:pt-4 pt-8 md:px-0 px-4 pb-8'>
+												<form
+													className='flex flex-col space-y-4'
+													onSubmit={onSubmit}>
+													<div className='flex flex-col space-y-1'>
+														<label
+															htmlFor='name'
+															className='text-[#88171d]'>
+															Nama
+														</label>
+														<input
+															{...register("name", {
+																required: "Nama harus diisi",
+															})}
+															placeholder='Nama Langkap Anda'
+															className='w-full placeholder:font-normal placeholder:text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
+														/>
+														{errors.name && <p>{errors.name.message as any}</p>}
+													</div>
+													<div className='flex flex-col space-y-1'>
+														<label
+															htmlFor='username'
+															className='text-[#88171d]'>
+															No WhatsApp
+														</label>
+														<input
+															{...register("username", {
+																required: "No whatsApp harus diisi",
+															})}
+															placeholder='Pastikan No WhatsApp Aktif'
+															className='w-full placeholder:font-normal placeholder:text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
+															onChange={(e) => null}
+														/>
+														{errors.username && (
+															<p>{errors.username.message as any}</p>
+														)}
+													</div>
+													<div className='flex flex-col space-y-1'>
+														<label
+															htmlFor='password'
+															className='text-[#88171d]'>
+															Password
+														</label>
+														<div className='relative'>
+															<InputPassword
+																props={{
+																	...register("password", {
+																		required: "Password harus diisi",
+																		validate: (val: string) => {
+																			let pattern =
+																				/^(?=.*\d)(?=.*[a-z])(?=.*[^a-zA-Z0-9])(?!.*\s).{7,15}$/;
 
-																	if (!val.match(pattern)) {
-																		return "Terdiri dari minimal 1 angka dan 1 spacial character";
-																	}
-																},
-																minLength: {
-																	value: 8,
-																	message:
-																		"Password minimal terdiri dari 8 karakter",
-																},
-															}),
-														}}
-														placeholder='Buat Password'
-														className='w-full placeholder:font-normal placeholder:text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
-														onChange={(e) => null}
-													/>
-												</div>
-												{errors.password && (
-													<p>{errors.password.message as any}</p>
-												)}
+																			if (!val.match(pattern)) {
+																				return "Terdiri dari minimal 1 angka dan 1 spacial character";
+																			}
+																		},
+																		minLength: {
+																			value: 8,
+																			message:
+																				"Password minimal terdiri dari 8 karakter",
+																		},
+																	}),
+																}}
+																placeholder='Buat Password'
+																className='w-full placeholder:font-normal placeholder:text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
+																onChange={(e) => null}
+															/>
+														</div>
+														{errors.password && (
+															<p>{errors.password.message as any}</p>
+														)}
+													</div>
+													<div className='flex flex-col space-y-1'>
+														<label
+															htmlFor='retype'
+															className='text-[#88171d]'>
+															Retype Password
+														</label>
+														<div className='relative'>
+															<InputPassword
+																props={{
+																	...register("retype", {
+																		validate: (val: string) => {
+																			if (watch("password") != val) {
+																				return "Your passwords do no match";
+																			}
+																		},
+																	}),
+																}}
+																placeholder='Ketik Ulang Password'
+																className='w-full placeholder:font-normal placeholder:text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
+																onChange={(e) => null}
+															/>
+														</div>
+														{errors.retype && (
+															<p>{errors.retype.message as any}</p>
+														)}
+													</div>
+													<div className='relative md:pb-12 pb-0 bg-white px-0'>
+														<button
+															type='submit'
+															disabled={isSubmit ? true : false}
+															className={`md:relative fixed bottom-0 left-0 bg-[#88171d] md:rounded-xl flex w-full px-8 py-4 z-50 border-t border-t-4 border-white text-white text-base justify-center cursor-pointer hover:opacity-70 ${
+																isSubmit
+																	? "opacity-70 cursor-wait"
+																	: "opacity-100"
+															}`}
+															onClick={() => null}>
+															Registrasi Sekarang
+														</button>
+													</div>
+												</form>
 											</div>
-											<div className='flex flex-col space-y-1'>
-												<label
-													htmlFor='retype'
-													className='text-[#88171d]'>
-													Retype Password
-												</label>
-												<div className='relative'>
-													<InputPassword
-														props={{
-															...register("retype", {
-																validate: (val: string) => {
-																	if (watch("password") != val) {
-																		return "Your passwords do no match";
-																	}
-																},
-															}),
-														}}
-														placeholder='Ketik Ulang Password'
-														className='w-full placeholder:font-normal placeholder:text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
-														onChange={(e) => null}
-													/>
-												</div>
-												{errors.retype && <p>{errors.retype.message as any}</p>}
-											</div>
-											<div className='relative md:pb-12 pb-0 bg-white px-0'>
-												<button
-													type='submit'
-													disabled={isSubmit ? true : false}
-													className={`md:relative fixed bottom-0 left-0 bg-[#88171d] md:rounded-xl flex w-full px-8 py-4 z-50 border-t border-t-4 border-white text-white text-base justify-center cursor-pointer hover:opacity-70 ${
-														isSubmit ? "opacity-70 cursor-wait" : "opacity-100"
-													}`}
-													onClick={() => null}>
-													Registrasi Sekarang
-												</button>
-											</div>
-										</form>
-									</div>
+										</>
+									) : (
+										<>
+											<h4 className='md:text-3xl text-2xl text-center font-bold md:pt-8 md:pb-6 pb-6 pt-4 px-2 text-[#88171d]'>
+												Sampai Bertemu <br />
+												Di Pendaftaran Affiliate Berikutnya
+											</h4>
+										</>
+									)}
 								</div>
 							</section>
 							<section
