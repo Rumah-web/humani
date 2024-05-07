@@ -342,9 +342,9 @@ const MenuPriceList = () => {
 													<span className=''>{menu.name}</span>
 												</h3>
 												{menu.id === activeMenu?.id && (
-													<div className='bg-white py-4 px-12'>
+													<div className='bg-white py-4 md:px-12 px-2 flex flex-col'>
 														<div
-															className='text-center'
+															className='text-center md:py-4 py-8'
 															dangerouslySetInnerHTML={{
 																__html: menu.description
 																	? menu.description
@@ -353,20 +353,20 @@ const MenuPriceList = () => {
 														/>
 														{menuSelected.length > 0 ? (
 															<div
-																className={`md:pt-16 pt-4 pb-8 md:grid md:grid-cols-3 grid-cols-1  md:grid-flow-row grid-flow-column flex md:flex-row flex-col gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}>
+																className={`md:pt-16 pt-4 pb-8 md:grid md:grid-cols-3 grid-cols-2  md:grid-flow-row grid-flow-col flex md:flex-row flex-row flex-wrap md:gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}>
 																{menuSelected.map((menu, i) => {
 																	return (
 																		<motion.div
 																			key={i}
-																			className='flex flex-col items-center'>
-																			<h3 className='font-medium text-xl text-center pb-2'>
+																			className='flex flex-col items-center w-1/2 md:px-0 px-2 md:pb-0 pb-8'>
+																			<h3 className='font-medium text-xl text-center pb-2 text-wrap'>
 																				<span className=''>{menu.name}</span>
 																			</h3>
 																			{menu.m_menu_files.map(
 																				(menu_file: any, i: number) => {
 																					return (
 																						<div
-																							className='w-full my-2 h-72 bg-contain bg-no-repeat bg-center'
+																							className='w-full md:my-2 my-0 md:h-72 h-48 bg-contain bg-no-repeat bg-center'
 																							key={i}
 																							style={{
 																								backgroundImage: `url(${menu_file.m_files.path})`,
@@ -375,7 +375,7 @@ const MenuPriceList = () => {
 																				}
 																			)}
 
-																			<div className='flex w-full flex-col md:px-0 px-12 pt-4'>
+																			<div className='flex w-full flex-col md:px-0 md:px-12 px-2 pt-4'>
 																				<div className='font-semibold underline md:text-left text-center'>{`Rp. ${menu.price
 																					.toString()
 																					.replace(
