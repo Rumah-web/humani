@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/error-message": "^2.0.1",
     "@prisma/client": "5.13.0",
     "@types/react-lazy-load-image-component": "^1.6.3",
     "@types/react-slick": "^0.23.13",

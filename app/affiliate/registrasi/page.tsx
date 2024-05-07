@@ -3,14 +3,23 @@
 import { OpenCloseCS } from "@/app/components/help/openCloseCS";
 import Image from "next/image";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm, Resolver } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
+
+type Inputs = {
+	name: string;
+	username: string;
+	password: string;
+	retype: string;
+};
 
 export default function AffiliateRegistrasi() {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm();
+		watch,
+	} = useForm({ criteriaMode: "all" });
 
 	const [isSubmit, setSubmit] = useState(false);
 
@@ -18,6 +27,15 @@ export default function AffiliateRegistrasi() {
 		wa: `+6287888111778`,
 		content: `Saya ingin mendapatkan informasi affiliate`,
 	};
+
+	const scrollToForm = () => {
+		const section = document.querySelector(`#form-registrasi`);
+
+		if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
+	};
+
+	const onSubmit = handleSubmit((data) => console.log(data));
+
 	return (
 		<main className='flex flex-col items-center justify-between md:px-24 px-0'>
 			<div
@@ -30,14 +48,14 @@ export default function AffiliateRegistrasi() {
 						backgroundImage: `url(/bg/bg-top-food.jpg)`,
 					}}>
 					<div className='bg-black opacity-25 absolute w-full h-full'></div>
-					<div className='md:px-10 px-6 md:py-8 py-6 space-y-2 relative'>
+					<div className='md:px-10 px-6 md:py-8 py-6 space-y-2 relative flex flex-col'>
 						<h1 className='font-bold text-4xl text-white'>
 							Dapatkan <br />
-							Pendapatan Tambahan <br />
+							Penghasilan Tambahan <br />
 							Tak Terbatas
 						</h1>
 						<h2 className='rounded-full w-fit text-white px-3 py-1 text-sm bg-[#88171d]'>
-							Buruan daftar sebelum di tutup
+							Caranya Mudah, Cukup Share Link Aja
 						</h2>
 					</div>
 				</section>
@@ -46,76 +64,50 @@ export default function AffiliateRegistrasi() {
 						id='about-us'
 						className='relative'>
 						<div className='bg-white md:px-10 px-2.5 pb-2 pt-8'>
-							<h4 className='md:text-3xl text-2xl text-center font-bold md:pt-8 md:pb-6 pt-4 px-2 text-[#88171d]'>
-								Form Registrasi Affiliate
-							</h4>
-
-							<div className='md:pt-4 pt-8 md:px-0 px-4 pb-8'>
-								<form className='flex flex-col space-y-4'>
-									<div className='flex flex-col space-y-1'>
-										<label
-											htmlFor='name'
-											className='text-[#88171d]'>
-											Nama
-										</label>
-										<input
-											{...register("name", { required: true })}
-											placeholder='Nama Langkap Anda'
-											className='w-full placeholder:font-normal placeholder:text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
-											onChange={(e) => null}
+							<div className='flex w-full flex-col space-y-4 py-4 text-[#88171d]'>
+								<div className='flex w-full justify-center md:px-24 px-16 space-x-4'>
+									<div className='animate-bounce'>
+										<Image
+											src='/icon/arrow-cs.png'
+											alt='Humani Food CS'
+											className='-rotate-45'
+											width={60}
+											height={20}
+											priority
 										/>
 									</div>
-									<div className='flex flex-col space-y-1'>
-										<label
-											htmlFor='username'
-											className='text-[#88171d]'>
-											No WhatsApp
-										</label>
-										<input
-											{...register("username", { required: true })}
-											placeholder='Pastikan No WhatsApp Aktif'
-											className='w-full placeholder:font-normal placeholder:text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
-											onChange={(e) => null}
+									<div className='animate-bounce'>
+										<Image
+											src='/icon/arrow-cs.png'
+											alt='Humani Food CS'
+											width={60}
+											height={20}
+											priority
 										/>
 									</div>
-									<div className='flex flex-col space-y-1'>
-										<label
-											htmlFor='password'
-											className='text-[#88171d]'>
-											Password
-										</label>
-										<input
-											{...register("password", { required: true })}
-											placeholder='Buat Password'
-											className='w-full placeholder:font-normal placeholder:text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
-											onChange={(e) => null}
+									<div className='animate-bounce'>
+										<Image
+											src='/icon/arrow-cs.png'
+											alt='Humani Food CS'
+											className='rotate-45'
+											width={60}
+											height={20}
+											priority
 										/>
 									</div>
-									<div className='flex flex-col space-y-1'>
-										<label
-											htmlFor='retype'
-											className='text-[#88171d]'>
-											Retype Password
-										</label>
-										<input
-											{...register("retype", { required: true })}
-											placeholder='Ketik Ulang Password'
-											className='w-full placeholder:font-normal placeholder:text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
-											onChange={(e) => null}
-										/>
+								</div>
+								<div
+									className='flex justify-center cursor-pointer hover:opacity-70'
+									onClick={() => scrollToForm()}>
+									<div className='w-fit border border-[#88171d] py-1.5 px-1.5 rounded-full'>
+										<div className='flex pl-6 pr-4 py-2.5 rounded-full items-center text-white bg-gradient-to-r from-[#88171d] to-[#d83831]'>
+											<div className='md:text-xl text-base pl-2'>
+												Daftar Sekarang Sebelum Di Tutup
+											</div>
+										</div>
 									</div>
-								</form>
+								</div>
 							</div>
-						</div>
-						<div className='relative md:pb-12 pb-0 bg-white px-10'>
-							<button
-								disabled={isSubmit ? true : false}
-								className={`md:relative fixed bottom-0 left-0 bg-[#88171d] flex w-full px-8 py-4 z-50 border-t border-t-4 border-white text-white text-base justify-center cursor-pointer hover:opacity-70 ${
-									isSubmit ? "opacity-70 cursor-wait" : "opacity-100"
-								}`}
-								onClick={() => null}>
-								Registrasi Sekarang
-							</button>
 						</div>
 					</section>
 
@@ -220,6 +212,138 @@ export default function AffiliateRegistrasi() {
 						</div>
 					</section>
 
+					<section
+						id='form-registrasi'
+						className='relative'>
+						<div className='bg-white md:px-10 px-2.5 pb-2 pt-8'>
+							<h4 className='md:text-3xl text-2xl text-center font-bold md:pt-8 md:pb-6 pt-4 px-2 text-[#88171d]'>
+								Form Registrasi Affiliate
+							</h4>
+
+							<div className='md:pt-4 pt-8 md:px-0 px-4 pb-8'>
+								<form
+									className='flex flex-col space-y-4'
+									onSubmit={onSubmit}>
+									<div className='flex flex-col space-y-1'>
+										<label
+											htmlFor='name'
+											className='text-[#88171d]'>
+											Nama
+										</label>
+										<input
+											{...register("name", {
+												required: "Nama harus diisi",
+											})}
+											placeholder='Nama Langkap Anda'
+											className='w-full placeholder:font-normal placeholder:text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
+										/>
+										{errors.name && <p>{errors.name.message as any}</p>}
+									</div>
+									<div className='flex flex-col space-y-1'>
+										<label
+											htmlFor='username'
+											className='text-[#88171d]'>
+											No WhatsApp
+										</label>
+										<input
+											{...register("username", {
+												required: "No whatsApp harus diisi",
+											})}
+											placeholder='Pastikan No WhatsApp Aktif'
+											className='w-full placeholder:font-normal placeholder:text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
+											onChange={(e) => null}
+										/>
+										{errors.username && <p>{errors.username.message as any}</p>}
+									</div>
+									<div className='flex flex-col space-y-1'>
+										<label
+											htmlFor='password'
+											className='text-[#88171d]'>
+											Password
+										</label>
+										<input
+											{...register("password", {
+												required: "Password harus diisi",
+												validate: (val: string) => {
+													let pattern =
+														/^(?=.*\d)(?=.*[a-z])(?=.*[^a-zA-Z0-9])(?!.*\s).{7,15}$/;
+
+													if (!val.match(pattern)) {
+														return "Terdiri dari minimal 1 angka dan 1 spacial character";
+													}
+												},
+												minLength: {
+													value: 8,
+													message: "Password minimal terdiri dari 8 karakter",
+												},
+											})}
+											placeholder='Buat Password'
+											className='w-full placeholder:font-normal placeholder:text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
+											onChange={(e) => null}
+										/>
+										{errors.password && <p>{errors.password.message as any}</p>}
+									</div>
+									<div className='flex flex-col space-y-1'>
+										<label
+											htmlFor='retype'
+											className='text-[#88171d]'>
+											Retype Password
+										</label>
+										<input
+											{...register("retype", {
+												validate: (val: string) => {
+													if (watch("password") != val) {
+														return "Your passwords do no match";
+													}
+												},
+											})}
+											placeholder='Ketik Ulang Password'
+											className='w-full placeholder:font-normal placeholder:text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
+											onChange={(e) => null}
+										/>
+										{errors.retype && <p>{errors.retype.message as any}</p>}
+									</div>
+									<div className='relative md:pb-12 pb-0 bg-white px-0'>
+										<button
+											type='submit'
+											disabled={isSubmit ? true : false}
+											className={`md:relative fixed bottom-0 left-0 bg-[#88171d] md:rounded-xl flex w-full px-8 py-4 z-50 border-t border-t-4 border-white text-white text-base justify-center cursor-pointer hover:opacity-70 ${
+												isSubmit ? "opacity-70 cursor-wait" : "opacity-100"
+											}`}
+											onClick={() => null}>
+											Registrasi Sekarang
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</section>
+
+					<section
+						id='service'
+						className='bg-white'>
+						<div className='relative top-1'>
+							<Image
+								src='/bg/wave.png'
+								alt='Wave Background'
+								style={{ width: `100%` }}
+								width={100}
+								height={50}
+								priority
+							/>
+						</div>
+
+						<div className='relative md:-top-9 -top-7 md:-mb-10 -mb-8 z-20'>
+							<Image
+								src='/bg/wave.png'
+								alt='Wave Background'
+								style={{ width: `100%` }}
+								width={200}
+								height={80}
+								priority
+							/>
+						</div>
+					</section>
 					<section
 						id='footer'
 						className='flex space-x-12 px-4 pt-6 bg-[#88171d] pb-36'>
