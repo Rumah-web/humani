@@ -358,7 +358,7 @@ const MenuPriceList = () => {
 																	return (
 																		<motion.div
 																			key={i}
-																			className='flex flex-col items-center w-1/2 md:px-0 px-2 md:pb-0 pb-8'>
+																			className='flex flex-col items-center md:w-full w-1/2 md:px-0 px-2 md:pb-0 pb-8'>
 																			<h3 className='font-medium text-xl text-center pb-2 text-wrap'>
 																				<span className=''>{menu.name}</span>
 																			</h3>
