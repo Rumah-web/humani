@@ -343,14 +343,23 @@ const MenuPriceList = () => {
 												</h3>
 												{menu.id === activeMenu?.id && (
 													<div className='bg-white py-4 md:px-12 px-2 flex flex-col'>
-														<div
-															className='text-center md:py-4 py-8'
-															dangerouslySetInnerHTML={{
-																__html: menu.description
-																	? menu.description
-																	: "",
-															}}
-														/>
+														<div className='flex md:flex-col flex-col'>
+															<div
+																className='w-full md:my-2 my-0 md:h-72 h-48 bg-contain bg-no-repeat bg-center'
+																key={i}
+																style={{
+																	backgroundImage: `url(${menu.m_files.path})`,
+																}}></div>
+															<div
+																className='text-center md:py-4 py-8 items-center flex'
+																dangerouslySetInnerHTML={{
+																	__html: menu.description
+																		? menu.description
+																		: "",
+																}}
+															/>
+														</div>
+
 														{menuSelected.length > 0 ? (
 															<div
 																className={`md:pt-16 pt-4 pb-8 md:grid md:grid-cols-3 grid-cols-2  md:grid-flow-row grid-flow-col flex md:flex-row flex-row flex-wrap md:gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}>
