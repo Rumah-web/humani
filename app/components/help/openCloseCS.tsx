@@ -1,25 +1,41 @@
 import { FC, useState } from "react";
 
-export const OpenCloseCS: FC<{ no: string; content: string }> = ({
-	no,
-	content,
-}) => {
-	const [openCS, setOpenCS] = useState(false);
+export const OpenCloseCS: FC<{
+	no: string;
+	content: string;
+	isFull?: boolean;
+}> = ({ no, content, isFull = true }) => {
+	const [openCS, setOpenCS] = useState(true);
+
+	let width = "w-full";
+	let right = "-right-0";
+
+	if (typeof isFull === "undefined") {
+		width = "md:w-fit w-full";
+		right = "md:right-4 right-0";
+	} else {
+		if (!isFull) {
+			width = "md:w-fit w-full";
+			right = "md:right-4 right-0";
+		}
+	}
 
 	const onClick = () => {
-		setOpenCS(!openCS);
+		if (isFull) {
+			setOpenCS(!openCS);
+		}
 	};
 
 	return (
 		<div
-			className={`flex my-4 cursor-pointer hover:opacity-100 z-40 items-center fixed bottom-10  p-2 drop-shadow-2xl text-green-500 w-full`}
+			className={`flex my-4 cursor-pointer hover:opacity-100 z-40 items-center fixed bottom-10  p-2 drop-shadow-2xl text-green-500 ${width}`}
 			onClick={() => {
 				onClick();
 			}}>
 			<div
-				className={`absolute bg-white  ${
+				className={`absolute md:-top-10 -top-20 bg-white  ${
 					openCS
-						? `-right-0 rounded-tl-full rounded-bl-full`
+						? `${right} rounded-tl-full rounded-bl-full`
 						: `-right-14 rounded-full md:w-1/12 w-1/3`
 				} `}>
 				{openCS ? (
@@ -55,7 +71,7 @@ export const OpenCloseCS: FC<{ no: string; content: string }> = ({
 							/>
 						</svg>
 						<div
-							className='text-xs px-4 text-center text-[#88171d] hover:underline self-center'
+							className={`text-xs px-4 text-center text-[#88171d] hover:underline self-center w-32`}
 							onClick={() => {
 								window.open(`https://wa.me/${no}?text=${content}`, "_blank");
 							}}>
