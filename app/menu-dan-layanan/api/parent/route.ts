@@ -15,8 +15,6 @@ export async function POST(request: Request) {
 		categories: [];
 	}[];
 
-	let category = [] as { id: number; name: string; slug: string }[];
-
 	let parent = await db.m_menu_category.findMany({
 		include: {
 			m_menu_category: {
@@ -82,12 +80,14 @@ export async function POST(request: Request) {
 							id: item.m_menu_category.id,
 							name: item.m_menu_category.name,
 							slug: item.m_menu_category.slug,
+							order: item.m_menu_category.order,
 							categories: [
 								{
 									id: item.id,
 									name: item.name,
 									slug: item.slug,
 									description: item.description,
+									order: item.order,
 									cover: item.m_files
 										? assets_api + "/" + item.m_files?.uuid + "?width=400"
 										: null,
@@ -121,6 +121,7 @@ export async function POST(request: Request) {
 									name: item.name,
 									slug: item.slug,
 									description: item.description,
+									order: item.order,
 									cover: item.m_files
 										? assets_api + "/" + item.m_files?.uuid + "?width=400"
 										: null,
@@ -151,13 +152,15 @@ export async function POST(request: Request) {
 			}, [])
 		);
 
-		for (let item of parents) {
-			category = [...category, ...item.categories];
-		}
+		parents = parents
+			.map((item, i) => {
+				item.categories.sort((a: any, b: any) => a.order - b.order);
+				return item;
+			})
+			.sort((a: any, b: any) => b.order - a.order);
 	}
 
 	return Response.json({
 		data: parents,
-		category,
 	});
 }
