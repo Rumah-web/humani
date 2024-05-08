@@ -34,6 +34,7 @@ const MenuPriceList = () => {
 			}
 		>
 	);
+	const [parents, setParents] = useState([] as m_menu_category[]);
 	const [menuSelected, setMenuSelected] = useState(
 		[] as Array<
 			m_menu & {
@@ -109,6 +110,14 @@ const MenuPriceList = () => {
 		(async () => {
 			setLoading(true);
 
+			const reqParent = await fetch("/menu-dan-layanan/api/parent", {
+				method: "POST",
+				body: JSON.stringify({}),
+				headers: {
+					"content-type": "application/json",
+				},
+			});
+
 			const req = await fetch("/menu-dan-layanan/api/list-category", {
 				method: "POST",
 				body: JSON.stringify({}),
@@ -116,6 +125,11 @@ const MenuPriceList = () => {
 					"content-type": "application/json",
 				},
 			});
+
+			if (reqParent) {
+				const parentData = await reqParent.json();
+				setParents(parentData.data);
+			}
 
 			if (req) {
 				const { data } = await req.json();
@@ -260,11 +274,22 @@ const MenuPriceList = () => {
 									<div className='absolute bg-[#88171d] opacity-70 w-full h-full'></div>
 									<div
 										className={`relative md:text-5xl text-3xl flex flex-col md:text-left text-center text-white px-24 md:pt-10 md:pb-10 pb-4 pt-4 ${rancho.className}`}>
-										<p
-											dangerouslySetInnerHTML={{
-												__html: `Price List Menu dan Layanan`,
-											}}
-										/>
+										<div className='text-center pb-4'>
+											Price List Menu dan Layanan
+										</div>
+										<div className='flex text-3xl justify-between'>
+											{parents.map((parent, i) => {
+												return (
+													<div
+														key={i}
+														className='border border-transparent hover:border-white mx-2'>
+														<div className='px-2 cursor-pointer'>
+															{parent.name}
+														</div>
+													</div>
+												);
+											})}
+										</div>
 									</div>
 								</motion.div>
 							</div>

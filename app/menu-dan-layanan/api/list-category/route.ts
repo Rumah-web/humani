@@ -18,8 +18,8 @@ export async function POST(request: Request) {
 		},
 		where: {
 			status: "published",
-			slug: {
-				not: "ramadhan",
+			parent_id: {
+				not: null,
 			},
 			// is_show: true,
 		},
