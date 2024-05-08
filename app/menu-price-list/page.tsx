@@ -20,6 +20,8 @@ import {
 import React from "react";
 import Skeleton from "../components/loading/skeleton";
 import { iconNoImage } from "../components/icon";
+import { Decimal } from "@prisma/client/runtime/library";
+import { IPriceMenu } from "../typing";
 
 const MenuPriceList = () => {
 	const params = useParams<{ slug: string }>();
@@ -34,7 +36,7 @@ const MenuPriceList = () => {
 			}
 		>
 	);
-	const [parents, setParents] = useState([] as m_menu_category[]);
+	const [parents, setParents] = useState([] as IPriceMenu[]);
 	const [menuSelected, setMenuSelected] = useState(
 		[] as Array<
 			m_menu & {
@@ -118,75 +120,61 @@ const MenuPriceList = () => {
 				},
 			});
 
-			const req = await fetch("/menu-dan-layanan/api/list-category", {
-				method: "POST",
-				body: JSON.stringify({}),
-				headers: {
-					"content-type": "application/json",
-				},
-			});
+			// const req = await fetch("/menu-dan-layanan/api/list-category", {
+			// 	method: "POST",
+			// 	body: JSON.stringify({}),
+			// 	headers: {
+			// 		"content-type": "application/json",
+			// 	},
+			// });
 
 			if (reqParent) {
 				const parentData = await reqParent.json();
 				setParents(parentData.data);
 			}
 
-			if (req) {
-				const { data } = await req.json();
+			// if (req) {
+			// 	const { data } = await req.json();
 
-				if (data) {
-					setData(data);
+			// 	if (data) {
+			// 		setData(data);
 
-					const menuSelected = data.find((item: any, i: number) => {
-						if (i === 0) {
-							return item;
-						}
-					});
-					setActiveMenu(menuSelected);
+			// 		const menuSelected = data.find((item: any, i: number) => {
+			// 			if (i === 0) {
+			// 				return item;
+			// 			}
+			// 		});
+			// 		setActiveMenu(menuSelected);
 
-					if (menuSelected) {
-						await findMenuByCategory(menuSelected.id);
-					}
-				}
-			}
+			// 		if (menuSelected) {
+			// 			await findMenuByCategory(menuSelected.id);
+			// 		}
+			// 	}
+			// }
 
 			setLoading(false);
 		})();
 	}, []);
 
 	const findMenuByCategory = async (id: number) => {
-		const findMenu = await fetch("/menu/api/by-category", {
-			method: "POST",
-			body: JSON.stringify({ m_menu_category_id: id }),
-			headers: {
-				"content-type": "application/json",
-			},
-		});
-
-		if (findMenu) {
-			const dataMenu = await findMenu.json();
-			setMenuSelected(dataMenu.data);
-
-			console.log("dataMenu.data : ", dataMenu.data);
-		}
+		// const findMenu = await fetch("/menu/api/by-category", {
+		// 	method: "POST",
+		// 	body: JSON.stringify({ m_menu_category_id: id }),
+		// 	headers: {
+		// 		"content-type": "application/json",
+		// 	},
+		// });
+		// if (findMenu) {
+		// 	const dataMenu = await findMenu.json();
+		// 	setMenuSelected(dataMenu.data);
+		// 	console.log("dataMenu.data : ", dataMenu.data);
+		// }
 	};
 
-	const onClickCategory = async (id: number) => {
-		const findActiveCat = data.find((item: any, i: number) => {
-			if (item.id === id) {
-				return item;
-			}
-		});
+	const onClickCategory = async (slug: string) => {
+		const section = document.querySelector(`#${slug}`);
 
-		if (typeof findActiveCat !== "undefined") {
-			setActiveMenu(findActiveCat);
-			await findMenuByCategory(findActiveCat.id);
-
-			const section = document.querySelector(`#${findActiveCat.slug}`);
-
-			if (section)
-				section.scrollIntoView({ behavior: "smooth", block: "start" });
-		}
+		if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
 	};
 
 	return (
@@ -282,6 +270,7 @@ const MenuPriceList = () => {
 												return (
 													<div
 														key={i}
+														onClick={() => onClickCategory(parent.slug)}
 														className='border border-transparent hover:border-white mx-2'>
 														<div className='px-2 cursor-pointer'>
 															{parent.name}
@@ -349,151 +338,166 @@ const MenuPriceList = () => {
 								</div>
 							) : (
 								<div className={`flex flex-col ${poppins.className}`}>
-									{data.map((menu, i) => {
+									{parents.map((data, i) => {
 										return (
-											<motion.div
+											<div
 												key={i}
-												id={`${menu.slug}`}
-												onClick={() => onClickCategory(menu.id)}
-												className={`flex-1 flex-col items-center  border-t cursor-pointer  ${
-													i + 1 === data.length ? `border-b` : ``
-												}`}>
-												<h3
-													className={`py-4 text-lg text-center ${
-														activeMenu?.id === menu.id
-															? `text-white bg-[#88171d] font-bold underline`
-															: `text-[#88171d]`
-													} hover:bg-[#88171d] hover:text-white hover:font-bold`}>
-													<span className=''>{menu.name}</span>
-												</h3>
-												{menu.id === activeMenu?.id && (
-													<div className='bg-white py-4 md:px-12 px-2 flex flex-col'>
-														<div className='flex md:flex-col flex-col'>
-															<div
-																className='w-full md:my-2 my-0 md:h-72 h-48 bg-contain bg-no-repeat bg-center'
+												id={data.slug}
+												style={{ scrollMargin: "6rem" }}>
+												<div>
+													{data.categories.map((menu, i) => {
+														return (
+															<motion.div
 																key={i}
-																style={{
-																	backgroundImage: `url(${menu.m_files.path})`,
-																}}></div>
-															<div
-																className='text-center md:py-4 py-8 items-center flex'
-																dangerouslySetInnerHTML={{
-																	__html: menu.description
-																		? menu.description
-																		: "",
-																}}
-															/>
-														</div>
+																id={`${menu.slug}`}
+																onClick={() => onClickCategory(menu.id)}
+																className={`flex-1 flex-col items-center  border-t cursor-pointer  ${
+																	i + 1 === data.categories.length
+																		? `border-b`
+																		: ``
+																}`}>
+																<h3
+																	className={`py-4 text-lg text-center ${`text-white bg-[#88171d] font-bold underline`} hover:bg-[#88171d] hover:text-white hover:font-bold`}>
+																	<span className=''>{menu.name}</span>
+																</h3>
 
-														{menuSelected.length > 0 ? (
-															<div
-																className={`md:pt-16 pt-4 pb-8 md:grid md:grid-cols-3 grid-cols-2  md:grid-flow-row grid-flow-col flex md:flex-row flex-row flex-wrap md:gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}>
-																{menuSelected.map((menu, i) => {
-																	return (
-																		<motion.div
-																			key={i}
-																			className='flex flex-col items-center md:w-full w-1/2 md:px-0 px-2 md:pb-0 pb-8'>
-																			<h3 className='font-medium text-xl text-center pb-2 text-wrap'>
-																				<span className=''>{menu.name}</span>
-																			</h3>
-																			{menu.m_menu_files.map(
-																				(menu_file: any, i: number) => {
-																					return (
-																						<div
-																							className='w-full md:my-2 my-0 md:h-72 h-48 bg-contain bg-no-repeat bg-center'
-																							key={i}
-																							style={{
-																								backgroundImage: `url(${menu_file.m_files.path})`,
-																							}}></div>
-																					);
-																				}
-																			)}
+																<div className='bg-white py-4 md:px-12 px-2 flex flex-col'>
+																	<div className='flex md:flex-col flex-col'>
+																		{menu.cover && (
+																			<div
+																				className='w-full md:my-2 my-0 md:h-72 h-48 bg-contain bg-no-repeat bg-center'
+																				key={i}
+																				style={{
+																					backgroundImage: `url(${menu.cover})`,
+																				}}></div>
+																		)}
 
-																			<div className='flex w-full flex-col md:px-0 md:px-12 px-2 pt-4'>
-																				<div className='font-semibold underline md:text-left text-center'>{`Rp. ${menu.price
-																					.toString()
-																					.replace(
-																						/\B(?=(\d{3})+(?!\d))/g,
-																						"."
-																					)}`}</div>
-																				<div className='flex w-full flex-col py-2'>
-																					{menu.m_menu_item.map((item, i) => {
-																						return (
-																							<div
-																								key={i}
-																								className='flex'>
-																								<div className='w-6'>{`${
-																									i + 1
-																								}.`}</div>
-																								<div className='text-left flex-1'>
-																									{item.m_item?.name}
-																								</div>
+																		<div
+																			className='text-center md:py-4 py-8 items-center justify-center flex'
+																			dangerouslySetInnerHTML={{
+																				__html: menu.description
+																					? menu.description
+																					: "",
+																			}}
+																		/>
+																	</div>
+
+																	{menu.menus.length > 0 ? (
+																		<div
+																			className={`md:pt-16 pt-4 pb-8 md:grid md:grid-cols-3 grid-cols-2  md:grid-flow-row grid-flow-col flex md:flex-row flex-row flex-wrap md:gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}>
+																			{menu.menus.map((menu, i) => {
+																				return (
+																					<motion.div
+																						key={i}
+																						className='flex flex-col items-center md:w-full w-1/2 md:px-0 px-2 md:pb-0 pb-8'>
+																						<h3 className='font-medium text-xl text-center pb-2 text-wrap'>
+																							<span className=''>
+																								{menu.name}
+																							</span>
+																						</h3>
+																						{menu.m_menu_files.map(
+																							(menu_file: any, i: number) => {
+																								return (
+																									<div
+																										className='w-full md:my-2 my-0 md:h-72 h-48 bg-contain bg-no-repeat bg-center'
+																										key={i}
+																										style={{
+																											backgroundImage: `url(${menu_file.m_files.path})`,
+																										}}></div>
+																								);
+																							}
+																						)}
+
+																						<div className='flex w-full flex-col md:px-0 md:px-12 px-2 pt-4'>
+																							<div className='font-semibold underline md:text-left text-center'>{`Rp. ${menu.price
+																								.toString()
+																								.replace(
+																									/\B(?=(\d{3})+(?!\d))/g,
+																									"."
+																								)}`}</div>
+																							<div className='flex w-full flex-col py-2'>
+																								{menu.m_menu_item.map(
+																									(item, i) => {
+																										return (
+																											<div
+																												key={i}
+																												className='flex'>
+																												<div className='w-6'>{`${
+																													i + 1
+																												}.`}</div>
+																												<div className='text-left flex-1'>
+																													{item.m_item?.name}
+																												</div>
+																											</div>
+																										);
+																									}
+																								)}
 																							</div>
-																						);
-																					})}
+																						</div>
+																					</motion.div>
+																				);
+																			})}
+																		</div>
+																	) : (
+																		<div className='flex w-full flex-col space-y-4 py-4 text-[#88171d]'>
+																			<div className='flex w-full justify-center md:px-24 px-16 space-x-4'>
+																				<div className='animate-bounce'>
+																					<Image
+																						src='/icon/arrow-cs.png'
+																						alt='Humani Food CS'
+																						className='-rotate-45'
+																						width={60}
+																						height={20}
+																						priority
+																					/>
+																				</div>
+																				<div className='animate-bounce'>
+																					<Image
+																						src='/icon/arrow-cs.png'
+																						alt='Humani Food CS'
+																						width={60}
+																						height={20}
+																						priority
+																					/>
+																				</div>
+																				<div className='animate-bounce'>
+																					<Image
+																						src='/icon/arrow-cs.png'
+																						alt='Humani Food CS'
+																						className='rotate-45'
+																						width={60}
+																						height={20}
+																						priority
+																					/>
 																				</div>
 																			</div>
-																		</motion.div>
-																	);
-																})}
-															</div>
-														) : (
-															<div className='flex w-full flex-col space-y-4 py-4 text-[#88171d]'>
-																<div className='flex w-full justify-center md:px-24 px-16 space-x-4'>
-																	<div className='animate-bounce'>
-																		<Image
-																			src='/icon/arrow-cs.png'
-																			alt='Humani Food CS'
-																			className='-rotate-45'
-																			width={60}
-																			height={20}
-																			priority
-																		/>
-																	</div>
-																	<div className='animate-bounce'>
-																		<Image
-																			src='/icon/arrow-cs.png'
-																			alt='Humani Food CS'
-																			width={60}
-																			height={20}
-																			priority
-																		/>
-																	</div>
-																	<div className='animate-bounce'>
-																		<Image
-																			src='/icon/arrow-cs.png'
-																			alt='Humani Food CS'
-																			className='rotate-45'
-																			width={60}
-																			height={20}
-																			priority
-																		/>
-																	</div>
-																</div>
-																<div className='flex justify-center'>
-																	<div className='w-fit border border-[#88171d] py-1.5 px-1.5 rounded-full'>
-																		<div className='flex pl-6 pr-4 py-2.5 rounded-full items-center text-white bg-gradient-to-r from-[#88171d] to-[#d83831]'>
-																			<svg
-																				width='40'
-																				height='40'
-																				viewBox='0 0 32 32'
-																				xmlns='http://www.w3.org/2000/svg'>
-																				<path
-																					fill='currentColor'
-																					d='M23.328 19.177c-.401-.203-2.354-1.156-2.719-1.292c-.365-.13-.63-.198-.896.203c-.26.391-1.026 1.286-1.26 1.547s-.464.281-.859.104c-.401-.203-1.682-.62-3.203-1.984c-1.188-1.057-1.979-2.359-2.214-2.76c-.234-.396-.026-.62.172-.818c.182-.182.401-.458.604-.698c.193-.24.255-.401.396-.661c.13-.281.063-.5-.036-.698s-.896-2.161-1.229-2.943c-.318-.776-.651-.677-.896-.677c-.229-.021-.495-.021-.76-.021s-.698.099-1.063.479c-.365.401-1.396 1.359-1.396 3.297c0 1.943 1.427 3.823 1.625 4.104c.203.26 2.807 4.26 6.802 5.979c.953.401 1.693.641 2.271.839c.953.302 1.823.26 2.51.161c.76-.125 2.354-.964 2.688-1.901c.339-.943.339-1.724.24-1.901c-.099-.182-.359-.281-.76-.458zM16.083 29h-.021c-2.365 0-4.703-.641-6.745-1.839l-.479-.286l-5 1.302l1.344-4.865l-.323-.5a13.166 13.166 0 0 1-2.021-7.01c0-7.26 5.943-13.182 13.255-13.182c3.542 0 6.865 1.38 9.365 3.88a13.058 13.058 0 0 1 3.88 9.323C29.328 23.078 23.39 29 16.088 29zM27.359 4.599C24.317 1.661 20.317 0 16.062 0C7.286 0 .14 7.115.135 15.859c0 2.792.729 5.516 2.125 7.927L0 32l8.448-2.203a16.13 16.13 0 0 0 7.615 1.932h.005c8.781 0 15.927-7.115 15.932-15.865c0-4.234-1.651-8.219-4.661-11.214z'
-																				/>
-																			</svg>
-																			<div className='md:text-xl text-base pl-2'>
-																				Hubungi Kami
+																			<div className='flex justify-center'>
+																				<div className='w-fit border border-[#88171d] py-1.5 px-1.5 rounded-full'>
+																					<div className='flex pl-6 pr-4 py-2.5 rounded-full items-center text-white bg-gradient-to-r from-[#88171d] to-[#d83831]'>
+																						<svg
+																							width='40'
+																							height='40'
+																							viewBox='0 0 32 32'
+																							xmlns='http://www.w3.org/2000/svg'>
+																							<path
+																								fill='currentColor'
+																								d='M23.328 19.177c-.401-.203-2.354-1.156-2.719-1.292c-.365-.13-.63-.198-.896.203c-.26.391-1.026 1.286-1.26 1.547s-.464.281-.859.104c-.401-.203-1.682-.62-3.203-1.984c-1.188-1.057-1.979-2.359-2.214-2.76c-.234-.396-.026-.62.172-.818c.182-.182.401-.458.604-.698c.193-.24.255-.401.396-.661c.13-.281.063-.5-.036-.698s-.896-2.161-1.229-2.943c-.318-.776-.651-.677-.896-.677c-.229-.021-.495-.021-.76-.021s-.698.099-1.063.479c-.365.401-1.396 1.359-1.396 3.297c0 1.943 1.427 3.823 1.625 4.104c.203.26 2.807 4.26 6.802 5.979c.953.401 1.693.641 2.271.839c.953.302 1.823.26 2.51.161c.76-.125 2.354-.964 2.688-1.901c.339-.943.339-1.724.24-1.901c-.099-.182-.359-.281-.76-.458zM16.083 29h-.021c-2.365 0-4.703-.641-6.745-1.839l-.479-.286l-5 1.302l1.344-4.865l-.323-.5a13.166 13.166 0 0 1-2.021-7.01c0-7.26 5.943-13.182 13.255-13.182c3.542 0 6.865 1.38 9.365 3.88a13.058 13.058 0 0 1 3.88 9.323C29.328 23.078 23.39 29 16.088 29zM27.359 4.599C24.317 1.661 20.317 0 16.062 0C7.286 0 .14 7.115.135 15.859c0 2.792.729 5.516 2.125 7.927L0 32l8.448-2.203a16.13 16.13 0 0 0 7.615 1.932h.005c8.781 0 15.927-7.115 15.932-15.865c0-4.234-1.651-8.219-4.661-11.214z'
+																							/>
+																						</svg>
+																						<div className='md:text-xl text-base pl-2'>
+																							Hubungi Kami
+																						</div>
+																					</div>
+																				</div>
 																			</div>
 																		</div>
-																	</div>
+																	)}
 																</div>
-															</div>
-														)}
-													</div>
-												)}
-											</motion.div>
+															</motion.div>
+														);
+													})}
+												</div>
+											</div>
 										);
 									})}
 								</div>
