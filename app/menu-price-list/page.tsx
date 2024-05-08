@@ -350,7 +350,7 @@ const MenuPriceList = () => {
 															<motion.div
 																key={i}
 																id={`${menu.slug}`}
-																onClick={() => onClickCategory(menu.id)}
+																onClick={() => onClickCategory(menu.slug)}
 																className={`flex-1 flex-col items-center  border-t cursor-pointer  ${
 																	i + 1 === data.categories.length
 																		? `border-b`
