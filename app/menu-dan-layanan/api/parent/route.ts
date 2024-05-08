@@ -62,6 +62,11 @@ export async function POST(request: Request) {
 				is_show: true,
 				status: "published",
 			},
+			m_menu: {
+				some: {
+					status: "published",
+				},
+			},
 		},
 		orderBy: {
 			order: "asc",
