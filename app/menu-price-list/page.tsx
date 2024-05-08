@@ -19,7 +19,7 @@ import {
 } from "@prisma/client";
 import React from "react";
 import Skeleton from "../components/loading/skeleton";
-import { iconNoImage } from "../components/icon";
+import { iconLoading, iconNoImage } from "../components/icon";
 import { Decimal } from "@prisma/client/runtime/library";
 import { IPriceMenu } from "../typing";
 
@@ -120,56 +120,14 @@ const MenuPriceList = () => {
 				},
 			});
 
-			// const req = await fetch("/menu-dan-layanan/api/list-category", {
-			// 	method: "POST",
-			// 	body: JSON.stringify({}),
-			// 	headers: {
-			// 		"content-type": "application/json",
-			// 	},
-			// });
-
 			if (reqParent) {
 				const parentData = await reqParent.json();
 				setParents(parentData.data);
 			}
 
-			// if (req) {
-			// 	const { data } = await req.json();
-
-			// 	if (data) {
-			// 		setData(data);
-
-			// 		const menuSelected = data.find((item: any, i: number) => {
-			// 			if (i === 0) {
-			// 				return item;
-			// 			}
-			// 		});
-			// 		setActiveMenu(menuSelected);
-
-			// 		if (menuSelected) {
-			// 			await findMenuByCategory(menuSelected.id);
-			// 		}
-			// 	}
-			// }
-
 			setLoading(false);
 		})();
 	}, []);
-
-	const findMenuByCategory = async (id: number) => {
-		// const findMenu = await fetch("/menu/api/by-category", {
-		// 	method: "POST",
-		// 	body: JSON.stringify({ m_menu_category_id: id }),
-		// 	headers: {
-		// 		"content-type": "application/json",
-		// 	},
-		// });
-		// if (findMenu) {
-		// 	const dataMenu = await findMenu.json();
-		// 	setMenuSelected(dataMenu.data);
-		// 	console.log("dataMenu.data : ", dataMenu.data);
-		// }
-	};
 
 	const onClickCategory = async (slug: string) => {
 		const section = document.querySelector(`#${slug}`);
@@ -190,16 +148,33 @@ const MenuPriceList = () => {
 						className={`bg-header`}
 						style={{ opacity }}></div>
 					<div className='max-w-5xl w-full flex justify-between relative py-2'>
-						<div className=''>
+						<div className='w-16'>
 							<Image
 								src='/logo-white.png'
 								alt='Humani Food Logo'
 								width={70}
 								height={30}
+								className='w-16'
 								priority
 							/>
 						</div>
+
 						<div className='flex items-center'>
+							{opacity > 1 && (
+								<div
+									className={`md:flex hidden  text-white items-center justify-end text-lg font-semibold ${poppins.className}`}>
+									{parents.map((parent, i) => {
+										return (
+											<div
+												key={i}
+												onClick={() => onClickCategory(parent.slug)}
+												className='hover:underline'>
+												<div className='px-2 cursor-pointer'>{parent.name}</div>
+											</div>
+										);
+									})}
+								</div>
+							)}
 							<div className='md:w-16 w-12 flex justify-center'>
 								<Image
 									src='/icon/iso.png'
@@ -258,26 +233,52 @@ const MenuPriceList = () => {
 									animate={controlsService}
 									initial='hidden'
 									variants={squareVariants}
-									className='flex md:flex-row flex-col relative w-full md:mt-28 mt-20 md:mr-0 mr-4 md:mb-20 md:items-left items-center'>
-									<div className='absolute bg-[#88171d] opacity-70 w-full h-full'></div>
+									className={`flex md:flex-row flex-col w-full md:mt-28 mt-20 md:mr-0 mr-4 md:mb-20 md:items-left items-center ${
+										opacity > 1
+											? `fixed md:-top-8 -top-1 left-0 z-50 border-t`
+											: `relative`
+									}`}>
 									<div
-										className={`relative md:text-5xl text-3xl flex flex-col md:text-left text-center text-white px-24 md:pt-10 md:pb-10 pb-4 pt-4 ${rancho.className}`}>
-										<div className='text-center pb-4'>
-											Price List Menu dan Layanan
-										</div>
-										<div className='flex text-3xl justify-between'>
-											{parents.map((parent, i) => {
-												return (
-													<div
-														key={i}
-														onClick={() => onClickCategory(parent.slug)}
-														className='border border-transparent hover:border-white mx-2'>
-														<div className='px-2 cursor-pointer'>
-															{parent.name}
-														</div>
+										className={`${
+											opacity > 1 ? `opacity-1` : `opacity-70`
+										} absolute bg-[#88171d] w-full h-full`}></div>
+									<div
+										className={`relative md:text-5xl text-2xl flex flex-col md:text-left text-center text-white px-24 ${
+											opacity > 1
+												? `md:pt-4 md:pb-4 flex-1 md:px-48`
+												: `md:pt-10 md:pb-10`
+										} pb-4 pt-4 ${rancho.className}`}>
+										{opacity <= 1 && (
+											<div className='text-center pb-4'>
+												Price List Menu dan Layanan
+											</div>
+										)}
+										<div
+											className={`flex flex-wrap text-3xl ${
+												opacity > 1 ? `justify-center` : `justify-between`
+											}`}>
+											{loading ? (
+												<div className='flex-1 space-x-4'>
+													<div className='flex w-full justify-center'>
+														{iconLoading}
 													</div>
-												);
-											})}
+												</div>
+											) : (
+												<>
+													{parents.map((parent, i) => {
+														return (
+															<div
+																key={i}
+																onClick={() => onClickCategory(parent.slug)}
+																className='border border-transparent hover:border-white mx-2'>
+																<div className='px-2 cursor-pointer md:text-xl text-lg'>
+																	{parent.name}
+																</div>
+															</div>
+														);
+													})}
+												</>
+											)}
 										</div>
 									</div>
 								</motion.div>
@@ -300,7 +301,9 @@ const MenuPriceList = () => {
 						backgroundImage: `url(/bg/bg-ragam-menu-right-top.png)`,
 					}}></div>
 				<div
-					className='flex max-w-5xl w-full flex-col'
+					className={`flex max-w-5xl w-full flex-col ${
+						opacity > 1 ? `md:mt-96 mt-72` : ``
+					}`}
 					ref={ref}>
 					<h2
 						className={`text-[#88171d] md:text-5xl text-2xl text-center mt-12 font-bold ${rancho.className}`}>
@@ -372,14 +375,17 @@ const MenuPriceList = () => {
 																				}}></div>
 																		)}
 
-																		<div
-																			className='text-center md:py-4 py-8 items-center justify-center flex'
-																			dangerouslySetInnerHTML={{
-																				__html: menu.description
-																					? menu.description
-																					: "",
-																			}}
-																		/>
+																		{menu.description.replaceAll(
+																			/<([^</> ]+)[^<>]*?>[^<>]*?<\/\1> */gi,
+																			""
+																		).length > 1 && (
+																			<div
+																				className='text-center md:py-4 py-8 items-center justify-center flex'
+																				dangerouslySetInnerHTML={{
+																					__html: menu.description,
+																				}}
+																			/>
+																		)}
 																	</div>
 
 																	{menu.menus.length > 0 ? (
