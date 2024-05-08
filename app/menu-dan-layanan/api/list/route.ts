@@ -1,4 +1,5 @@
 import db from "@/prisma/lib/db";
+import { m_files, m_menu_category } from "@prisma/client";
 
 type ResponseData = {
 	message: string;
@@ -7,34 +8,47 @@ type ResponseData = {
 export async function POST(request: Request) {
 	const assets_api = process.env.API_ASSETS_HOST + "/view";
 
-	let datas = await db.m_menu_category.findMany({
-		include: {
-			m_files: {
-				select: {
-					path: true,
-					uuid: true,
-				},
-			},
-		},
+	let datas = [] as Partial<
+		m_menu_category & {
+			m_files: { path: string; uuid: string } | null;
+		}
+	>[];
+	const parent = await db.m_menu_category.findFirst({
 		where: {
-			status: "published",
-			is_show: true,
-		},
-		orderBy: {
-			order: "asc",
+			slug: "ragam-menu-dan-layanan",
 		},
 	});
 
-	if (datas) {
-		datas = datas.map((item, i) => {
-			if (item?.m_files) {
-				item.m_files = {
-					...item.m_files,
-					path: assets_api + "/" + item?.m_files.uuid + "?width=400",
-				};
-			}
-			return item;
+	if (parent) {
+		datas = await db.m_menu_category.findMany({
+			include: {
+				m_files: {
+					select: {
+						path: true,
+						uuid: true,
+					},
+				},
+			},
+			where: {
+				status: "published",
+				parent_id: parent.id,
+			},
+			orderBy: {
+				order: "asc",
+			},
 		});
+
+		if (datas) {
+			datas = datas.map((item, i) => {
+				if (item?.m_files) {
+					item.m_files = {
+						...item.m_files,
+						path: assets_api + "/" + item?.m_files.uuid + "?width=400",
+					};
+				}
+				return item;
+			});
+		}
 	}
 
 	return Response.json({
