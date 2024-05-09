@@ -157,7 +157,7 @@ export async function POST(request: Request) {
 				item.categories.sort((a: any, b: any) => a.order - b.order);
 				return item;
 			})
-			.sort((a: any, b: any) => b.order - a.order);
+			.sort((a: any, b: any) => a.order - b.order);
 	}
 
 	return Response.json({

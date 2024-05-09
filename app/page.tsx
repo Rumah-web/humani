@@ -624,7 +624,7 @@ export default function Home() {
 				className='w-full bg-white'>
 				<h2
 					className={`text-[#88171d] md:text-5xl text-2xl text-center mt-12 font-bold ${rancho.className}`}>
-					Gallery Humani Catering Service
+					Humani Catering Service
 				</h2>
 				<div className='md:pt-8 pt-4 pb-2'>
 					<Carosel
