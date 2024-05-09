@@ -393,6 +393,13 @@ const MenuPriceList = () => {
 																		<div
 																			className={`md:pt-16 pt-4 pb-8 md:grid md:grid-cols-3 grid-cols-2  md:grid-flow-row grid-flow-col flex md:flex-row flex-row flex-wrap md:gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}>
 																			{menu.menus.map((menu, i) => {
+																				let priceAfterDiscount =
+																					parseInt(menu.price.toString()) -
+																					parseInt(menu.price_promo.toString());
+
+																				if (priceAfterDiscount < 0)
+																					priceAfterDiscount = 0;
+
 																				return (
 																					<motion.div
 																						key={i}
@@ -416,7 +423,19 @@ const MenuPriceList = () => {
 																						)}
 
 																						<div className='flex w-full flex-col md:px-0 md:px-12 px-2 pt-4'>
-																							<div className='font-semibold underline md:text-left text-center'>{`Rp. ${menu.price
+																							{parseInt(menu.price.toString()) >
+																								priceAfterDiscount && (
+																								<del>
+																									<div className='font-semibold underline md:text-left text-center'>{`Rp. ${menu.price
+																										.toString()
+																										.replace(
+																											/\B(?=(\d{3})+(?!\d))/g,
+																											"."
+																										)}`}</div>
+																								</del>
+																							)}
+
+																							<div className='font-semibold underline md:text-left text-center'>{`Rp. ${priceAfterDiscount
 																								.toString()
 																								.replace(
 																									/\B(?=(\d{3})+(?!\d))/g,
