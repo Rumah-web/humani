@@ -227,7 +227,7 @@ const MenuPriceList = () => {
 							backgroundImage: `url(/bg/bg-menu-service.jpg)`,
 						}}>
 						<div className='flex max-w-5xl w-full flex-col items-center'>
-							<div className='flex md:flex-row flex-col  justify-between space-x-4'>
+							<div className='flex md:flex-row md:w-fit w-full flex-col  justify-between space-x-4'>
 								<motion.div
 									ref={refService}
 									animate={controlsService}
@@ -243,7 +243,7 @@ const MenuPriceList = () => {
 											opacity > 1 ? `opacity-1` : `opacity-70`
 										} absolute bg-[#88171d] w-full h-full`}></div>
 									<div
-										className={`relative md:text-5xl text-2xl flex flex-col md:text-left text-center text-white px-24 ${
+										className={`relative md:text-5xl text-2xl flex flex-col md:text-left text-center text-white px-2 w-full ${
 											opacity > 1
 												? `md:pt-4 md:pb-4 flex-1 md:px-48`
 												: `md:pt-10 md:pb-10`
