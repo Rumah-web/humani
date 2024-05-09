@@ -243,7 +243,7 @@ const MenuPriceList = () => {
 											opacity > 1 ? `opacity-1` : `opacity-70`
 										} absolute bg-[#88171d] w-full h-full`}></div>
 									<div
-										className={`relative md:text-5xl text-2xl flex flex-col md:text-left text-center text-white px-2 w-full ${
+										className={`relative md:text-5xl text-2xl flex flex-col md:text-left text-center text-white px-10 w-full ${
 											opacity > 1
 												? `md:pt-4 md:pb-4 flex-1 md:px-48`
 												: `md:pt-10 md:pb-10`
@@ -255,7 +255,7 @@ const MenuPriceList = () => {
 										)}
 										<div
 											className={`flex flex-wrap text-3xl ${
-												opacity > 1 ? `justify-center` : `justify-between`
+												opacity > 1 ? `justify-center` : `justify-center`
 											}`}>
 											{loading ? (
 												<div className='flex-1 space-x-4'>
@@ -306,8 +306,9 @@ const MenuPriceList = () => {
 					}`}
 					ref={ref}>
 					<h2
-						className={`text-[#88171d] md:text-5xl text-2xl text-center mt-12 font-bold ${rancho.className}`}>
-						Anda Fokus Acaranya, Kami Urus Sajiannya.
+						className={`text-[#88171d] flex justify-center md:flex-row flex-col md:space-x-2 space-x-0  md:text-5xl text-2xl text-center mt-12 font-bold ${rancho.className}`}>
+						<span>Anda Fokus Acaranya, </span>
+						<span>Kami Urus Sajiannya.</span>
 					</h2>
 					<h4
 						className={`text-center text-[#88171d] text-xl my-8 md:px-12 px-6 ${poppins.className}`}>
