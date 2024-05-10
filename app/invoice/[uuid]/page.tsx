@@ -115,7 +115,7 @@ const Invoice = () => {
 
 	return (
 		<main
-			className='flex md:h-screen h-screen flex-col items-center justify-between relative overflow-y-scroll'
+			className='flex md:h-screen h-screen bg-white flex-col items-center justify-between relative overflow-y-scroll'
 			ref={listInnerRef}
 			onScroll={onScroll}>
 			{data.status === "paid" ? (
@@ -172,7 +172,7 @@ const Invoice = () => {
 
 			<section
 				id='invoice'
-				className={`max-w-5xl w-full flex flex-col justify-between relative py-2 mt-24 ${poppins.className}`}>
+				className={`max-w-5xl w-full flex flex-col justify-between relative md:px-0 px-4 py-2 mt-24 ${poppins.className}`}>
 				<div className='uppercase text-4xl text-left py-10 font-bold'>
 					Invoice
 				</div>
@@ -268,8 +268,8 @@ const Invoice = () => {
 					)}
 					<div className='flex flex-col border-t pt-4 mt-4'>
 						<div className='flex justify-between space-x-4'>
-							<div className='flex-1 text-right'>Total</div>
-							<div className='w-1/5 text-right'>{`${
+							<div className='flex-1 md:text-right text-left'>Total</div>
+							<div className='md:w-1/5 text-right'>{`${
 								data.total
 									? `Rp. ${data.total
 											.toString()
@@ -278,8 +278,8 @@ const Invoice = () => {
 							}`}</div>
 						</div>
 						<div className='flex justify-between space-x-4'>
-							<div className='flex-1 text-right'>Discount</div>
-							<div className='w-1/5 text-right'>{`${
+							<div className='flex-1 md:text-right text-left'>Discount</div>
+							<div className='md:w-1/5 text-right'>{`${
 								data.discount
 									? `Rp. ${data.discount
 											.toString()
@@ -288,8 +288,8 @@ const Invoice = () => {
 							}`}</div>
 						</div>
 						<div className='flex justify-between space-x-4'>
-							<div className='flex-1 text-right'>Pengiriman</div>
-							<div className='w-1/5 text-right'>{`${
+							<div className='flex-1 md:text-right text-left'>Pengiriman</div>
+							<div className='md:w-1/5 text-right'>{`${
 								data.delivery_charge
 									? `Rp. ${data.delivery_charge
 											.toString()
@@ -298,8 +298,10 @@ const Invoice = () => {
 							}`}</div>
 						</div>
 						<div className='flex justify-between space-x-4 py-2 mt-2 bg-[#e5e5e5]'>
-							<div className='flex-1 text-right font-bold'>Total bayar</div>
-							<div className='w-1/5 text-right font-bold'>{`${
+							<div className='flex-1 md:text-right text-left font-bold'>
+								Total bayar
+							</div>
+							<div className='md:w-1/5 text-right font-bold'>{`${
 								data.total && data.discount && data.delivery_charge
 									? `Rp. ${(
 											parseInt(data.total.toString()) +
