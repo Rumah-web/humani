@@ -249,9 +249,7 @@ const MenuPriceList = () => {
 												: `md:pt-10 md:pb-10`
 										} pb-4 pt-4 ${rancho.className}`}>
 										{opacity <= 1 && (
-											<div className='text-center pb-4'>
-												Price List Menu dan Layanan
-											</div>
+											<div className='text-center pb-4'>Daftar Harga Menu</div>
 										)}
 										<div
 											className={`flex flex-wrap text-3xl ${
