@@ -401,7 +401,7 @@ const MenuPriceList = () => {
 																				return (
 																					<motion.div
 																						key={i}
-																						className='flex flex-col items-center md:w-full w-1/2 md:px-0 px-2 md:pb-0 pb-8 border-b border-l border-r border-[#88171d] rounded-b-lg rounded-t-lg shadow-2xl'>
+																						className='flex flex-col items-center md:w-full w-1/2 md:px-0 md:px-2 md:pb-0 pb-8 border-b border-l border-r md:border-t-none border-t border-[#88171d] rounded-b-lg rounded-t-lg shadow-2xl mb-2'>
 																						<h3 className='font-medium text-xl text-center pb-2 text-wrap pt-2 w-full bg-[#88171d] rounded-t-lg border border-[#88171d]'>
 																							<span className='text-white'>
 																								{menu.name}
