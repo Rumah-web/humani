@@ -374,17 +374,12 @@ const MenuPriceList = () => {
 																				}}></div>
 																		)}
 
-																		{menu.description.replaceAll(
-																			/<([^</> ]+)[^<>]*?>[^<>]*?<\/\1> */gi,
-																			""
-																		).length > 1 && (
-																			<div
-																				className='text-center md:py-4 py-8 items-center justify-center flex'
-																				dangerouslySetInnerHTML={{
-																					__html: menu.description,
-																				}}
-																			/>
-																		)}
+																		<div
+																			className='md:text-center text-justify md:px-0 px-4 md:py-4 py-8 items-center justify-center flex'
+																			dangerouslySetInnerHTML={{
+																				__html: menu.description,
+																			}}
+																		/>
 																	</div>
 
 																	{menu.menus.length > 0 ? (
