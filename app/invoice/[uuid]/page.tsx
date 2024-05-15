@@ -85,7 +85,7 @@ const Invoice = () => {
 
 			const req = await fetch("/invoice/api/by-uuid", {
 				method: "POST",
-				body: JSON.stringify({ slug: params.uuid }),
+				body: JSON.stringify({ uuid: params.uuid }),
 				headers: {
 					"content-type": "application/json",
 				},
