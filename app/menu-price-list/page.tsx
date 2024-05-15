@@ -401,9 +401,9 @@ const MenuPriceList = () => {
 																				return (
 																					<motion.div
 																						key={i}
-																						className='flex flex-col items-center md:w-full w-1/2 md:px-0 px-2 md:pb-0 pb-8'>
-																						<h3 className='font-medium text-xl text-center pb-2 text-wrap'>
-																							<span className=''>
+																						className='flex flex-col items-center md:w-full w-1/2 md:px-0 px-2 md:pb-0 pb-8 border-b border-l border-r border-[#88171d] rounded-b-lg rounded-t-lg shadow-2xl'>
+																						<h3 className='font-medium text-xl text-center pb-2 text-wrap pt-2 w-full bg-[#88171d] rounded-t-lg border border-[#88171d]'>
+																							<span className='text-white'>
 																								{menu.name}
 																							</span>
 																						</h3>
@@ -420,11 +420,11 @@ const MenuPriceList = () => {
 																							}
 																						)}
 
-																						<div className='flex w-full flex-col md:px-0 md:px-12 px-2 pt-4'>
+																						<div className='flex w-full flex-col md:px-0 md:px-6 px-2 md:pt-6 pt-4'>
 																							{parseInt(menu.price.toString()) >
 																								priceAfterDiscount && (
 																								<del>
-																									<div className='font-semibold underline md:text-left text-center'>{`Rp. ${menu.price
+																									<div className='font-semibold underline md:text-left text-center flex w-full'>{`Rp. ${menu.price
 																										.toString()
 																										.replace(
 																											/\B(?=(\d{3})+(?!\d))/g,
@@ -433,13 +433,18 @@ const MenuPriceList = () => {
 																								</del>
 																							)}
 
-																							<div className='font-semibold underline md:text-left text-center'>{`Rp. ${priceAfterDiscount
-																								.toString()
-																								.replace(
-																									/\B(?=(\d{3})+(?!\d))/g,
-																									"."
-																								)}`}</div>
-																							<div className='flex w-full flex-col py-2'>
+																							{priceAfterDiscount > 0 ? (
+																								<div className='font-semibold underline md:text-left text-center'>{`Rp. ${priceAfterDiscount
+																									.toString()
+																									.replace(
+																										/\B(?=(\d{3})+(?!\d))/g,
+																										"."
+																									)}`}</div>
+																							) : (
+																								<>Hubungi kami</>
+																							)}
+
+																							<div className='flex w-full flex-col md:py-6 py-2'>
 																								{menu.m_menu_item.map(
 																									(item, i) => {
 																										return (
