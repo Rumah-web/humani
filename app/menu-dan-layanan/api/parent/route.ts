@@ -50,7 +50,13 @@ export async function POST(request: Request) {
 						orderBy: {
 							order: "asc",
 						},
+						where: {
+							status: "published",
+						},
 					},
+				},
+				where: {
+					status: "published",
 				},
 			},
 		},
@@ -62,11 +68,6 @@ export async function POST(request: Request) {
 			m_menu_category: {
 				is_show: true,
 				status: "published",
-			},
-			m_menu: {
-				some: {
-					status: "published",
-				},
 			},
 		},
 		orderBy: {
