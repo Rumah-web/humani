@@ -62,7 +62,6 @@ export async function POST(request: Request) {
 			m_menu_category: {
 				is_show: true,
 				status: "published",
-				id: 13,
 			},
 			m_menu: {
 				some: {
