@@ -703,7 +703,7 @@ export default function Home() {
 						<h3 className={`text-4xl pb-2 ${rancho.className}`}>
 							Waktu Pelayanan
 						</h3>
-						<div className={poppins.className}>Senin - Jumat</div>
+						<div className={poppins.className}>Senin - Sabtu</div>
 						<div className={`font-bold ${poppins.className}`}>
 							08.00 - 17.00
 						</div>
