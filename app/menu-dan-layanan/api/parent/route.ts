@@ -58,6 +58,9 @@ export async function POST(request: Request) {
 				where: {
 					status: "published",
 				},
+				orderBy: {
+					name: "asc",
+				},
 			},
 		},
 		where: {
@@ -95,25 +98,24 @@ export async function POST(request: Request) {
 									cover: item.m_files
 										? assets_api + "/" + item.m_files?.uuid + "?width=400"
 										: null,
-									menus: item.m_menu
-										.map((menu, i) => {
-											const m_menu_files = menu.m_menu_files.map((item, i) => {
-												if (item?.m_files) {
-													item.m_files = {
-														...item.m_files,
-														path:
-															assets_api +
-															"/" +
-															item?.m_files.uuid +
-															"?width=400",
-													};
-												}
-												return item;
-											});
+									menus: item.m_menu.map((menu, i) => {
+										const m_menu_files = menu.m_menu_files.map((item, i) => {
+											if (item?.m_files) {
+												item.m_files = {
+													...item.m_files,
+													path:
+														assets_api +
+														"/" +
+														item?.m_files.uuid +
+														"?width=400",
+												};
+											}
+											return item;
+										});
 
-											return { ...menu, m_menu_files };
-										})
-										.sort((a: any, b: any) => a.price - b.price),
+										return { ...menu, m_menu_files };
+									}),
+									// .sort((a: any, b: any) => a.price - b.price),
 								},
 							],
 						};
@@ -131,25 +133,24 @@ export async function POST(request: Request) {
 									cover: item.m_files
 										? assets_api + "/" + item.m_files?.uuid + "?width=400"
 										: null,
-									menus: item.m_menu
-										.map((menu, i) => {
-											const m_menu_files = menu.m_menu_files.map((item, i) => {
-												if (item?.m_files) {
-													item.m_files = {
-														...item.m_files,
-														path:
-															assets_api +
-															"/" +
-															item?.m_files.uuid +
-															"?width=400",
-													};
-												}
-												return item;
-											});
+									menus: item.m_menu.map((menu, i) => {
+										const m_menu_files = menu.m_menu_files.map((item, i) => {
+											if (item?.m_files) {
+												item.m_files = {
+													...item.m_files,
+													path:
+														assets_api +
+														"/" +
+														item?.m_files.uuid +
+														"?width=400",
+												};
+											}
+											return item;
+										});
 
-											return { ...menu, m_menu_files };
-										})
-										.sort((a: any, b: any) => a.price - b.price),
+										return { ...menu, m_menu_files };
+									}),
+									// .sort((a: any, b: any) => a.price - b.price),
 								},
 							],
 						};
