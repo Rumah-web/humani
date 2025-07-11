@@ -518,7 +518,7 @@ export default function Home() {
           >
             Produk Ready to Eat
           </div>
-          <p className={`text-[#88171d] md:text-xl text-md text-center`}>
+          <p className={`text-[#88171d] md:text-xl text-md text-center mt-3`}>
             (Lauk Pauk Nusantara)
           </p>
           <motion.div
@@ -569,6 +569,85 @@ export default function Home() {
               </div>
             )}
           </motion.div>
+
+          <div className="flex flex-col md:flex-row space-y-4 md:space-x-8 relative items-center mt-12 mb-12">
+            <div className={``}>
+              <Image
+                src="/icon/lauk-pauk.png"
+                alt="Lauk Pauk Humani Food Ready to eat"
+                width={150}
+                height={50}
+                priority
+              />
+            </div>
+            <div className={`text-center px-4`}>
+              <span
+                className={`text-[#88171d] text-xl text-center font-bold pr-1`}
+              >
+                Lauk Pauk Nusantara
+              </span>
+              <span className={`text-[#88171d] text-xl text-center pr-1`}>
+                menggunakan kemasan
+              </span>
+              <span
+                className={`text-[#88171d] text-xl text-center font-bold pr-1`}
+              >
+                Food Grade
+              </span>
+              <span className={`text-[#88171d] text-xl text-center pr-1`}>
+                dan melalui proses sterilisai untuk
+              </span>
+              <span className={`text-[#88171d] text-xl text-center font-bold`}>
+                kualitas terbaik
+              </span>
+            </div>
+            <div className="z-10">
+              <p className="text-center pb-3 text-[#88171d]">
+                Bisa di pesan melalui :
+              </p>
+              <div className={`flex space-x-1`}>
+                <a
+                  className={``}
+                  href="https://www.shopee.co.id/humanifoodcatering"
+                  target="_blank"
+                >
+                  <Image
+                    src="/icon/shopee.png"
+                    alt="Lauk Pauk Humani Food Ready to eat"
+                    width={100}
+                    height={50}
+                    priority
+                  />
+                </a>
+                <a
+                  className={``}
+                  href="https://www.tokopedia.com/humani"
+                  target="_blank"
+                >
+                  <Image
+                    src="/icon/tokopedia.png"
+                    alt="Lauk Pauk Humani Food Ready to eat"
+                    width={100}
+                    height={50}
+                    priority
+                  />
+                </a>
+                <a
+                  className={``}
+                  href="https://www.tiktok.com/@humanifood"
+                  target="_blank"
+                >
+                  <Image
+                    src="/icon/tiktok.png"
+                    alt="Lauk Pauk Humani Food Ready to eat"
+                    width={100}
+                    height={50}
+                    priority
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
 
           <h3
             className={`text-center text-[#88171d] text-xl my-8 md:px-12 px-6 ${poppins.className}`}
