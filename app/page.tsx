@@ -19,7 +19,8 @@ export default function Home() {
   const listInnerRef = useRef(null);
   const [lastPosition, setLastPosition] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([] as Array<IData>);
+  const [menuLayanan, setMenuLayanan] = useState([] as Array<IData>);
+  const [readyToEat, setReadyToEat] = useState([] as Array<IData>);
   const [opacity, setOpacity] = useState(0);
   const [scrollDirection, setScrollDirection] = useState(
     "down" as "down" | "up" | "end"
@@ -54,51 +55,6 @@ export default function Home() {
       (_, i) => `/review/review-${i + 1}.png`
     );
   };
-
-  const menus = [
-    {
-      prefix: null,
-      title: "Nasi Box",
-      description:
-        "Aneka nasi box kami sajikan dengan citarasa nusantara terbaik seperti Nasi Besek, Nasi Tumpeng Mini, Nasi Padang, Nasi Menggono dan banyak pilihan lainnya.",
-      imagePath: null,
-    },
-    {
-      prefix: null,
-      title: "Snack Box",
-      description:
-        "Kudapan dalam kotak mini yang dihidangkan dengan ragam jenis rasa, baik manis asin maupun gurih berasal dari selera tradisional maupun modern.",
-      imagePath: null,
-    },
-    {
-      prefix: null,
-      title: "Gift Box",
-      description:
-        "Pilihan paket makanan terbaik dari kami untuk segala acara keluarga dan kerabat untuk sebuah pencapaian maupun kebahagian bersama.",
-      imagePath: null,
-    },
-    {
-      prefix: "Layanan",
-      title: "Prasmanan",
-      description:
-        "Paket prasmanan kami meliputi hidangan pembuka, hidangan utama, hidangan penutup, hingga hidangan pelengkap dengan sajian dan selera nusantara.",
-      imagePath: null,
-    },
-    {
-      prefix: "Layanan",
-      title: "Perusahaan & Sekolah",
-      description:
-        "Kami juga menyediakan pelayanan in house untuk kebutuhan perusahaan maupun sekolah dengan kapasitas dan kualitas layanan profesional.",
-      imagePath: null,
-    },
-    {
-      prefix: "Layanan",
-      title: "Berbagi Makanan",
-      description:
-        "Keinginan berbagi makanan antar sesama di masyarakat kita semakin besar sehingga butuh layanan yang halalan toyiban, amanah dan terpercaya.",
-      imagePath: null,
-    },
-  ];
 
   const onScroll = () => {
     if (listInnerRef.current) {
@@ -151,45 +107,94 @@ export default function Home() {
     }
   }, [controlsPelanggan, inViewPelanggan]);
 
+  const getMenuLayanan = async () => {
+    let datas = [] as Array<IData>;
+    const req = await fetch("/menu-dan-layanan/api/list", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+
+    if (req) {
+      const { data } = await req.json();
+
+      datas = data.map((item: any, i: number) => {
+        const sliceName = item.name.split(" ");
+        let prefix = null;
+        let title = item.name;
+        let imagePath = item.m_files.path;
+
+        if (sliceName && sliceName.length > 0) {
+          prefix = sliceName[0];
+          title = sliceName
+            .filter((name: any, i: number) => {
+              if (i > 0) {
+                return name;
+              }
+            })
+            .join(" ");
+        }
+
+        return {
+          ...item,
+          prefix,
+          title,
+          imagePath,
+        };
+      });
+      setMenuLayanan(datas);
+    }
+  };
+
+  const getMenuProdukReadyToEat = async () => {
+    let datas = [] as Array<IData>;
+    const req = await fetch("/produk-ready-to-eat/api/list", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+
+    if (req) {
+      const { data } = await req.json();
+
+      datas = data.map((item: any, i: number) => {
+        const sliceName = item.name.split(" ");
+        let prefix = null;
+        let title = item.name;
+        let imagePath = item.m_files.path;
+
+        if (sliceName && sliceName.length > 0) {
+          prefix = sliceName[0];
+          title = sliceName
+            .filter((name: any, i: number) => {
+              if (i > 0) {
+                return name;
+              }
+            })
+            .join(" ");
+        }
+
+        return {
+          ...item,
+          prefix,
+          title,
+          imagePath,
+        };
+      });
+      setReadyToEat(datas);
+    }
+  };
+
   useEffect(() => {
     (async () => {
       setLoading(true);
-      let datas = [] as Array<IData>;
-      const req = await fetch("/menu-dan-layanan/api/list", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-      });
 
-      if (req) {
-        const { data } = await req.json();
+      await getMenuLayanan();
+      await getMenuProdukReadyToEat();
 
-        datas = data.map((item: any, i: number) => {
-          const sliceName = item.name.split(" ");
-          let prefix = null;
-          let title = item.name;
-
-          if (sliceName && sliceName.length > 0) {
-            prefix = sliceName[0];
-            title = sliceName
-              .filter((name: any, i: number) => {
-                if (i > 0) {
-                  return name;
-                }
-              })
-              .join(" ");
-          }
-
-          return {
-            ...item,
-            prefix,
-            title,
-          };
-        });
-        setData(datas);
-        setLoading(false);
-      }
+      setLoading(false);
     })();
   }, []);
 
@@ -454,11 +459,11 @@ export default function Home() {
           }}
         ></div>
         <div className="flex max-w-5xl w-full flex-col" ref={ref}>
-          <h2
-            className={`text-[#88171d] md:text-5xl text-2xl text-center mt-12 font-bold ${rancho.className}`}
+          <div
+            className={`text-[#88171d] md:text-6xl text-4xl text-center mt-12 font-bold ${rancho.className}`}
           >
-            Ragam Menu dan Layanan
-          </h2>
+            Ragam Menu, Produk dan Layanan
+          </div>
           <motion.div
             ref={ref}
             animate={controls}
@@ -480,7 +485,7 @@ export default function Home() {
               <div
                 className={`pt-16 pb-8 md:grid md:grid-cols-3 grid-cols-1  md:grid-flow-row grid-flow-column flex md:flex-row flex-col gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}
               >
-                {data.map((menu, i) => {
+                {menuLayanan.map((menu, i) => {
                   return (
                     <motion.div key={i} className="flex flex-col items-center">
                       {menu.prefix && (
@@ -494,7 +499,64 @@ export default function Home() {
                       <div
                         className="w-full my-2 h-72 bg-contain bg-no-repeat bg-center"
                         style={{
-                          backgroundImage: `url(/menu/menu-${i + 1}.jpg)`,
+                          backgroundImage: `url(${menu.imagePath})`,
+                        }}
+                      ></div>
+                      <div
+                        className="pt-2 text-center md:px-0 px-4"
+                        dangerouslySetInnerHTML={{ __html: menu.description }}
+                      />
+                    </motion.div>
+                  );
+                })}
+              </div>
+            )}
+          </motion.div>
+
+          <div
+            className={`text-[#88171d] md:text-6xl text-4xl text-center mt-12 font-bold ${rancho.className}`}
+          >
+            Produk Ready to Eat
+          </div>
+          <p className={`text-[#88171d] md:text-xl text-md text-center`}>
+            (Lauk Pauk Nusantara)
+          </p>
+          <motion.div
+            ref={ref}
+            animate={controls}
+            initial="hidden"
+            variants={squareVariants}
+            className=""
+          >
+            {loading ? (
+              <div className="flex w-full md:space-x-4 space-x-0 md:space-y-0 space-y-4 py-12 md:flex-row flex-col">
+                {[1, 2, 3].map((_, i) => {
+                  return (
+                    <div key={i} className="flex w-full">
+                      <Skeleton />
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div
+                className={`pt-16 pb-8 md:grid md:grid-cols-3 grid-cols-1  md:grid-flow-row grid-flow-column flex md:flex-row flex-col gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}
+              >
+                {readyToEat.map((menu, i) => {
+                  return (
+                    <motion.div key={i} className="flex flex-col items-center">
+                      {menu.prefix && (
+                        <h3 className="font-medium text-xl text-center">
+                          {menu.prefix}
+                        </h3>
+                      )}
+                      <h3 className="font-medium text-xl text-center pb-2">
+                        <span>{menu.title}</span>
+                      </h3>
+                      <div
+                        className="w-full my-2 h-72 bg-contain bg-no-repeat bg-center"
+                        style={{
+                          backgroundImage: `url(${menu.imagePath})`,
                         }}
                       ></div>
                       <div
@@ -622,12 +684,12 @@ export default function Home() {
         </div>
       </section>
       <section id="customer" className="w-full bg-white">
-        <h2
+        <div
           ref={refPelanggan}
-          className={`text-[#88171d] md:text-5xl text-2xl text-center mt-12 font-bold ${rancho.className}`}
+          className={`text-[#88171d] md:text-6xl text-4xl text-center mt-12 font-bold ${rancho.className}`}
         >
           Pelanggan Setia Kami
-        </h2>
+        </div>
         <div className="flex flex-col justify-center pt-6 space-y-2 items-center">
           <div className="w-full flex justify-center md:h-[30rem] h-[15rem]">
             <motion.div
@@ -640,11 +702,11 @@ export default function Home() {
         </div>
       </section>
       <section id="gallery" className="w-full bg-white">
-        <h2
-          className={`text-[#88171d] md:text-5xl text-2xl text-center mt-12 font-bold ${rancho.className}`}
+        <div
+          className={`text-[#88171d] md:text-6xl text-4xl text-center mt-12 font-bold ${rancho.className}`}
         >
           Humani Catering Service
-        </h2>
+        </div>
         <div className="md:pt-8 pt-4 pb-2">
           <Carosel images={gallery()} size={"bg-contain"} />
         </div>
@@ -697,9 +759,9 @@ export default function Home() {
         </div>
         <div className="flex md:flex-row flex-col justify-between md:w-5/6 w-full text-white md:pt-0 pt-8 md:gap-0 gap-8">
           <div className="w-full md:items-start items-center flex flex-col">
-            <h3 className={`text-4xl pb-2 ${rancho.className}`}>
+            <div className={`text-4xl pb-2 ${rancho.className}`}>
               Layanan Pelanggan
-            </h3>
+            </div>
             <div className={`${poppins.className}`}>Whatsapp</div>
             <div className={`font-bold cursor-pointer ${poppins.className}`}>
               <Link
@@ -722,18 +784,18 @@ export default function Home() {
             </div>
           </div>
           <div className="w-full md:items-start items-center flex flex-col">
-            <h3 className={`text-4xl pb-2 ${rancho.className}`}>
+            <div className={`text-4xl pb-2 ${rancho.className}`}>
               Waktu Pelayanan
-            </h3>
+            </div>
             <div className={poppins.className}>Senin - Sabtu</div>
             <div className={`font-bold ${poppins.className}`}>
               08.00 - 17.00
             </div>
           </div>
           <div className="w-full md:items-start items-center flex flex-col">
-            <h3 className={`text-4xl pb-2 ${rancho.className}`}>
+            <div className={`text-4xl pb-2 ${rancho.className}`}>
               Sentra Dapur
-            </h3>
+            </div>
             <div className={`${poppins.className} md:text-left text-center`}>
               Jalan Anggrek No. 57C <br />
               Cimanggis Depok <br />
