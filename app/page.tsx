@@ -215,7 +215,7 @@ export default function Home() {
           }}
         >
           {/* Uncomment below to show video background */}
-          {/* <video
+          <video
             className="video-bg md:relative absolute"
             muted
             autoPlay
@@ -223,7 +223,7 @@ export default function Home() {
             playsInline
           >
             <source src="/video/catering-profile.mp4" type="video/mp4" />
-          </video> */}
+          </video>
           <div className="md:relative absolute h-screen"></div>
         </div>
         <div className="fixed z-20 w-full font-mono text-sm justify-center flex md:py-0 py-0 lg:px-0 px-4">
