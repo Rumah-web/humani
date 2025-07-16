@@ -634,7 +634,7 @@ export default function Home() {
                 </a>
                 <a
                   className={``}
-                  href="https://www.tiktok.com/@humanifood"
+                  href="https://vt.tiktok.com/ZSBGgfLvK/?page=Mall"
                   target="_blank"
                 >
                   <Image
