@@ -573,7 +573,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row space-y-4 md:space-x-8 relative items-center mt-12 mb-12">
             <div className={``}>
               <Image
-                src="/icon/lauk-pauk.png"
+                src="/icon/logo-lauk-pauk.png"
                 alt="Lauk Pauk Humani Food Ready to eat"
                 width={150}
                 height={50}
@@ -595,7 +595,7 @@ export default function Home() {
                 Food Grade
               </span>
               <span className={`text-[#88171d] text-xl text-center pr-1`}>
-                dan melalui proses sterilisai untuk
+                dan melalui proses sterilisasi untuk
               </span>
               <span className={`text-[#88171d] text-xl text-center font-bold`}>
                 kualitas terbaik
