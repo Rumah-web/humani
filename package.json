@@ -10,16 +10,16 @@
   },
   "dependencies": {
     "@hookform/error-message": "^2.0.1",
-    "@next/third-parties": "^14.2.3",
+    "@next/third-parties": "latest",
     "@prisma/client": "5.13.0",
     "@types/react-lazy-load-image-component": "^1.6.3",
     "@types/react-slick": "^0.23.13",
     "argon2": "^0.40.1",
-    "framer-motion": "^10.16.16",
+    "framer-motion": "^11.0.0",
     "install": "^0.13.0",
-    "next": "^14.2.35",
-    "react": "^18",
-    "react-dom": "^18",
+    "next": "^16.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-hook-form": "^7.51.4",
     "react-intersection-observer": "^9.8.1",
     "react-lazy-load-image-component": "^1.6.0",
@@ -30,17 +30,29 @@
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.0.1",
-    "eslint": "^8",
-    "eslint-config-next": "^14.2.35",
+    "eslint": "^9",
+    "eslint-config-next": "latest",
     "postcss": "^8",
     "prisma": "5.13.0",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   },
   "overrides": {
-    "glob": "10.5.0"
+    "glob": "10.5.0",
+    "react-slick": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    },
+    "slick-carousel": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    },
+    "framer-motion": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
   }
 }
