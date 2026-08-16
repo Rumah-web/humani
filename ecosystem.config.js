@@ -2,8 +2,8 @@ module.exports = {
   apps: [
     {
       name: "humani-dev",
-      script: "npm",
-      args: "run dev",
+      script: "node_modules/next/dist/bin/next",
+      args: "dev -p 3500",
       watch: false,
       env: {
         NODE_ENV: "development",
@@ -11,8 +11,8 @@ module.exports = {
     },
     {
       name: "humani-prod",
-      script: "npm",
-      args: "run start",
+      script: "node_modules/next/dist/bin/next",
+      args: "start -p 3500",
       watch: false,
       env: {
         NODE_ENV: "production",
