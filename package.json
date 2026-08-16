@@ -6,7 +6,11 @@
     "dev": "next dev -p 3500",
     "build": "next build",
     "start": "next start -p 3500",
-    "lint": "next lint"
+    "lint": "next lint",
+    "pm2:dev": "pm2 start ecosystem.config.js --only humani-dev",
+    "pm2:prod": "pm2 start ecosystem.config.js --only humani-prod",
+    "pm2:stop": "pm2 stop humani-dev humani-prod",
+    "pm2:remove": "pm2 delete humani-dev humani-prod"
   },
   "dependencies": {
     "@hookform/error-message": "^2.0.1",
