@@ -90,18 +90,16 @@ export default function Home() {
 
       {/* Glassmorphic Fixed Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
-          isScrolled
+        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${isScrolled
             ? "backdrop-blur-xl bg-white/90 border-b border-gray-100/90 shadow-[0_4px_20px_rgba(0,0,0,0.04)] py-2 sm:py-3"
             : "backdrop-blur-md bg-white/60 border-b border-transparent py-3 sm:py-5"
-        }`}
+          }`}
       >
         <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between transition-all duration-300">
           <Link href="/" className="relative flex items-center group shrink-0">
             <div
-              className={`relative transition-all duration-300 group-hover:scale-105 ${
-                isScrolled ? "w-28 sm:w-40 h-9 sm:h-11" : "w-32 sm:w-44 h-10 sm:h-12"
-              }`}
+              className={`relative transition-all duration-300 group-hover:scale-105 ${isScrolled ? "w-28 sm:w-40 h-9 sm:h-11" : "w-32 sm:w-44 h-10 sm:h-12"
+                }`}
             >
               <Image
                 src="/logo-red.png"
@@ -614,7 +612,6 @@ export default function Home() {
                 Sentra Dapur
               </div>
               <div className="text-xs sm:text-sm text-gray-600 leading-relaxed font-medium">
-                Jalan Anggrek No. 57C <br />
                 Cimanggis Depok <br />
                 Jawa Barat - 16453
               </div>
