@@ -18,6 +18,7 @@ export default function Home() {
   const [refService, inViewService, entryService] = useInView({ threshold: 0.1 });
   const [refServiceStat, inViewServiceStat] = useInView({ threshold: 0.1 });
   const [refPelanggan, inViewPelanggan] = useInView({ threshold: 0.1 });
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const customerService = {
     wa: `+628129006767`,
@@ -28,6 +29,16 @@ export default function Home() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
     hidden: { opacity: 0, y: 30 },
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     if (entryService || inViewService) {
@@ -77,11 +88,21 @@ export default function Home() {
       <div className="absolute top-1/4 left-1/4 w-72 h-72 md:w-96 md:h-96 bg-red-100/40 rounded-full filter blur-[90px] md:blur-[120px] pointer-events-none"></div>
       <div className="absolute top-2/3 right-1/4 w-72 h-72 md:w-96 md:h-96 bg-orange-100/40 rounded-full filter blur-[90px] md:blur-[120px] pointer-events-none"></div>
 
-      {/* Glassmorphic Sticky Header */}
-      <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/80 border-b border-gray-100/80 shadow-xs transition-all duration-300">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      {/* Glassmorphic Fixed Header */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
+          isScrolled
+            ? "backdrop-blur-xl bg-white/90 border-b border-gray-100/90 shadow-[0_4px_20px_rgba(0,0,0,0.04)] py-2.5 sm:py-3"
+            : "backdrop-blur-md bg-white/60 border-b border-transparent py-4 sm:py-5"
+        }`}
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between transition-all duration-300">
           <Link href="/" className="relative flex items-center group">
-            <div className="relative w-36 sm:w-44 h-12 transition-transform duration-300 group-hover:scale-105">
+            <div
+              className={`relative transition-all duration-300 group-hover:scale-105 ${
+                isScrolled ? "w-32 sm:w-40 h-10 sm:h-11" : "w-36 sm:w-44 h-12"
+              }`}
+            >
               <Image
                 src="/logo-red.png"
                 alt="Humani Catering Logo"
@@ -155,7 +176,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 md:pt-20 md:pb-24 flex flex-col items-center text-center">
+      <section className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 sm:pt-32 md:pt-36 md:pb-24 flex flex-col items-center text-center">
         {/* Top Tagline Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50/90 border border-red-100 text-[#88171d] text-xs sm:text-sm font-medium shadow-2xs mb-6 sm:mb-8 animate-fade-in">
           <span className="flex h-2 w-2 rounded-full bg-[#88171d]"></span>
