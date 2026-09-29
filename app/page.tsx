@@ -10,6 +10,7 @@ import { iconRight, iconSatSetService, iconSuperTeam } from "./components/icon";
 import Typewriter from "typewriter-effect";
 import { useAnimation, motion, Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import MenuLayananSection from "./components/menu-layanan/MenuLayananSection";
 
 export default function Home() {
   const [controlsService] = [useAnimation()];
@@ -487,6 +488,10 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* Section Menu & Layanan Component */}
+      <MenuLayananSection waNumber={customerService.wa} />
+
       {/* Pelanggan Setia Kami (Client Showcase) */}
       <section id="customer" className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 md:py-20 text-center">
         <div className="max-w-3xl mx-auto mb-6 sm:mb-12">
@@ -559,73 +564,126 @@ export default function Home() {
       </section>
 
       {/* Modern Contact Section & Footer */}
-      <footer id="kontak-kami" className="relative z-10 w-full bg-white/90 backdrop-blur-md border-t border-gray-100 py-12 md:py-16">
+      <footer id="kontak-kami" className="relative z-10 w-full bg-white/95 backdrop-blur-md border-t border-gray-100 py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 pb-10 border-b border-gray-100">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-gray-100">
             {/* Brand column */}
-            <div className="sm:col-span-2 md:col-span-1 flex flex-col items-start space-y-4">
-              <div className="relative w-36 sm:w-44 h-12 sm:h-14">
+            <div className="md:col-span-4 flex flex-col items-center md:items-start text-center md:text-left space-y-4">
+              <div className="relative w-44 sm:w-52 h-16 sm:h-20 mx-auto md:mx-0">
                 <Image
                   src="/logo-red.png"
                   alt="Humani Catering Logo"
                   fill
-                  className="object-contain"
+                  priority
+                  className="object-contain object-center md:object-left"
                 />
               </div>
-              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              <p className="text-sm text-gray-600 leading-relaxed max-w-sm mx-auto md:mx-0">
                 Solusi katering lezat, higienis, dan terpercaya untuk segala acara Anda di seluruh wilayah Jabodetabek.
               </p>
+              {/* <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-50 text-[#88171d] text-xs font-bold border border-red-100/80 mx-auto md:mx-0">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                <span>Dapur Aktif 24 Jam Setiap Hari</span>
+              </div> */}
             </div>
 
-            {/* Layanan Pelanggan */}
-            <div className="space-y-2 sm:space-y-3">
-              <div className="text-sm sm:text-base font-bold uppercase tracking-wider text-[#88171d]">
-                Layanan Pelanggan
-              </div>
-              <div className="text-xs sm:text-sm text-gray-600">Whatsapp Resmi</div>
-              <div className="text-lg sm:text-xl font-black text-[#88171d] hover:underline">
-                <Link
-                  href={`https://wa.me/${customerService.wa}?text=${customerService.content}`}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  0812 9006 767
-                </Link>
-              </div>
-            </div>
+            {/* Contact Info Cards Grid */}
+            <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+              {/* Layanan Pelanggan Card */}
+              <div className="bg-red-50/40 hover:bg-red-50/70 border border-red-100/70 rounded-2xl p-4 sm:p-5 transition-all duration-200 flex flex-col justify-between space-y-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-[#88171d] text-white flex items-center justify-center text-sm shadow-sm shrink-0">
+                    💬
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-[#88171d]">
+                      Layanan Pelanggan
+                    </div>
+                    <div className="text-xs text-gray-500">WhatsApp Resmi</div>
+                  </div>
+                </div>
 
-            {/* Waktu Pelayanan */}
-            <div className="space-y-2 sm:space-y-3">
-              <div className="text-sm sm:text-base font-bold uppercase tracking-wider text-[#88171d]">
-                Waktu Pelayanan
+                <div>
+                  <Link
+                    href={`https://wa.me/${customerService.wa}?text=${encodeURIComponent(customerService.content)}`}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="text-lg sm:text-xl font-black text-[#88171d] hover:text-[#a82027] hover:underline tracking-tight block"
+                  >
+                    0812 9006 767
+                  </Link>
+                  <span className="text-xs text-gray-500 mt-1 block">Chat konsultasi gratis</span>
+                </div>
               </div>
-              <div className="text-xs sm:text-sm text-gray-600">Senin - Sabtu</div>
-              <div className="text-base sm:text-lg font-bold text-[#2d2d2d]">
-                08.00 - 17.00
-              </div>
-              <div className="text-xs sm:text-sm text-gray-500 font-medium">Pengantaran katering siap 24 jam</div>
-            </div>
 
-            {/* Alamat Dapur */}
-            <div className="space-y-2 sm:space-y-3">
-              <div className="text-sm sm:text-base font-bold uppercase tracking-wider text-[#88171d]">
-                Sentra Dapur
+              {/* Waktu Pelayanan Card */}
+              <div className="bg-gray-50/80 hover:bg-gray-50 border border-gray-100 rounded-2xl p-4 sm:p-5 transition-all duration-200 flex flex-col justify-between space-y-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-orange-500 text-white flex items-center justify-center text-sm shadow-sm shrink-0">
+                    🕒
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-gray-800">
+                      Waktu Operasional
+                    </div>
+                    <div className="text-xs text-gray-500">Senin - Sabtu</div>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-base sm:text-lg font-bold text-[#2d2d2d]">
+                    08.00 - 17.00
+                  </div>
+                  {/* <div className="text-xs text-green-700 font-semibold mt-1 flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                    Pengantaran 24 Jam
+                  </div> */}
+                </div>
               </div>
-              <div className="text-xs sm:text-sm text-gray-600 leading-relaxed font-medium">
-                Jl. Yogyakarta No.12A <br />
-                Cimanggis Depok
+
+              {/* Alamat Dapur Card */}
+              <div className="bg-gray-50/80 hover:bg-gray-50 border border-gray-100 rounded-2xl p-4 sm:p-5 transition-all duration-200 flex flex-col justify-between space-y-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-amber-600 text-white flex items-center justify-center text-sm shadow-sm shrink-0">
+                    📍
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-gray-800">
+                      Sentra Dapur
+                    </div>
+                    <div className="text-xs text-gray-500">Jabodetabek Area</div>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-xs sm:text-sm text-gray-700 font-medium leading-relaxed">
+                    Jl. Yogyakarta No.12A <br />
+                    Cimanggis, Depok
+                  </div>
+                  {/* <span className="text-xs text-[#88171d] font-semibold mt-1 block">Jangkauan se-Jabodetabek</span> */}
+                </div>
               </div>
             </div>
           </div>
 
+          {/* Bottom Copyright & Certification */}
           <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-gray-500 text-center sm:text-left">
             <div>&#169; {new Date().getFullYear()} Humani Catering Service. All rights reserved.</div>
-            <div className="flex items-center space-x-4 sm:space-x-6 text-gray-600 font-semibold text-xs sm:text-sm">
-              <span>Halal MUI</span>
+            <div className="flex items-center space-x-3 sm:space-x-6 text-gray-600 font-bold text-xs sm:text-sm">
+              <span className="flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#88171d]" />
+                Halal MUI
+              </span>
               <span>•</span>
-              <span>ISO 22000</span>
+              <span className="flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#88171d]" />
+                ISO 22000
+              </span>
               <span>•</span>
-              <span>SLHS Kemenkes</span>
+              <span className="flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#88171d]" />
+                SLHS Kemenkes
+              </span>
             </div>
           </div>
         </div>
