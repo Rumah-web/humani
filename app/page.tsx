@@ -94,17 +94,49 @@ export default function Home() {
 
           <div className="flex items-center space-x-3 sm:space-x-6">
             {/* Certification Badges */}
-            <div className="hidden sm:flex items-center space-x-2 md:space-x-3 bg-gray-50/80 border border-gray-100 px-3 py-1.5 rounded-full shadow-2xs">
-              <div className="w-12 h-6 relative flex items-center justify-center  transition-all duration-300" title="ISO 22000 Certified">
-                <Image src="/icon/iso.png" alt="ISO 22000" width={48} height={20} className="object-contain" />
+            <div className="hidden sm:flex items-center space-x-1.5 md:space-x-2 bg-white/90 backdrop-blur-md border border-red-100/80 px-3 py-1.5 rounded-full shadow-[0_2px_10px_rgba(136,23,29,0.04)] hover:shadow-[0_4px_16px_rgba(136,23,29,0.08)] transition-all duration-300">
+              <div className="hidden lg:flex items-center gap-1.5 pr-2 mr-0.5 border-r border-gray-100 text-[11px] font-semibold text-[#88171d]">
+                <svg className="w-3.5 h-3.5 text-[#88171d]" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>Tersertifikasi</span>
               </div>
-              <div className="w-px h-4 bg-gray-200"></div>
-              <div className="w-12 h-6 relative flex items-center justify-center  transition-all duration-300" title="Sertifikat HALAL">
-                <Image src="/icon/halal.png" alt="Halal MUI" width={48} height={20} className="object-contain" />
+
+              {/* ISO 22000 */}
+              <div className="group/badge relative flex items-center justify-center px-1.5 py-0.5 rounded-lg hover:bg-red-50/60 transition-colors duration-200 cursor-default">
+                <div className="relative w-10 h-6 flex items-center justify-center transition-transform duration-200 group-hover/badge:scale-110">
+                  <Image src="/icon/iso.png" alt="ISO 22000 Food Safety" width={40} height={24} className="object-contain max-h-6 w-auto" />
+                </div>
+                <div className="absolute -bottom-9 left-1/2 -translate-x-1/2 opacity-0 pointer-events-none group-hover/badge:opacity-100 transition-all duration-200 z-50 whitespace-nowrap bg-gray-900 text-white text-[10px] font-medium py-1 px-2.5 rounded-md shadow-lg">
+                  ISO 22000 Food Safety
+                  <div className="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
+                </div>
               </div>
-              <div className="w-px h-4 bg-gray-200"></div>
-              <div className="w-12 h-6 relative flex items-center justify-center  transition-all duration-300" title="Sertifikat SLHS">
-                <Image src="/icon/slhs.png" alt="SLHS" width={48} height={20} className="object-contain" />
+
+              <div className="w-px h-3.5 bg-gray-200/80"></div>
+
+              {/* HALAL */}
+              <div className="group/badge relative flex items-center justify-center px-1.5 py-0.5 rounded-lg hover:bg-red-50/60 transition-colors duration-200 cursor-default">
+                <div className="relative w-10 h-6 flex items-center justify-center transition-transform duration-200 group-hover/badge:scale-110">
+                  <Image src="/icon/halal.png" alt="Halal MUI Certified" width={40} height={24} className="object-contain max-h-6 w-auto" />
+                </div>
+                <div className="absolute -bottom-9 left-1/2 -translate-x-1/2 opacity-0 pointer-events-none group-hover/badge:opacity-100 transition-all duration-200 z-50 whitespace-nowrap bg-gray-900 text-white text-[10px] font-medium py-1 px-2.5 rounded-md shadow-lg">
+                  100% Halal MUI
+                  <div className="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
+                </div>
+              </div>
+
+              <div className="w-px h-3.5 bg-gray-200/80"></div>
+
+              {/* SLHS */}
+              <div className="group/badge relative flex items-center justify-center px-1.5 py-0.5 rounded-lg hover:bg-red-50/60 transition-colors duration-200 cursor-default">
+                <div className="relative w-10 h-6 flex items-center justify-center transition-transform duration-200 group-hover/badge:scale-110">
+                  <Image src="/icon/slhs.png" alt="Sertifikat Laik Higiene Sanitasi" width={40} height={24} className="object-contain max-h-6 w-auto" />
+                </div>
+                <div className="absolute -bottom-9 left-1/2 -translate-x-1/2 opacity-0 pointer-events-none group-hover/badge:opacity-100 transition-all duration-200 z-50 whitespace-nowrap bg-gray-900 text-white text-[10px] font-medium py-1 px-2.5 rounded-md shadow-lg">
+                  Laik Higiene Sanitasi (SLHS)
+                  <div className="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
+                </div>
               </div>
             </div>
 
