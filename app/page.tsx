@@ -8,61 +8,32 @@ import { iconHalal } from "./components/icon/halal/halal";
 import { iconConsult } from "./components/icon/consult/consult";
 import { iconRight, iconSatSetService, iconSuperTeam } from "./components/icon";
 import Typewriter from "typewriter-effect";
-import { useAnimation, motion } from "framer-motion";
+import { useAnimation, motion, Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 export default function Home() {
-  const listInnerRef = useRef(null);
-  const [lastPosition, setLastPosition] = useState(0);
-  const [opacity, setOpacity] = useState(0);
-  const [scrollDirection, setScrollDirection] = useState(
-    "down" as "down" | "up" | "end"
-  );
-  const controlsService = useAnimation();
-  const controlsServiceStat = useAnimation();
-  const controlsPelanggan = useAnimation();
-  const [refService, inViewService, entryService] = useInView();
-  const [refServiceStat, inViewServiceStat, entryServiceStat] = useInView();
-  const [refPelanggan, inViewPelanggan] = useInView();
+  const [controlsService] = [useAnimation()];
+  const [controlsServiceStat] = [useAnimation()];
+  const [controlsPelanggan] = [useAnimation()];
+  const [refService, inViewService, entryService] = useInView({ threshold: 0.1 });
+  const [refServiceStat, inViewServiceStat] = useInView({ threshold: 0.1 });
+  const [refPelanggan, inViewPelanggan] = useInView({ threshold: 0.1 });
 
   const customerService = {
     wa: `+628129006767`,
-    content: `Halo, saya ingin mendapatkan informasi terkait layanan ini`,
+    content: `Halo, saya ingin mendapatkan informasi terkait layanan katering Humani`,
   };
 
-  const onScroll = () => {
-    if (listInnerRef.current) {
-      const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current;
-      const isNearBottom = scrollTop + clientHeight >= scrollHeight;
-
-      if (scrollTop < lastPosition) {
-        setScrollDirection("up");
-      } else {
-        setScrollDirection("down");
-      }
-
-      setLastPosition(scrollTop);
-      setOpacity(scrollTop / 4 / 100);
-
-      if (isNearBottom) {
-        setScrollDirection("end");
-        console.log("Reached bottom");
-        // DO SOMETHING HERE
-      }
-    }
+  const cardVariants: Variants = {
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    hidden: { opacity: 0, y: 30 },
   };
-
-  const squareVariants = {
-    visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
-    hidden: { opacity: 0, scale: 0 },
-  };
-
 
   useEffect(() => {
-    if (entryService) {
+    if (entryService || inViewService) {
       controlsService.start("visible");
     }
-  }, [controlsService, entryService]);
+  }, [controlsService, entryService, inViewService]);
 
   useEffect(() => {
     if (inViewServiceStat) {
@@ -76,470 +47,472 @@ export default function Home() {
     }
   }, [controlsPelanggan, inViewPelanggan]);
 
-
   return (
-    <main
-      className="flex md:h-screen h-screen flex-col items-center justify-between relative overflow-y-scroll"
-      ref={listInnerRef}
-      onScroll={onScroll}
-    >
-      <section
-        id="wellcome"
-        className="relative w-full md:h-screen h-screen flex flex-col bg-white"
-      >
-        <div
-          className={`w-full cover-video md:h-full h-screen bg-cover bg-center`}
-          style={{
-            backgroundImage: `url(/bg/bg-menu-service.jpg)`,
-          }}
-        ></div>
-        <div className="fixed z-20 w-full font-mono text-sm justify-center flex md:py-0 py-0 lg:px-0 px-4">
-          <div className={`bg-header`} style={{ opacity }}></div>
-          <div className="max-w-5xl w-full flex justify-between relative py-2">
-            <div className="">
+    <main className="relative min-h-screen flex flex-col items-center overflow-x-hidden bg-gradient-to-br from-[#faf8f5] via-white to-[#fdf7f4] text-[#2d2d2d] selection:bg-[#88171d] selection:text-white">
+      {/* Background Masked Corner Graphics - humanicatering.id aesthetic */}
+      <div className="absolute top-0 left-0 w-[70vw] h-[70vw] sm:w-[50vw] sm:h-[50vw] md:w-[40vw] md:h-[40vw] max-w-[600px] max-h-[600px] pointer-events-none z-0">
+        <div className="relative w-full h-full [mask-image:radial-gradient(circle_at_top_left,black_20%,transparent_70%)]">
+          <Image
+            src="/catering_top_left.jpg"
+            alt="Catering Ingredients"
+            fill
+            className="object-cover mix-blend-multiply opacity-30 md:opacity-40"
+            priority
+          />
+        </div>
+      </div>
+
+      <div className="absolute bottom-0 right-0 w-[80vw] h-[80vw] sm:w-[60vw] sm:h-[60vw] md:w-[50vw] md:h-[50vw] max-w-[800px] max-h-[800px] pointer-events-none z-0">
+        <div className="relative w-full h-full [mask-image:radial-gradient(circle_at_bottom_right,black_20%,transparent_70%)]">
+          <Image
+            src="/catering_bottom_right.jpg"
+            alt="Catering Spread"
+            fill
+            className="object-cover mix-blend-multiply opacity-30 md:opacity-40"
+          />
+        </div>
+      </div>
+
+      {/* Ambient Glow Orbs */}
+      <div className="absolute top-1/4 left-1/4 w-72 h-72 md:w-96 md:h-96 bg-red-100/40 rounded-full filter blur-[90px] md:blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-2/3 right-1/4 w-72 h-72 md:w-96 md:h-96 bg-orange-100/40 rounded-full filter blur-[90px] md:blur-[120px] pointer-events-none"></div>
+
+      {/* Glassmorphic Sticky Header */}
+      <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/80 border-b border-gray-100/80 shadow-xs transition-all duration-300">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+          <Link href="/" className="relative flex items-center group">
+            <div className="relative w-36 sm:w-44 h-12 transition-transform duration-300 group-hover:scale-105">
               <Image
-                src="/logo-white.png"
-                alt="Humani Food Logo"
-                width={70}
-                height={30}
+                src="/logo-red.png"
+                alt="Humani Catering Logo"
+                fill
+                className="object-contain"
                 priority
               />
             </div>
-            <div className="flex items-center">
-              <div className="md:w-16 w-12 flex justify-center">
-                <Image
-                  src="/icon/iso.png"
-                  alt="Humani Food ISO 22000"
-                  width={70}
-                  height={24}
-                  priority
-                />
-              </div>
-              <div className="md:w-16 w-12 flex justify-center">
-                <Image
-                  src="/icon/halal.png"
-                  alt="Humani Food Sertifikat HALAL"
-                  width={70}
-                  height={24}
-                  priority
-                />
-              </div>
-              <div className="md:w-16 w-12 flex justify-center">
-                <Image
-                  src="/icon/slhs.png"
-                  alt="Humani Food Sertifikat SLHS"
-                  width={70}
-                  height={24}
-                  priority
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="absolute w-full h-full bg-black opacity-50"></div>
-        <div className="flex w-full justify-center md:mt-0 mt-16 absolute md:top-36 top-24 cover-slide">
-          <div className="flex max-w-5xl w-full md:flex-row flex-col lg:py-24 md:py-16 py-0">
-            <div className="md:w-full w-full text-[#ffffff] lg:pt-0 pt-4 flex flex-col ">
-              <div className="w-full lg:pr-10 lg:px-0 md:px-4 px-4">
-                <h1
-                  className="min-h-8 lg:text-5xl md:text-4xl text-3xl font-extrabold tracking-tight md:px-0 px-2 flex flex-col flex-nowrap space-y-2"
-                >
-                  <Typewriter
-                    options={{
-                      strings: [
-                        "Apapun Acaranya ...",
-                        "Berapapun Jumlahnya ...",
-                        "Kapanpun Waktunya ...",
-                        "Beragampun Menunya ...",
-                        "Berapapun Biayanya ...",
-                      ],
-                      autoStart: true,
-                      loop: true,
-                    }}
-                  />
-                </h1>
-              </div>
+          </Link>
 
-              <div
-                className="w-full space-y-4 lg:px-0 px-12 md:pt-10 pt-4 md:px-4 px-6 text-sm md:pb-0 pb-4"
-              >
-                <div className="text-base">
-                  Humani Catering Service (HCS) selalu siap untuk solusi sajian
-                  Anda. <br />
-                  Konsultasikan dengan Catering Consultant HCS untuk mendapatkan{" "}
-                  <br />
-                  solusi masalah catering atau konsumsi acara Anda.
-                </div>
-                <div
-                  className="text-[white] hover:underline py-2 rounded-full cursor-pointer"
-                  onClick={() => {
-                    window.open(
-                      `https://wa.me/${customerService.wa}?text=${customerService.content}`,
-                      "_blank"
-                    );
-                  }}
-                >
-                  <div className="bg-white items-center flex w-fit px-6 py-2 rounded-full bg-button">
-                    More Info {iconRight}
-                  </div>
-                </div>
+          <div className="flex items-center space-x-3 sm:space-x-6">
+            {/* Certification Badges */}
+            <div className="hidden sm:flex items-center space-x-2 md:space-x-3 bg-gray-50/80 border border-gray-100 px-3 py-1.5 rounded-full shadow-2xs">
+              <div className="w-12 h-6 relative flex items-center justify-center  transition-all duration-300" title="ISO 22000 Certified">
+                <Image src="/icon/iso.png" alt="ISO 22000" width={48} height={20} className="object-contain" />
+              </div>
+              <div className="w-px h-4 bg-gray-200"></div>
+              <div className="w-12 h-6 relative flex items-center justify-center  transition-all duration-300" title="Sertifikat HALAL">
+                <Image src="/icon/halal.png" alt="Halal MUI" width={48} height={20} className="object-contain" />
+              </div>
+              <div className="w-px h-4 bg-gray-200"></div>
+              <div className="w-12 h-6 relative flex items-center justify-center  transition-all duration-300" title="Sertifikat SLHS">
+                <Image src="/icon/slhs.png" alt="SLHS" width={48} height={20} className="object-contain" />
               </div>
             </div>
+
+            {/* Direct Header CTA Button */}
+            <a
+              href={`https://wa.me/${customerService.wa}?text=${customerService.content}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#88171d] to-[#c42828] hover:from-[#a62020] hover:to-[#88171d] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5"
+            >
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+              <span>Hubungi CS</span>
+            </a>
           </div>
         </div>
-      </section>
-      <section id="komitmen-kami" className="relative flex w-full">
-        <div
-          className="absolute top-0 bg-contain w-full h-12 md:bg-repeat bg-no-repeat"
-          style={{
-            backgroundImage: `url(/bg/wave-xl.png)`,
-          }}
-        ></div>
-        <div
-          className="absolute bottom-0 bg-contain w-full h-12 md:bg-repeat bg-no-repeat rotate-180"
-          style={{
-            backgroundImage: `url(/bg/wave-xl.png)`,
-          }}
-        ></div>
-        <div className="flex w-full">
-          <div className="bg-black opacity-50 absolute w-full h-full"></div>
-          <div
-            className="flex w-full justify-center bg-no-repeat bg-cover md:bg-fixed bg-local"
-            style={{
-              backgroundImage: `url(/bg/bg-menu-service.jpg)`,
-            }}
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 md:pt-20 md:pb-24 flex flex-col items-center text-center">
+        {/* Top Tagline Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50/90 border border-red-100 text-[#88171d] text-xs sm:text-sm font-medium shadow-2xs mb-6 sm:mb-8 animate-fade-in">
+          <span className="flex h-2 w-2 rounded-full bg-[#88171d]"></span>
+          <span>Solusi Katering Profesional &amp; Terpercaya se-Jabodetabek</span>
+        </div>
+
+        {/* Dynamic Typewriter Headline */}
+        <div className="w-full max-w-4xl min-h-[7rem] sm:min-h-[6rem] md:min-h-[5.5rem] flex items-center justify-center">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#88171d] leading-tight sm:leading-tight">
+            <Typewriter
+              options={{
+                strings: [
+                  "Apapun Acaranya ...",
+                  "Berapapun Jumlahnya ...",
+                  "Kapanpun Waktunya ...",
+                  "Beragampun Menunya ...",
+                  "Berapapun Biayanya ...",
+                ],
+                autoStart: true,
+                loop: true,
+                delay: 60,
+                deleteSpeed: 40,
+              }}
+            />
+          </h1>
+        </div>
+
+        {/* Hero Value Prop Description */}
+        <p className="mt-6 text-base sm:text-lg md:text-xl text-[#525252] max-w-2xl mx-auto leading-relaxed">
+          <strong className="text-[#88171d] font-semibold">Humani Catering Service (HCS)</strong> siap menghadirkan sajian nusantara lezat, higienis, dan tepat waktu untuk berbagai kebutuhan acara keluarga, kantor, hingga korporasi besar.
+        </p>
+
+        {/* Hero Call to Action Buttons */}
+        <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+          <a
+            href={`https://wa.me/${customerService.wa}?text=${customerService.content}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 text-base sm:text-lg font-semibold text-white bg-gradient-to-r from-[#88171d] via-[#a62020] to-[#c42828] rounded-full shadow-lg shadow-red-950/20 hover:shadow-xl hover:shadow-red-950/30 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
           >
-            <div className="flex max-w-5xl w-full flex-col">
-              <div className="flex md:flex-row flex-col  justify-between space-x-4">
-                <motion.div
-                  ref={refService}
-                  animate={controlsService}
-                  initial="hidden"
-                  variants={squareVariants}
-                  className="flex relative w-fit md:mt-28 mt-20 md:mr-0 mr-4 md:mb-20"
-                >
-                  <div className="absolute bg-[#88171d] opacity-70 w-full h-full md:rounded-[1rem] rounded-tr-[1rem] rounded-br-[1rem]"></div>
-                  <div
-                    className="relative text-base md:text-lg flex flex-col text-left text-white px-12 py-10 gap-4 leading-relaxed font-normal"
-                  >
-                    <p>
-                      Humani Catering Service berdiri sejak bulan Oktober 2012
-                      di Jakarta dan saat ini kami berdomisili usaha di Depok
-                      Jawa Barat.
-                    </p>
-                    <p>
-                      Dengan bendera Humanifood kami melayani perusahaan dari
-                      berbagai industri dari pertelevisian, energi, telko,
-                      farmasi dan sebagainya.
-                    </p>
-                    <p>
-                      Dengan dukungan tim yang terdiri dari tenaga profesional,
-                      kami selalu siap melayani kebutuhan katering dalam
-                      kapasitas kecil maupun besar.
-                    </p>
-                  </div>
-                </motion.div>
-                <motion.div
-                  ref={refServiceStat}
-                  animate={controlsServiceStat}
-                  initial="hidden"
-                  variants={squareVariants}
-                  className="relative w-fit md:mt-28 mt-10 md:mb-20 mb-10"
-                >
-                  <div className="absolute bg-[#88171d] opacity-70 w-full h-full md:rounded-[1rem] rounded-tl-[1rem] rounded-bl-[1rem]"></div>
-                  <div
-                    className="relative flex flex-col text-right text-white px-12 py-10 gap-4"
-                  >
-                    <div>
-                      <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight">+12 tahun</h3>
-                      <h4 className="text-lg md:text-xl font-medium">melayani jabodetabek</h4>
-                    </div>
-                    <div>
-                      <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight">+25.000</h3>
-                      <h4 className="text-lg md:text-xl font-medium">acara telah kami dampingi</h4>
-                    </div>
-                    <div>
-                      <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight">+20.000.000</h3>
-                      <h4 className="text-lg md:text-xl font-medium">
-                        porsi telah dinikmati Sahabat Humani Catering Service
-                      </h4>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-              <div
-                className="z-10 flex justify-center md:px-0 px-4"
-              >
-                <div className="border border-white flex items-center justify-between rounded-full px-8 md:pt-4 pt-2 pb-2.5 md:w-4/5 w-full bg-[#e7e8ea] my-4">
-                  <div className="flex flex-col w-full md:space-y-3 space-y-1 text-white items-center justify-center">
-                    <div className="flex bg-[#88171d] rounded-full md:h-12 md:w-12 h-10 w-10 items-center justify-center text-white">
-                      {iconConsult}
-                    </div>
-                    <h3 className="flex md:text-sm text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none">
-                      Catering Consultant
-                    </h3>
-                  </div>
-                  <div className="flex flex-col w-full md:space-y-3 space-y-1 text-white items-center justify-center">
-                    <div className="flex bg-[#88171d] rounded-full md:h-12 md:w-12 h-10 w-10 items-center justify-center text-white">
-                      {iconSuperTeam}
-                    </div>
-                    <h3 className="flex md:text-sm text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none">
-                      Super Team
-                    </h3>
-                  </div>
-                  <div className="flex flex-col w-full md:space-y-3 space-y-1 text-white items-center justify-center">
-                    <div className="flex bg-[#88171d] rounded-full md:h-12 md:w-12 h-10 w-10 items-center justify-center text-white">
-                      {iconSatSetService}
-                    </div>
-                    <h3 className="flex md:text-sm text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none">
-                      SatSet Service
-                    </h3>
-                  </div>
-                  <div className="flex flex-col w-full md:space-y-3 space-y-1 text-white items-center justify-center">
-                    <div className="flex bg-[#88171d] rounded-full md:h-12 md:w-12 h-10 w-10 items-center justify-center text-white">
-                      {iconHalal}
-                    </div>
-                    <h3 className="flex md:text-sm text-[0.6rem] text-center md:h-6 h-6 items-center font-bold text-[#88171d] leading-none">
-                      Thayyiban
-                    </h3>
-                  </div>
-                </div>
-              </div>
+            <span className="relative z-10 flex items-center gap-2">
+              <span>Konsultasi Menu Gratis</span>
+              <span className="transition-transform duration-300 group-hover:translate-x-1">{iconRight}</span>
+            </span>
+            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+          </a>
+
+          <a
+            href="#keunggulan"
+            className="inline-flex items-center justify-center w-full sm:w-auto px-7 py-4 text-base font-semibold text-[#88171d] bg-white/90 border border-red-100/80 rounded-full hover:bg-red-50/80 shadow-2xs hover:shadow-sm transition-all duration-300"
+          >
+            Jelajahi Keunggulan
+          </a>
+        </div>
+
+        {/* Feature Highlights Trust Chips */}
+        <div className="mt-12 sm:mt-16 w-full max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-left">
+          <div className="bg-white/80 backdrop-blur-md border border-white p-3.5 sm:p-4 rounded-2xl shadow-xs flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-red-50 flex items-center justify-center text-[#88171d] shrink-0 font-bold">
+              ⚡
+            </div>
+            <div>
+              <div className="text-xs sm:text-sm font-bold text-[#88171d]">SatSet Service</div>
+              <div className="text-[11px] sm:text-xs text-gray-500">1.5 Jam Siap Kirim</div>
+            </div>
+          </div>
+
+          <div className="bg-white/80 backdrop-blur-md border border-white p-3.5 sm:p-4 rounded-2xl shadow-xs flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-red-50 flex items-center justify-center text-[#88171d] shrink-0 font-bold">
+              🍽️
+            </div>
+            <div>
+              <div className="text-xs sm:text-sm font-bold text-[#88171d]">Porsi Fleksibel</div>
+              <div className="text-[11px] sm:text-xs text-gray-500">10 s/d Ribuan Porsi</div>
+            </div>
+          </div>
+
+          <div className="bg-white/80 backdrop-blur-md border border-white p-3.5 sm:p-4 rounded-2xl shadow-xs flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-red-50 flex items-center justify-center text-[#88171d] shrink-0 font-bold">
+              🕒
+            </div>
+            <div>
+              <div className="text-xs sm:text-sm font-bold text-[#88171d]">Siap 24 Jam</div>
+              <div className="text-[11px] sm:text-xs text-gray-500">Waktu Pengantaran</div>
+            </div>
+          </div>
+
+          <div className="bg-white/80 backdrop-blur-md border border-white p-3.5 sm:p-4 rounded-2xl shadow-xs flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-red-50 flex items-center justify-center text-[#88171d] shrink-0 font-bold">
+              🌿
+            </div>
+            <div>
+              <div className="text-xs sm:text-sm font-bold text-[#88171d]">Halal &amp; Thayyib</div>
+              <div className="text-[11px] sm:text-xs text-gray-500">ISO 22000 &amp; SLHS</div>
             </div>
           </div>
         </div>
       </section>
-      <section
-        id="menu"
-        className="w-full relative bg-white flex justify-center pb-4"
-      >
-        <div
-          className="absolute top-0 left-0 bg-contain bg-no-repeat w-full md:h-52 h-36 bg-left-top"
-          style={{
-            backgroundImage: `url(/bg/bg-ragam-menu-left-top.png)`,
-          }}
-        ></div>
-        <div
-          className="absolute top-0 right-0 bg-contain bg-no-repeat w-full md:h-52 h-36 bg-right-top"
-          style={{
-            backgroundImage: `url(/bg/bg-ragam-menu-right-top.png)`,
-          }}
-        ></div>
-        <div className="flex max-w-5xl w-full flex-col">
 
-          <h3
-            className="text-center text-[#88171d] text-base md:text-xl my-8 md:px-12 px-6 leading-relaxed"
-          >
-            Dari acara keluarga hingga pelayanan perusahaan, beragam pilihan
-            <br />
-            menu eksotik lokal, satu setengah jam siap kirim dengan SatSet
-            Service,
-            <br />
-            pemesanan mulai 10 porsi hingga ribuan porsi, siap 24 jam
-            <br />
-            waktu pengantaran dan fleksibel tentukan biaya.
-          </h3>
-
-          <h2
-            className="text-center text-[#88171d] text-xl md:text-2xl my-8 px-12 font-extrabold tracking-tight"
-          >
-            Anda Fokus Acaranya, Kami Urus Sajiannya.
+      {/* Keunggulan Kami Section (Bento Grid) */}
+      <section id="keunggulan" className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#88171d] tracking-tight">
+            Mengapa Memilih Humani Catering?
           </h2>
+          <p className="mt-3 text-sm sm:text-base text-gray-600">
+            Komitmen kami untuk selalu memberikan sajian terbaik dengan standar kebersihan, rasa, dan pelayanan prima.
+          </p>
         </div>
-        <div
-          className="absolute bottom-0 left-0 bg-contain bg-no-repeat w-full md:h-1/3 h-48 bg-left-bottom"
-          style={{
-            backgroundImage: `url(/bg/bg-ragam-menu-left-bottom.png)`,
-          }}
-        ></div>
-        <div
-          className="absolute bottom-0 right-0 bg-contain bg-no-repeat w-full md:h-1/3 h-48 bg-right-bottom"
-          style={{
-            backgroundImage: `url(/bg/bg-ragam-menu-right-bottom.png)`,
-          }}
-        ></div>
-      </section>
-      <section
-        id="chat-admin"
-        className="relative flex w-full bg-white justify-center overflow-hidden"
-      >
-        <div
-          className="absolute -bottom-36 -left-36 bg-contain bg-no-repeat w-full h-72 bg-left-bottom"
-          style={{
-            filter: `blur(8px) invert(85%) sepia(30%) saturate(3460%) hue-rotate(321deg) brightness(98%) contrast(100%)`,
-            WebkitFilter: `blur(8px)`,
-            backgroundImage: `url(/logo-white.png)`,
-          }}
-        ></div>
-        <div
-          className="absolute top-0 -right-72 bg-contain bg-no-repeat w-full h-[36rem] bg-right-top"
-          style={{
-            filter: `blur(8px) invert(85%) sepia(30%) saturate(3460%) hue-rotate(321deg) brightness(98%) contrast(100%)`,
-            WebkitFilter: `blur(8px)`,
-            backgroundImage: `url(/logo-white.png)`,
-          }}
-        ></div>
-        <div className="bg-white opacity-90 absolute w-full h-full"></div>
-        <div className="relative flex flex-col space-y-4 item-center text-center py-4 text-[#88171d]">
-          <div className="flex justify-between md:px-24 px-16 py-8">
-            <div className="animate-bounce">
-              <Image
-                src="/icon/arrow-cs.png"
-                alt="Humani Food CS"
-                className="-rotate-45"
-                width={60}
-                height={20}
-                priority
-              />
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Card 1 */}
+          <div className="bg-white/80 backdrop-blur-xl border border-white/80 p-6 sm:p-8 rounded-3xl shadow-[0_15px_30px_rgba(136,23,29,0.04)] hover:shadow-[0_20px_40px_rgba(136,23,29,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#88171d] to-[#c42828] text-white flex items-center justify-center shadow-md shadow-red-950/15 mb-6">
+                {iconConsult}
+              </div>
+              <h3 className="text-xl font-bold text-[#88171d] mb-2">Catering Consultant</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Konsultasikan kebutuhan menu, selera hidangan, dan budget acara Anda secara gratis dengan tim ahli kami.
+              </p>
             </div>
-            <div className="animate-bounce">
-              <Image
-                src="/icon/arrow-cs.png"
-                alt="Humani Food CS"
-                width={60}
-                height={20}
-                priority
-              />
-            </div>
-            <div className="animate-bounce">
-              <Image
-                src="/icon/arrow-cs.png"
-                alt="Humani Food CS"
-                className="rotate-45"
-                width={60}
-                height={20}
-                priority
-              />
+            <div className="mt-6 pt-4 border-t border-gray-100 flex items-center text-xs font-semibold text-[#88171d]">
+              Solusi Budget Tepat
             </div>
           </div>
-          <div
-            className="flex justify-center pb-4 cursor-pointer"
-            onClick={() => {
-              window.open(
-                `https://wa.me/${customerService.wa}?text=${customerService.content}`,
-                "_blank"
-              );
-            }}
+
+          {/* Card 2 */}
+          <div className="bg-white/80 backdrop-blur-xl border border-white/80 p-6 sm:p-8 rounded-3xl shadow-[0_15px_30px_rgba(136,23,29,0.04)] hover:shadow-[0_20px_40px_rgba(136,23,29,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#88171d] to-[#c42828] text-white flex items-center justify-center shadow-md shadow-red-950/15 mb-6">
+                {iconSatSetService}
+              </div>
+              <h3 className="text-xl font-bold text-[#88171d] mb-2">SatSet Service</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Layanan pengantaran kilat 1.5 jam siap kirim dengan jaminan ketepatan waktu pengantaran 24 jam.
+              </p>
+            </div>
+            <div className="mt-6 pt-4 border-t border-gray-100 flex items-center text-xs font-semibold text-[#88171d]">
+              Cepat &amp; Tepat Waktu
+            </div>
+          </div>
+
+          {/* Card 3 */}
+          <div className="bg-white/80 backdrop-blur-xl border border-white/80 p-6 sm:p-8 rounded-3xl shadow-[0_15px_30px_rgba(136,23,29,0.04)] hover:shadow-[0_20px_40px_rgba(136,23,29,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#88171d] to-[#c42828] text-white flex items-center justify-center shadow-md shadow-red-950/15 mb-6">
+                {iconSuperTeam}
+              </div>
+              <h3 className="text-xl font-bold text-[#88171d] mb-2">Super Team</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Didukung chef dan tenaga profesional berpengalaman puluhan tahun dalam mengelola hidangan berskala besar.
+              </p>
+            </div>
+            <div className="mt-6 pt-4 border-t border-gray-100 flex items-center text-xs font-semibold text-[#88171d]">
+              Tenaga Terlatih
+            </div>
+          </div>
+
+          {/* Card 4 */}
+          <div className="bg-white/80 backdrop-blur-xl border border-white/80 p-6 sm:p-8 rounded-3xl shadow-[0_15px_30px_rgba(136,23,29,0.04)] hover:shadow-[0_20px_40px_rgba(136,23,29,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#88171d] to-[#c42828] text-white flex items-center justify-center shadow-md shadow-red-950/15 mb-6">
+                {iconHalal}
+              </div>
+              <h3 className="text-xl font-bold text-[#88171d] mb-2">Halal &amp; Thayyiban</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Proses masak higienis tersertifikasi Halal MUI, standar ISO 22000, serta Sertifikat Laik Higiene Sanitasi (SLHS).
+              </p>
+            </div>
+            <div className="mt-6 pt-4 border-t border-gray-100 flex items-center text-xs font-semibold text-[#88171d]">
+              Higienis &amp; Teruji
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Story & Milestones Section */}
+      <section id="komitmen-kami" className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* Company Story Card */}
+          <motion.div
+            ref={refService}
+            animate={controlsService}
+            initial="hidden"
+            variants={cardVariants}
+            className="lg:col-span-7 bg-white/85 backdrop-blur-2xl border border-white p-8 sm:p-12 rounded-[2rem] shadow-[0_20px_50px_rgba(136,23,29,0.05)] flex flex-col justify-between"
           >
-            <div className="border border-[#88171d] py-1.5 px-1.5 rounded-full">
-              <div className="flex pl-6 pr-4 py-2.5 rounded-full items-center text-white bg-gradient-to-r from-[#88171d] to-[#d83831]">
+            <div>
+              <div className="inline-block text-xs font-bold uppercase tracking-wider text-[#88171d] bg-red-50 px-3.5 py-1.5 rounded-full mb-4">
+                Tentang Humanifood
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#88171d] tracking-tight mb-6">
+                Berdedikasi Melayani Sajian Terbaik Sejak 2012
+              </h2>
+              <div className="space-y-4 text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
+                <p>
+                  <strong>Humani Catering Service</strong> berdiri sejak bulan Oktober 2012 di Jakarta dan saat ini berdomisili usaha di Cimanggis, Depok, Jawa Barat.
+                </p>
+                <p>
+                  Dengan bendera Humanifood kami telah dipercaya melayani berbagai perusahaan dari beragam industri ternama mulai dari pertelevisian, energi, telekomunikasi, farmasi, hingga acara instansi dan keluarga.
+                </p>
+                <p>
+                  Dukungan tim tenaga profesional kami siap menyajikan sajian istimewa dalam kapasitas kecil maupun besar dengan mutu dan rasa yang konsisten.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Stats Counter Card */}
+          <motion.div
+            ref={refServiceStat}
+            animate={controlsServiceStat}
+            initial="hidden"
+            variants={cardVariants}
+            className="lg:col-span-5 bg-gradient-to-br from-[#88171d] to-[#600f13] text-white p-8 sm:p-12 rounded-[2rem] shadow-xl shadow-red-950/20 flex flex-col justify-between"
+          >
+            <div>
+              <div className="text-xs font-bold uppercase tracking-wider text-red-200 mb-6">
+                Rekam Jejak &amp; Prestasi
+              </div>
+
+              <div className="space-y-8">
+                <div className="border-b border-white/15 pb-6">
+                  <div className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-1">+12 Tahun</div>
+                  <div className="text-sm sm:text-base text-red-100 font-medium">Melayani area Jabodetabek</div>
+                </div>
+
+                <div className="border-b border-white/15 pb-6">
+                  <div className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-1">+25.000</div>
+                  <div className="text-sm sm:text-base text-red-100 font-medium">Acara sukses telah kami dampingi</div>
+                </div>
+
+                <div>
+                  <div className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-1">+20.000.000</div>
+                  <div className="text-sm sm:text-base text-red-100 font-medium">Porsi telah dinikmati Sahabat Humani</div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Pelanggan Setia Kami (Client Showcase) */}
+      <section id="customer" className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 text-center">
+        <div className="max-w-3xl mx-auto mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#88171d] tracking-tight">
+            Pelanggan Setia Kami
+          </h2>
+          <p className="mt-3 text-sm sm:text-base text-gray-600">
+            Dipercaya oleh berbagai instansi, perusahaan multinasional, BUMN, dan ribuan keluarga di Jabodetabek.
+          </p>
+        </div>
+
+        <motion.div
+          ref={refPelanggan}
+          animate={controlsPelanggan}
+          initial="hidden"
+          variants={cardVariants}
+          className="w-full max-w-4xl mx-auto bg-white/80 backdrop-blur-xl border border-white p-4 sm:p-8 rounded-[2rem] shadow-[0_20px_50px_rgba(136,23,29,0.06)]"
+        >
+          <div className="relative w-full h-[18rem] sm:h-[26rem] md:h-[32rem] rounded-xl overflow-hidden">
+            <Image
+              src="/client/pelanggan-kami.jpg"
+              alt="Pelanggan Setia Humani Catering Service"
+              fill
+              className="object-contain"
+            />
+          </div>
+        </motion.div>
+      </section>
+
+      {/* High-Conversion CTA Banner */}
+      <section className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-r from-[#88171d] via-[#a62020] to-[#c42828] text-white p-8 sm:p-14 md:p-16 text-center shadow-2xl shadow-red-950/25">
+          {/* Background Decorative Rings */}
+          <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full border-8 border-white/10 pointer-events-none"></div>
+          <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full border-8 border-white/10 pointer-events-none"></div>
+
+          <div className="relative z-10 max-w-3xl mx-auto space-y-6">
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+              Anda Fokus Acaranya, Kami Urus Sajiannya.
+            </h2>
+            <p className="text-base sm:text-lg text-red-100 leading-relaxed">
+              Dari acara keluarga hingga pelayanan perusahaan, beragam pilihan menu eksotik lokal siap diantar dengan SatSet Service. Pemesanan mulai 10 porsi hingga ribuan porsi.
+            </p>
+
+            <div className="pt-4">
+              <a
+                href={`https://wa.me/${customerService.wa}?text=${customerService.content}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 rounded-full text-base sm:text-lg font-bold text-[#88171d] bg-white hover:bg-red-50 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+              >
                 <svg
-                  width="40"
-                  height="40"
+                  width="28"
+                  height="28"
                   viewBox="0 0 32 32"
                   xmlns="http://www.w3.org/2000/svg"
+                  className="shrink-0 text-green-600"
                 >
                   <path
                     fill="currentColor"
                     d="M23.328 19.177c-.401-.203-2.354-1.156-2.719-1.292c-.365-.13-.63-.198-.896.203c-.26.391-1.026 1.286-1.26 1.547s-.464.281-.859.104c-.401-.203-1.682-.62-3.203-1.984c-1.188-1.057-1.979-2.359-2.214-2.76c-.234-.396-.026-.62.172-.818c.182-.182.401-.458.604-.698c.193-.24.255-.401.396-.661c.13-.281.063-.5-.036-.698s-.896-2.161-1.229-2.943c-.318-.776-.651-.677-.896-.677c-.229-.021-.495-.021-.76-.021s-.698.099-1.063.479c-.365.401-1.396 1.359-1.396 3.297c0 1.943 1.427 3.823 1.625 4.104c.203.26 2.807 4.26 6.802 5.979c.953.401 1.693.641 2.271.839c.953.302 1.823.26 2.51.161c.76-.125 2.354-.964 2.688-1.901c.339-.943.339-1.724.24-1.901c-.099-.182-.359-.281-.76-.458zM16.083 29h-.021c-2.365 0-4.703-.641-6.745-1.839l-.479-.286l-5 1.302l1.344-4.865l-.323-.5a13.166 13.166 0 0 1-2.021-7.01c0-7.26 5.943-13.182 13.255-13.182c3.542 0 6.865 1.38 9.365 3.88a13.058 13.058 0 0 1 3.88 9.323C29.328 23.078 23.39 29 16.088 29zM27.359 4.599C24.317 1.661 20.317 0 16.062 0C7.286 0 .14 7.115.135 15.859c0 2.792.729 5.516 2.125 7.927L0 32l8.448-2.203a16.13 16.13 0 0 0 7.615 1.932h.005c8.781 0 15.927-7.115 15.932-15.865c0-4.234-1.651-8.219-4.661-11.214z"
                   />
                 </svg>
-                <div className="text-xl pl-2">Chat Aja Dulu Yuuk</div>
+                <span>Chat Customer Service Sekarang</span>
+              </a>
+              <div className="mt-3 text-xs text-red-200">⚡ Respons Cepat dalam hitungan menit</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Modern Contact Section & Footer */}
+      <footer id="kontak-kami" className="relative z-10 w-full bg-white/90 backdrop-blur-md border-t border-gray-100 py-12 md:py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-gray-100">
+            {/* Brand column */}
+            <div className="md:col-span-1 flex flex-col items-start space-y-4">
+              <div className="relative w-40 h-14">
+                <Image
+                  src="/logo-red.png"
+                  alt="Humani Catering Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <p className="text-xs text-gray-500 leading-relaxed">
+                Solusi katering lezat, higienis, dan terpercaya untuk segala acara Anda di seluruh wilayah Jabodetabek.
+              </p>
+            </div>
+
+            {/* Layanan Pelanggan */}
+            <div className="space-y-3">
+              <div className="text-sm font-bold uppercase tracking-wider text-[#88171d]">
+                Layanan Pelanggan
+              </div>
+              <div className="text-sm text-gray-600">Whatsapp Resmi</div>
+              <div className="text-base font-bold text-[#88171d] hover:underline">
+                <Link
+                  href={`https://wa.me/${customerService.wa}?text=${customerService.content}`}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  0812 9006 767
+                </Link>
+              </div>
+            </div>
+
+            {/* Waktu Pelayanan */}
+            <div className="space-y-3">
+              <div className="text-sm font-bold uppercase tracking-wider text-[#88171d]">
+                Waktu Pelayanan
+              </div>
+              <div className="text-sm text-gray-600">Senin - Sabtu</div>
+              <div className="text-base font-bold text-[#2d2d2d]">
+                08.00 - 17.00
+              </div>
+              <div className="text-xs text-gray-500">Pengantaran katering siap 24 jam</div>
+            </div>
+
+            {/* Alamat Dapur */}
+            <div className="space-y-3">
+              <div className="text-sm font-bold uppercase tracking-wider text-[#88171d]">
+                Sentra Dapur
+              </div>
+              <div className="text-sm text-gray-600 leading-relaxed">
+                Jalan Anggrek No. 57C <br />
+                Cimanggis Depok <br />
+                Jawa Barat - 16453
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section id="customer" className="w-full bg-white">
-        <div
-          ref={refPelanggan}
-          className="text-[#88171d] md:text-5xl text-3xl text-center mt-12 font-extrabold tracking-tight"
-        >
-          Pelanggan Setia Kami
-        </div>
-        <div className="flex flex-col justify-center pt-6 space-y-2 items-center">
-          <div className="w-full flex justify-center md:h-[30rem] h-[15rem]">
-            <motion.div
-              animate={controlsPelanggan}
-              initial="hidden"
-              variants={squareVariants}
-              className={`md:w-1/2 w-full md:px-0 px-4 bg-contain bg-no-repeat bg-[url('/client/pelanggan-kami.jpg')]`}
-            ></motion.div>
-          </div>
-        </div>
-      </section>
-      <section
-        id="chat-wa"
-        className="py-8 bg-white w-full flex justify-center"
-      >
-        <div
-          className="w-fit cursor-pointer"
-          onClick={() => {
-            window.open(
-              `https://wa.me/${customerService.wa}?text=${customerService.content}`,
-              "_blank"
-            );
-          }}
-        >
-          <div className="border border-[#88171d] py-1.5 px-1.5 rounded-full">
-            <div className="flex pl-6 pr-4 py-2.5 rounded-full items-center text-white bg-gradient-to-r from-[#88171d] to-[#d83831]">
-              <svg
-                width="40"
-                height="40"
-                viewBox="0 0 32 32"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill="currentColor"
-                  d="M23.328 19.177c-.401-.203-2.354-1.156-2.719-1.292c-.365-.13-.63-.198-.896.203c-.26.391-1.026 1.286-1.26 1.547s-.464.281-.859.104c-.401-.203-1.682-.62-3.203-1.984c-1.188-1.057-1.979-2.359-2.214-2.76c-.234-.396-.026-.62.172-.818c.182-.182.401-.458.604-.698c.193-.24.255-.401.396-.661c.13-.281.063-.5-.036-.698s-.896-2.161-1.229-2.943c-.318-.776-.651-.677-.896-.677c-.229-.021-.495-.021-.76-.021s-.698.099-1.063.479c-.365.401-1.396 1.359-1.396 3.297c0 1.943 1.427 3.823 1.625 4.104c.203.26 2.807 4.26 6.802 5.979c.953.401 1.693.641 2.271.839c.953.302 1.823.26 2.51.161c.76-.125 2.354-.964 2.688-1.901c.339-.943.339-1.724.24-1.901c-.099-.182-.359-.281-.76-.458zM16.083 29h-.021c-2.365 0-4.703-.641-6.745-1.839l-.479-.286l-5 1.302l1.344-4.865l-.323-.5a13.166 13.166 0 0 1-2.021-7.01c0-7.26 5.943-13.182 13.255-13.182c3.542 0 6.865 1.38 9.365 3.88a13.058 13.058 0 0 1 3.88 9.323C29.328 23.078 23.39 29 16.088 29zM27.359 4.599C24.317 1.661 20.317 0 16.062 0C7.286 0 .14 7.115.135 15.859c0 2.792.729 5.516 2.125 7.927L0 32l8.448-2.203a16.13 16.13 0 0 0 7.615 1.932h.005c8.781 0 15.927-7.115 15.932-15.865c0-4.234-1.651-8.219-4.661-11.214z"
-                />
-              </svg>
-              <div className="text-xl pl-2">Chat Aja Dulu Yuuk</div>
+
+          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+            <div>&#169; {new Date().getFullYear()} Humani Catering Service. All rights reserved.</div>
+            <div className="flex items-center space-x-6 text-gray-500 font-medium">
+              <span>Halal MUI</span>
+              <span>•</span>
+              <span>ISO 22000</span>
+              <span>•</span>
+              <span>SLHS Kemenkes</span>
             </div>
           </div>
         </div>
-      </section>
-      <section
-        id="kontak-kami"
-        className="bg-[#88171d] flex md:flex-row flex-col w-full py-8"
-      >
-        <div className="md:w-1/6 w-full px-8 flex md:justify-start justify-center">
-          <div>
-            <Image
-              src="/logo-white.png"
-              alt="Humani Food Logo"
-              width={100}
-              height={50}
-              priority
-            />
-          </div>
-        </div>
-        <div className="flex md:flex-row flex-col justify-between md:w-5/6 w-full text-white md:pt-0 pt-8 md:gap-0 gap-8">
-          <div className="w-full md:items-start items-center flex flex-col">
-            <div className="text-2xl font-bold pb-2">
-              Layanan Pelanggan
-            </div>
-            <div>Whatsapp</div>
-            <div className="font-bold cursor-pointer">
-              <Link
-                href={`https://wa.me/${customerService.wa}?text=${customerService.content}`}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                0812 9006 767
-              </Link>
-            </div>
-          </div>
-          <div className="w-full md:items-start items-center flex flex-col">
-            <div className="text-2xl font-bold pb-2">
-              Waktu Pelayanan
-            </div>
-            <div>Senin - Sabtu</div>
-            <div className="font-bold">
-              08.00 - 17.00
-            </div>
-          </div>
-          <div className="w-full md:items-start items-center flex flex-col">
-            <div className="text-2xl font-bold pb-2">
-              Alamat Dapur
-            </div>
-            <div className="md:text-left text-center">
-              Cimanggis Depok <br />
-              Jawa Barat - 16453
-            </div>
-          </div>
-        </div>
-      </section>
+      </footer>
+
+      {/* Floating WhatsApp Help Widget */}
       <section id="help" className="relative">
         <OpenCloseCS
           no={customerService.wa}
