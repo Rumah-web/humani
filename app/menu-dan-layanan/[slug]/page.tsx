@@ -10,8 +10,7 @@ import { OpenCloseCS } from "../../components/help/openCloseCS";
 import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Skeleton from "@/app/components/loading/skeleton";
-import { IMenu } from "@/app/typing";
-import { m_item, m_menu, m_menu_files, m_menu_item } from "@prisma/client";
+import { IMenu, m_item, m_menu, m_menu_files, m_menu_item } from "@/app/typing";
 
 const MenuLayanan = () => {
 	const params = useParams<{ slug: string }>();

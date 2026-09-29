@@ -10,8 +10,8 @@ import { OpenCloseCS } from "../../components/help/openCloseCS";
 import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Skeleton from "@/app/components/loading/skeleton";
-import { IMenu } from "@/app/typing";
 import {
+	IMenu,
 	customer,
 	invoice,
 	m_item,
@@ -21,7 +21,7 @@ import {
 	order,
 	order_detail,
 	order_detail_menu_item,
-} from "@prisma/client";
+} from "@/app/typing";
 import { iconLoading } from "../../components/icon";
 import { formatShorttDate } from "@/app/lib";
 

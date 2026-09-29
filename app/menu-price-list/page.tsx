@@ -16,12 +16,12 @@ import {
 	m_menu_category,
 	m_menu_files,
 	m_menu_item,
-} from "@prisma/client";
+	Decimal,
+	IPriceMenu,
+} from "../typing";
 import React from "react";
 import Skeleton from "../components/loading/skeleton";
 import { iconLoading, iconNoImage } from "../components/icon";
-import { Decimal } from "@prisma/client/runtime/library";
-import { IPriceMenu } from "../typing";
 
 const MenuPriceList = () => {
 	const params = useParams<{ slug: string }>();
