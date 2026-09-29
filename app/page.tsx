@@ -92,15 +92,15 @@ export default function Home() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
           isScrolled
-            ? "backdrop-blur-xl bg-white/90 border-b border-gray-100/90 shadow-[0_4px_20px_rgba(0,0,0,0.04)] py-2.5 sm:py-3"
-            : "backdrop-blur-md bg-white/60 border-b border-transparent py-4 sm:py-5"
+            ? "backdrop-blur-xl bg-white/90 border-b border-gray-100/90 shadow-[0_4px_20px_rgba(0,0,0,0.04)] py-2 sm:py-3"
+            : "backdrop-blur-md bg-white/60 border-b border-transparent py-3 sm:py-5"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between transition-all duration-300">
-          <Link href="/" className="relative flex items-center group">
+        <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between transition-all duration-300">
+          <Link href="/" className="relative flex items-center group shrink-0">
             <div
               className={`relative transition-all duration-300 group-hover:scale-105 ${
-                isScrolled ? "w-32 sm:w-40 h-10 sm:h-11" : "w-36 sm:w-44 h-12"
+                isScrolled ? "w-28 sm:w-40 h-9 sm:h-11" : "w-32 sm:w-44 h-10 sm:h-12"
               }`}
             >
               <Image
@@ -113,7 +113,7 @@ export default function Home() {
             </div>
           </Link>
 
-          <div className="flex items-center space-x-3 sm:space-x-6">
+          <div className="flex items-center space-x-2 sm:space-x-6">
             {/* Certification Badges */}
             <div className="hidden sm:flex items-center space-x-1.5 md:space-x-2 bg-white/90 backdrop-blur-md border border-red-100/80 px-3 py-1.5 rounded-full shadow-[0_2px_10px_rgba(136,23,29,0.04)] hover:shadow-[0_4px_16px_rgba(136,23,29,0.08)] transition-all duration-300">
               <div className="hidden lg:flex items-center gap-1.5 pr-2 mr-0.5 border-r border-gray-100 text-[11px] font-semibold text-[#88171d]">
@@ -166,7 +166,7 @@ export default function Home() {
               href={`https://wa.me/${customerService.wa}?text=${customerService.content}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#88171d] to-[#c42828] hover:from-[#a62020] hover:to-[#88171d] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5"
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#88171d] to-[#c42828] hover:from-[#a62020] hover:to-[#88171d] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 shrink-0"
             >
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
               <span>Hubungi CS</span>
@@ -176,16 +176,16 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 sm:pt-32 md:pt-36 md:pb-24 flex flex-col items-center text-center">
+      <section className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-32 md:pt-36 md:pb-24 flex flex-col items-center text-center">
         {/* Top Tagline Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50/90 border border-red-100 text-[#88171d] text-xs sm:text-sm font-medium shadow-2xs mb-6 sm:mb-8 animate-fade-in">
-          <span className="flex h-2 w-2 rounded-full bg-[#88171d]"></span>
-          <span>Solusi Katering Profesional &amp; Terpercaya se-Jabodetabek</span>
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-red-50/90 border border-red-100 text-[#88171d] text-[11px] sm:text-sm font-medium shadow-2xs mb-5 sm:mb-8 animate-fade-in max-w-full">
+          <span className="flex h-2 w-2 rounded-full bg-[#88171d] shrink-0"></span>
+          <span className="truncate sm:overflow-visible">Solusi Katering Profesional &amp; Terpercaya se-Jabodetabek</span>
         </div>
 
         {/* Dynamic Typewriter Headline */}
-        <div className="w-full max-w-4xl min-h-[7rem] sm:min-h-[6rem] md:min-h-[5.5rem] flex items-center justify-center">
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#88171d] leading-tight sm:leading-tight">
+        <div className="w-full max-w-4xl min-h-[5.5rem] sm:min-h-[6rem] md:min-h-[5.5rem] flex items-center justify-center">
+          <h1 className="text-2xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-[#88171d] leading-tight sm:leading-tight">
             <Typewriter
               options={{
                 strings: [
@@ -205,17 +205,17 @@ export default function Home() {
         </div>
 
         {/* Hero Value Prop Description */}
-        <p className="mt-6 text-base sm:text-lg md:text-xl text-[#525252] max-w-2xl mx-auto leading-relaxed">
+        <p className="mt-4 sm:mt-6 text-sm sm:text-lg md:text-xl text-[#525252] max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
           <strong className="text-[#88171d] font-semibold">Humani Catering Service (HCS)</strong> siap menghadirkan sajian nusantara lezat, higienis, dan tepat waktu untuk berbagai kebutuhan acara keluarga, kantor, hingga korporasi besar.
         </p>
 
         {/* Hero Call to Action Buttons */}
-        <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+        <div className="mt-6 sm:mt-10 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto px-2 sm:px-0">
           <a
             href={`https://wa.me/${customerService.wa}?text=${customerService.content}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 text-base sm:text-lg font-semibold text-white bg-gradient-to-r from-[#88171d] via-[#a62020] to-[#c42828] rounded-full shadow-lg shadow-red-950/20 hover:shadow-xl hover:shadow-red-950/30 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+            className="group relative inline-flex items-center justify-center w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-lg font-semibold text-white bg-gradient-to-r from-[#88171d] via-[#a62020] to-[#c42828] rounded-full shadow-lg shadow-red-950/20 hover:shadow-xl hover:shadow-red-950/30 hover:-translate-y-1 transition-all duration-300 overflow-hidden min-h-[48px]"
           >
             <span className="relative z-10 flex items-center gap-2">
               <span>Konsultasi Menu Gratis</span>
@@ -226,128 +226,128 @@ export default function Home() {
 
           <a
             href="#keunggulan"
-            className="inline-flex items-center justify-center w-full sm:w-auto px-7 py-4 text-base font-semibold text-[#88171d] bg-white/90 border border-red-100/80 rounded-full hover:bg-red-50/80 shadow-2xs hover:shadow-sm transition-all duration-300"
+            className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3.5 sm:px-7 sm:py-4 text-sm sm:text-base font-semibold text-[#88171d] bg-white/90 border border-red-100/80 rounded-full hover:bg-red-50/80 shadow-2xs hover:shadow-sm transition-all duration-300 min-h-[48px]"
           >
             Jelajahi Keunggulan
           </a>
         </div>
 
         {/* Feature Highlights Trust Chips */}
-        <div className="mt-12 sm:mt-16 w-full max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-left">
-          <div className="bg-white/80 backdrop-blur-md border border-white p-3.5 sm:p-4 rounded-2xl shadow-xs flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-red-50 flex items-center justify-center text-[#88171d] shrink-0 font-bold">
+        <div className="mt-10 sm:mt-16 w-full max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 text-left">
+          <div className="bg-white/80 backdrop-blur-md border border-white p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-xs flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-red-50 flex items-center justify-center text-[#88171d] shrink-0 font-bold text-sm sm:text-base">
               ⚡
             </div>
             <div>
               <div className="text-xs sm:text-sm font-bold text-[#88171d]">SatSet Service</div>
-              <div className="text-[11px] sm:text-xs text-gray-500">1.5 Jam Siap Kirim</div>
+              <div className="text-[10px] sm:text-xs text-gray-500">1.5 Jam Siap Kirim</div>
             </div>
           </div>
 
-          <div className="bg-white/80 backdrop-blur-md border border-white p-3.5 sm:p-4 rounded-2xl shadow-xs flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-red-50 flex items-center justify-center text-[#88171d] shrink-0 font-bold">
+          <div className="bg-white/80 backdrop-blur-md border border-white p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-xs flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-red-50 flex items-center justify-center text-[#88171d] shrink-0 font-bold text-sm sm:text-base">
               🍽️
             </div>
             <div>
               <div className="text-xs sm:text-sm font-bold text-[#88171d]">Porsi Fleksibel</div>
-              <div className="text-[11px] sm:text-xs text-gray-500">10 s/d Ribuan Porsi</div>
+              <div className="text-[10px] sm:text-xs text-gray-500">10 s/d Ribuan Porsi</div>
             </div>
           </div>
 
-          <div className="bg-white/80 backdrop-blur-md border border-white p-3.5 sm:p-4 rounded-2xl shadow-xs flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-red-50 flex items-center justify-center text-[#88171d] shrink-0 font-bold">
+          <div className="bg-white/80 backdrop-blur-md border border-white p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-xs flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-red-50 flex items-center justify-center text-[#88171d] shrink-0 font-bold text-sm sm:text-base">
               🕒
             </div>
             <div>
               <div className="text-xs sm:text-sm font-bold text-[#88171d]">Siap 24 Jam</div>
-              <div className="text-[11px] sm:text-xs text-gray-500">Waktu Pengantaran</div>
+              <div className="text-[10px] sm:text-xs text-gray-500">Waktu Pengantaran</div>
             </div>
           </div>
 
-          <div className="bg-white/80 backdrop-blur-md border border-white p-3.5 sm:p-4 rounded-2xl shadow-xs flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-red-50 flex items-center justify-center text-[#88171d] shrink-0 font-bold">
+          <div className="bg-white/80 backdrop-blur-md border border-white p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-xs flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-red-50 flex items-center justify-center text-[#88171d] shrink-0 font-bold text-sm sm:text-base">
               🌿
             </div>
             <div>
               <div className="text-xs sm:text-sm font-bold text-[#88171d]">Halal &amp; Thayyib</div>
-              <div className="text-[11px] sm:text-xs text-gray-500">ISO 22000 &amp; SLHS</div>
+              <div className="text-[10px] sm:text-xs text-gray-500">ISO 22000 &amp; SLHS</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Keunggulan Kami Section (Bento Grid) */}
-      <section id="keunggulan" className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+      <section id="keunggulan" className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-24">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-16">
           <h2 className="text-2xl sm:text-4xl font-extrabold text-[#88171d] tracking-tight">
             Mengapa Memilih Humani Catering?
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-gray-600">
+          <p className="mt-2 sm:mt-3 text-sm sm:text-base text-gray-600">
             Komitmen kami untuk selalu memberikan sajian terbaik dengan standar kebersihan, rasa, dan pelayanan prima.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {/* Card 1 */}
-          <div className="bg-white/80 backdrop-blur-xl border border-white/80 p-6 sm:p-8 rounded-3xl shadow-[0_15px_30px_rgba(136,23,29,0.04)] hover:shadow-[0_20px_40px_rgba(136,23,29,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+          <div className="bg-white/80 backdrop-blur-xl border border-white/80 p-5 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl shadow-[0_15px_30px_rgba(136,23,29,0.04)] hover:shadow-[0_20px_40px_rgba(136,23,29,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
             <div>
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#88171d] to-[#c42828] text-white flex items-center justify-center shadow-md shadow-red-950/15 mb-6">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#88171d] to-[#c42828] text-white flex items-center justify-center shadow-md shadow-red-950/15 mb-5 sm:mb-6">
                 {iconConsult}
               </div>
-              <h3 className="text-xl font-bold text-[#88171d] mb-2">Catering Consultant</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <h3 className="text-lg sm:text-xl font-bold text-[#88171d] mb-2">Catering Consultant</h3>
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                 Konsultasikan kebutuhan menu, selera hidangan, dan budget acara Anda secara gratis dengan tim ahli kami.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-gray-100 flex items-center text-xs font-semibold text-[#88171d]">
+            <div className="mt-5 sm:mt-6 pt-4 border-t border-gray-100 flex items-center text-xs font-semibold text-[#88171d]">
               Solusi Budget Tepat
             </div>
           </div>
 
           {/* Card 2 */}
-          <div className="bg-white/80 backdrop-blur-xl border border-white/80 p-6 sm:p-8 rounded-3xl shadow-[0_15px_30px_rgba(136,23,29,0.04)] hover:shadow-[0_20px_40px_rgba(136,23,29,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+          <div className="bg-white/80 backdrop-blur-xl border border-white/80 p-5 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl shadow-[0_15px_30px_rgba(136,23,29,0.04)] hover:shadow-[0_20px_40px_rgba(136,23,29,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
             <div>
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#88171d] to-[#c42828] text-white flex items-center justify-center shadow-md shadow-red-950/15 mb-6">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#88171d] to-[#c42828] text-white flex items-center justify-center shadow-md shadow-red-950/15 mb-5 sm:mb-6">
                 {iconSatSetService}
               </div>
-              <h3 className="text-xl font-bold text-[#88171d] mb-2">SatSet Service</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <h3 className="text-lg sm:text-xl font-bold text-[#88171d] mb-2">SatSet Service</h3>
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                 Layanan pengantaran kilat 1.5 jam siap kirim dengan jaminan ketepatan waktu pengantaran 24 jam.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-gray-100 flex items-center text-xs font-semibold text-[#88171d]">
+            <div className="mt-5 sm:mt-6 pt-4 border-t border-gray-100 flex items-center text-xs font-semibold text-[#88171d]">
               Cepat &amp; Tepat Waktu
             </div>
           </div>
 
           {/* Card 3 */}
-          <div className="bg-white/80 backdrop-blur-xl border border-white/80 p-6 sm:p-8 rounded-3xl shadow-[0_15px_30px_rgba(136,23,29,0.04)] hover:shadow-[0_20px_40px_rgba(136,23,29,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+          <div className="bg-white/80 backdrop-blur-xl border border-white/80 p-5 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl shadow-[0_15px_30px_rgba(136,23,29,0.04)] hover:shadow-[0_20px_40px_rgba(136,23,29,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
             <div>
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#88171d] to-[#c42828] text-white flex items-center justify-center shadow-md shadow-red-950/15 mb-6">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#88171d] to-[#c42828] text-white flex items-center justify-center shadow-md shadow-red-950/15 mb-5 sm:mb-6">
                 {iconSuperTeam}
               </div>
-              <h3 className="text-xl font-bold text-[#88171d] mb-2">Super Team</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <h3 className="text-lg sm:text-xl font-bold text-[#88171d] mb-2">Super Team</h3>
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                 Didukung chef dan tenaga profesional berpengalaman puluhan tahun dalam mengelola hidangan berskala besar.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-gray-100 flex items-center text-xs font-semibold text-[#88171d]">
+            <div className="mt-5 sm:mt-6 pt-4 border-t border-gray-100 flex items-center text-xs font-semibold text-[#88171d]">
               Tenaga Terlatih
             </div>
           </div>
 
           {/* Card 4 */}
-          <div className="bg-white/80 backdrop-blur-xl border border-white/80 p-6 sm:p-8 rounded-3xl shadow-[0_15px_30px_rgba(136,23,29,0.04)] hover:shadow-[0_20px_40px_rgba(136,23,29,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+          <div className="bg-white/80 backdrop-blur-xl border border-white/80 p-5 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl shadow-[0_15px_30px_rgba(136,23,29,0.04)] hover:shadow-[0_20px_40px_rgba(136,23,29,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
             <div>
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#88171d] to-[#c42828] text-white flex items-center justify-center shadow-md shadow-red-950/15 mb-6">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#88171d] to-[#c42828] text-white flex items-center justify-center shadow-md shadow-red-950/15 mb-5 sm:mb-6">
                 {iconHalal}
               </div>
-              <h3 className="text-xl font-bold text-[#88171d] mb-2">Halal &amp; Thayyiban</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <h3 className="text-lg sm:text-xl font-bold text-[#88171d] mb-2">Halal &amp; Thayyiban</h3>
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                 Proses masak higienis tersertifikasi Halal MUI, standar ISO 22000, serta Sertifikat Laik Higiene Sanitasi (SLHS).
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-gray-100 flex items-center text-xs font-semibold text-[#88171d]">
+            <div className="mt-5 sm:mt-6 pt-4 border-t border-gray-100 flex items-center text-xs font-semibold text-[#88171d]">
               Higienis &amp; Teruji
             </div>
           </div>
@@ -355,24 +355,24 @@ export default function Home() {
       </section>
 
       {/* Story & Milestones Section */}
-      <section id="komitmen-kami" className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      <section id="komitmen-kami" className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           {/* Company Story Card */}
           <motion.div
             ref={refService}
             animate={controlsService}
             initial="hidden"
             variants={cardVariants}
-            className="lg:col-span-7 bg-white/85 backdrop-blur-2xl border border-white p-8 sm:p-12 rounded-[2rem] shadow-[0_20px_50px_rgba(136,23,29,0.05)] flex flex-col justify-between"
+            className="lg:col-span-7 bg-white/85 backdrop-blur-2xl border border-white p-6 sm:p-10 md:p-12 rounded-2xl sm:rounded-[2rem] shadow-[0_20px_50px_rgba(136,23,29,0.05)] flex flex-col justify-between"
           >
             <div>
-              <div className="inline-block text-xs font-bold uppercase tracking-wider text-[#88171d] bg-red-50 px-3.5 py-1.5 rounded-full mb-4">
+              <div className="inline-block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#88171d] bg-red-50 px-3.5 py-1.5 rounded-full mb-4">
                 Tentang Humanifood
               </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#88171d] tracking-tight mb-6">
+              <h2 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-[#88171d] tracking-tight mb-4 sm:mb-6">
                 Berdedikasi Melayani Sajian Terbaik Sejak 2012
               </h2>
-              <div className="space-y-4 text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
+              <div className="space-y-3 sm:space-y-4 text-xs sm:text-base text-gray-600 leading-relaxed font-normal">
                 <p>
                   <strong>Humani Catering Service</strong> berdiri sejak bulan Oktober 2012 di Jakarta dan saat ini berdomisili usaha di Cimanggis, Depok, Jawa Barat.
                 </p>
@@ -392,27 +392,27 @@ export default function Home() {
             animate={controlsServiceStat}
             initial="hidden"
             variants={cardVariants}
-            className="lg:col-span-5 bg-gradient-to-br from-[#88171d] to-[#600f13] text-white p-8 sm:p-12 rounded-[2rem] shadow-xl shadow-red-950/20 flex flex-col justify-between"
+            className="lg:col-span-5 bg-gradient-to-br from-[#88171d] to-[#600f13] text-white p-6 sm:p-10 md:p-12 rounded-2xl sm:rounded-[2rem] shadow-xl shadow-red-950/20 flex flex-col justify-between"
           >
             <div>
-              <div className="text-xs font-bold uppercase tracking-wider text-red-200 mb-6">
+              <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-red-200 mb-4 sm:mb-6">
                 Rekam Jejak &amp; Prestasi
               </div>
 
-              <div className="space-y-8">
-                <div className="border-b border-white/15 pb-6">
-                  <div className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-1">+12 Tahun</div>
-                  <div className="text-sm sm:text-base text-red-100 font-medium">Melayani area Jabodetabek</div>
+              <div className="space-y-6 sm:space-y-8">
+                <div className="border-b border-white/15 pb-4 sm:pb-6">
+                  <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-1">+12 Tahun</div>
+                  <div className="text-xs sm:text-base text-red-100 font-medium">Melayani area Jabodetabek</div>
                 </div>
 
-                <div className="border-b border-white/15 pb-6">
-                  <div className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-1">+25.000</div>
-                  <div className="text-sm sm:text-base text-red-100 font-medium">Acara sukses telah kami dampingi</div>
+                <div className="border-b border-white/15 pb-4 sm:pb-6">
+                  <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-1">+25.000</div>
+                  <div className="text-xs sm:text-base text-red-100 font-medium">Acara sukses telah kami dampingi</div>
                 </div>
 
                 <div>
-                  <div className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-1">+20.000.000</div>
-                  <div className="text-sm sm:text-base text-red-100 font-medium">Porsi telah dinikmati Sahabat Humani</div>
+                  <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-1">+20.000.000</div>
+                  <div className="text-xs sm:text-base text-red-100 font-medium">Porsi telah dinikmati Sahabat Humani</div>
                 </div>
               </div>
             </div>
@@ -421,12 +421,12 @@ export default function Home() {
       </section>
 
       {/* Pelanggan Setia Kami (Client Showcase) */}
-      <section id="customer" className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 text-center">
-        <div className="max-w-3xl mx-auto mb-8 sm:mb-12">
+      <section id="customer" className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 md:py-20 text-center">
+        <div className="max-w-3xl mx-auto mb-6 sm:mb-12">
           <h2 className="text-2xl sm:text-4xl font-extrabold text-[#88171d] tracking-tight">
             Pelanggan Setia Kami
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-gray-600">
+          <p className="mt-2 sm:mt-3 text-sm sm:text-base text-gray-600">
             Dipercaya oleh berbagai instansi, perusahaan multinasional, BUMN, dan ribuan keluarga di Jabodetabek.
           </p>
         </div>
@@ -436,9 +436,9 @@ export default function Home() {
           animate={controlsPelanggan}
           initial="hidden"
           variants={cardVariants}
-          className="w-full max-w-4xl mx-auto bg-white/80 backdrop-blur-xl border border-white p-4 sm:p-8 rounded-[2rem] shadow-[0_20px_50px_rgba(136,23,29,0.06)]"
+          className="w-full max-w-4xl mx-auto bg-white/80 backdrop-blur-xl border border-white p-3 sm:p-6 md:p-8 rounded-2xl sm:rounded-[2rem] shadow-[0_20px_50px_rgba(136,23,29,0.06)]"
         >
-          <div className="relative w-full h-[18rem] sm:h-[26rem] md:h-[32rem] rounded-xl overflow-hidden">
+          <div className="relative w-full h-56 sm:h-[24rem] md:h-[30rem] rounded-xl overflow-hidden">
             <Image
               src="/client/pelanggan-kami.jpg"
               alt="Pelanggan Setia Humani Catering Service"
@@ -450,33 +450,33 @@ export default function Home() {
       </section>
 
       {/* High-Conversion CTA Banner */}
-      <section className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-r from-[#88171d] via-[#a62020] to-[#c42828] text-white p-8 sm:p-14 md:p-16 text-center shadow-2xl shadow-red-950/25">
+      <section className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 md:py-20">
+        <div className="relative overflow-hidden rounded-3xl sm:rounded-[2.5rem] bg-gradient-to-r from-[#88171d] via-[#a62020] to-[#c42828] text-white p-6 sm:p-12 md:p-16 text-center shadow-2xl shadow-red-950/25">
           {/* Background Decorative Rings */}
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full border-8 border-white/10 pointer-events-none"></div>
           <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full border-8 border-white/10 pointer-events-none"></div>
 
-          <div className="relative z-10 max-w-3xl mx-auto space-y-6">
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+          <div className="relative z-10 max-w-3xl mx-auto space-y-4 sm:space-y-6">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
               Anda Fokus Acaranya, Kami Urus Sajiannya.
             </h2>
-            <p className="text-base sm:text-lg text-red-100 leading-relaxed">
+            <p className="text-xs sm:text-base md:text-lg text-red-100 leading-relaxed px-1 sm:px-0">
               Dari acara keluarga hingga pelayanan perusahaan, beragam pilihan menu eksotik lokal siap diantar dengan SatSet Service. Pemesanan mulai 10 porsi hingga ribuan porsi.
             </p>
 
-            <div className="pt-4">
+            <div className="pt-2 sm:pt-4">
               <a
                 href={`https://wa.me/${customerService.wa}?text=${customerService.content}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 rounded-full text-base sm:text-lg font-bold text-[#88171d] bg-white hover:bg-red-50 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 sm:gap-3 w-full sm:w-auto px-6 py-3.5 sm:px-10 sm:py-5 rounded-full text-sm sm:text-lg font-bold text-[#88171d] bg-white hover:bg-red-50 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 min-h-[48px]"
               >
                 <svg
-                  width="28"
-                  height="28"
+                  width="24"
+                  height="24"
                   viewBox="0 0 32 32"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="shrink-0 text-green-600"
+                  className="shrink-0 text-green-600 sm:w-7 sm:h-7"
                 >
                   <path
                     fill="currentColor"
@@ -492,12 +492,12 @@ export default function Home() {
       </section>
 
       {/* Modern Contact Section & Footer */}
-      <footer id="kontak-kami" className="relative z-10 w-full bg-white/90 backdrop-blur-md border-t border-gray-100 py-12 md:py-16">
+      <footer id="kontak-kami" className="relative z-10 w-full bg-white/90 backdrop-blur-md border-t border-gray-100 py-10 md:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-gray-100">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 pb-10 border-b border-gray-100">
             {/* Brand column */}
-            <div className="md:col-span-1 flex flex-col items-start space-y-4">
-              <div className="relative w-40 h-14">
+            <div className="sm:col-span-2 md:col-span-1 flex flex-col items-start space-y-4">
+              <div className="relative w-36 sm:w-40 h-12 sm:h-14">
                 <Image
                   src="/logo-red.png"
                   alt="Humani Catering Logo"
@@ -511,11 +511,11 @@ export default function Home() {
             </div>
 
             {/* Layanan Pelanggan */}
-            <div className="space-y-3">
-              <div className="text-sm font-bold uppercase tracking-wider text-[#88171d]">
+            <div className="space-y-2 sm:space-y-3">
+              <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#88171d]">
                 Layanan Pelanggan
               </div>
-              <div className="text-sm text-gray-600">Whatsapp Resmi</div>
+              <div className="text-xs sm:text-sm text-gray-600">Whatsapp Resmi</div>
               <div className="text-base font-bold text-[#88171d] hover:underline">
                 <Link
                   href={`https://wa.me/${customerService.wa}?text=${customerService.content}`}
@@ -528,23 +528,23 @@ export default function Home() {
             </div>
 
             {/* Waktu Pelayanan */}
-            <div className="space-y-3">
-              <div className="text-sm font-bold uppercase tracking-wider text-[#88171d]">
+            <div className="space-y-2 sm:space-y-3">
+              <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#88171d]">
                 Waktu Pelayanan
               </div>
-              <div className="text-sm text-gray-600">Senin - Sabtu</div>
+              <div className="text-xs sm:text-sm text-gray-600">Senin - Sabtu</div>
               <div className="text-base font-bold text-[#2d2d2d]">
                 08.00 - 17.00
               </div>
-              <div className="text-xs text-gray-500">Pengantaran katering siap 24 jam</div>
+              <div className="text-[11px] sm:text-xs text-gray-500">Pengantaran katering siap 24 jam</div>
             </div>
 
             {/* Alamat Dapur */}
-            <div className="space-y-3">
-              <div className="text-sm font-bold uppercase tracking-wider text-[#88171d]">
+            <div className="space-y-2 sm:space-y-3">
+              <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#88171d]">
                 Sentra Dapur
               </div>
-              <div className="text-sm text-gray-600 leading-relaxed">
+              <div className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                 Jalan Anggrek No. 57C <br />
                 Cimanggis Depok <br />
                 Jawa Barat - 16453
@@ -552,9 +552,9 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+          <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 text-center sm:text-left">
             <div>&#169; {new Date().getFullYear()} Humani Catering Service. All rights reserved.</div>
-            <div className="flex items-center space-x-6 text-gray-500 font-medium">
+            <div className="flex items-center space-x-4 sm:space-x-6 text-gray-500 font-medium text-[11px] sm:text-xs">
               <span>Halal MUI</span>
               <span>•</span>
               <span>ISO 22000</span>
