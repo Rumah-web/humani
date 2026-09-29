@@ -27,7 +27,7 @@ export default function AffiliateRegistrasi() {
 	const [isOpenRegistrastion, setOpenRegistrastion] = useState(false);
 
 	const customerService = {
-		wa: `+6287888111778`,
+		wa: `+628129006767`,
 		content: `Saya ingin mendapatkan informasi affiliate`,
 	};
 
@@ -459,7 +459,7 @@ export default function AffiliateRegistrasi() {
 							<div id='customer-care'>
 								<h4 className='text-lg font-bold'>Customer Care</h4>
 								<div>
-									WhatsApp - 087 888 111 778 <br />
+									WhatsApp - 0812 9006 767 <br />
 								</div>
 							</div>
 						</div>

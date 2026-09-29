@@ -11,7 +11,7 @@ export default function Marketing() {
 	const ourCustomer = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 	const customerService = {
-		wa: `+6208119119200`,
+		wa: `+628129006767`,
 		content: `Saya ingin mendapatkan informasi katering terbaru`,
 	};
 
@@ -501,7 +501,7 @@ export default function Marketing() {
 							<div id='customer-care'>
 								<h4 className='text-lg font-bold'>Customer Care</h4>
 								<div>
-									Admin Official - 0859 7317 3321 <br />
+									Admin Official - 0812 9006 767 <br />
 									Email - xxxx@sample.com
 								</div>
 							</div>

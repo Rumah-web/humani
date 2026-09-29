@@ -8,7 +8,7 @@ import { poppins, rancho } from "../font";
 
 export default function Marketing() {
 	const customerService = {
-		wa: `+6287888111778`,
+		wa: `+628129006767`,
 		content: `Saya ingin mendapatkan informasi katering terbaru`,
 	};
 	const ourCustomer = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -517,7 +517,7 @@ export default function Marketing() {
 									Customer Care
 								</h4>
 								<div className={`${poppins.className}`}>
-									Admin Official - <b>0859 7317 3321</b>
+									Admin Official - <b>0812 9006 767</b>
 									<br />
 									Email -
 									<a href={`+tel:info@humanifood.co.id`}>

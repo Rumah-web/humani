@@ -41,7 +41,7 @@ const MenuLayanan = () => {
 	const [refPelanggan, inViewPelanggan] = useInView();
 
 	const customerService = {
-		wa: `+6208119119200`,
+		wa: `+628129006767`,
 		content: `Saya ingin mendapatkan informasi katering terbaru`,
 	};
 

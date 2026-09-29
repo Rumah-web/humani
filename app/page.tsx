@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Carosel from "./components/slider/carosel";
 import Link from "next/link";
 import { poppins, rancho } from "./font";
 import { useEffect, useRef, useState } from "react";
@@ -12,48 +11,24 @@ import { iconRight, iconSatSetService, iconSuperTeam } from "./components/icon";
 import Typewriter from "typewriter-effect";
 import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import Skeleton from "./components/loading/skeleton";
-import { IData } from "./typing";
 
 export default function Home() {
   const listInnerRef = useRef(null);
   const [lastPosition, setLastPosition] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [menuLayanan, setMenuLayanan] = useState([] as Array<IData>);
-  const [readyToEat, setReadyToEat] = useState([] as Array<IData>);
   const [opacity, setOpacity] = useState(0);
   const [scrollDirection, setScrollDirection] = useState(
     "down" as "down" | "up" | "end"
   );
-  const controls = useAnimation();
   const controlsService = useAnimation();
   const controlsServiceStat = useAnimation();
   const controlsPelanggan = useAnimation();
-  const [ref, inView] = useInView();
   const [refService, inViewService, entryService] = useInView();
   const [refServiceStat, inViewServiceStat, entryServiceStat] = useInView();
   const [refPelanggan, inViewPelanggan] = useInView();
 
   const customerService = {
-    wa: `+6208119119200`,
-    content: `Saya ingin mendapatkan informasi katering terbaru`,
-  };
-  const testimoni = () => {
-    return Array.from({ length: 6 }).map(
-      (_, i) => `/testimoni/testimoni-${i + 1}.jpg`
-    );
-  };
-
-  const gallery = () => {
-    return Array.from({ length: 10 }).map(
-      (_, i) => `/gallery/gallery-${i + 1}.jpg`
-    );
-  };
-
-  const review = () => {
-    return Array.from({ length: 11 }).map(
-      (_, i) => `/review/review-${i + 1}.png`
-    );
+    wa: `+628129006767`,
+    content: `Halo, saya ingin mendapatkan informasi terkait layanan ini`,
   };
 
   const onScroll = () => {
@@ -83,11 +58,6 @@ export default function Home() {
     hidden: { opacity: 0, scale: 0 },
   };
 
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
-  }, [controls, inView]);
 
   useEffect(() => {
     if (entryService) {
@@ -107,96 +77,6 @@ export default function Home() {
     }
   }, [controlsPelanggan, inViewPelanggan]);
 
-  const getMenuLayanan = async () => {
-    let datas = [] as Array<IData>;
-    const req = await fetch("/menu-dan-layanan/api/list", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-    });
-
-    if (req) {
-      const { data } = await req.json();
-
-      datas = data.map((item: any, i: number) => {
-        const sliceName = item.name.split(" ");
-        let prefix = null;
-        let title = item.name;
-        let imagePath = item.m_files.path;
-
-        if (sliceName && sliceName.length > 0) {
-          prefix = sliceName[0];
-          title = sliceName
-            .filter((name: any, i: number) => {
-              if (i > 0) {
-                return name;
-              }
-            })
-            .join(" ");
-        }
-
-        return {
-          ...item,
-          prefix,
-          title,
-          imagePath,
-        };
-      });
-      setMenuLayanan(datas);
-    }
-  };
-
-  const getMenuProdukReadyToEat = async () => {
-    let datas = [] as Array<IData>;
-    const req = await fetch("/produk-ready-to-eat/api/list", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-    });
-
-    if (req) {
-      const { data } = await req.json();
-
-      datas = data.map((item: any, i: number) => {
-        const sliceName = item.name.split(" ");
-        let prefix = null;
-        let title = item.name;
-        let imagePath = item.m_files.path;
-
-        if (sliceName && sliceName.length > 0) {
-          prefix = sliceName[0];
-          title = sliceName
-            .filter((name: any, i: number) => {
-              if (i > 0) {
-                return name;
-              }
-            })
-            .join(" ");
-        }
-
-        return {
-          ...item,
-          prefix,
-          title,
-          imagePath,
-        };
-      });
-      setReadyToEat(datas);
-    }
-  };
-
-  useEffect(() => {
-    (async () => {
-      setLoading(true);
-
-      await getMenuLayanan();
-      await getMenuProdukReadyToEat();
-
-      setLoading(false);
-    })();
-  }, []);
 
   return (
     <main
@@ -458,196 +338,7 @@ export default function Home() {
             backgroundImage: `url(/bg/bg-ragam-menu-right-top.png)`,
           }}
         ></div>
-        <div className="flex max-w-5xl w-full flex-col" ref={ref}>
-          <div
-            className={`text-[#88171d] md:text-6xl text-4xl text-center mt-12 font-bold ${rancho.className}`}
-          >
-            Ragam Menu, Produk dan Layanan
-          </div>
-          <motion.div
-            ref={ref}
-            animate={controls}
-            initial="hidden"
-            variants={squareVariants}
-            className=""
-          >
-            {loading ? (
-              <div className="flex w-full md:space-x-4 space-x-0 md:space-y-0 space-y-4 py-12 md:flex-row flex-col">
-                {[1, 2, 3].map((_, i) => {
-                  return (
-                    <div key={i} className="flex w-full">
-                      <Skeleton />
-                    </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <div
-                className={`pt-16 pb-8 md:grid md:grid-cols-3 grid-cols-1  md:grid-flow-row grid-flow-column flex md:flex-row flex-col gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}
-              >
-                {menuLayanan.map((menu, i) => {
-                  return (
-                    <motion.div key={i} className="flex flex-col items-center">
-                      {menu.prefix && (
-                        <h3 className="font-medium text-xl text-center">
-                          {menu.prefix}
-                        </h3>
-                      )}
-                      <h3 className="font-medium text-xl text-center pb-2">
-                        <span>{menu.title}</span>
-                      </h3>
-                      <div
-                        className="w-full my-2 h-72 bg-contain bg-no-repeat bg-center"
-                        style={{
-                          backgroundImage: `url(${menu.imagePath})`,
-                        }}
-                      ></div>
-                      <div
-                        className="pt-2 text-center md:px-0 px-4"
-                        dangerouslySetInnerHTML={{ __html: menu.description }}
-                      />
-                    </motion.div>
-                  );
-                })}
-              </div>
-            )}
-          </motion.div>
-
-          <div
-            className={`text-[#88171d] md:text-6xl text-4xl text-center mt-12 font-bold ${rancho.className}`}
-          >
-            Produk Ready to Eat
-          </div>
-          <p className={`text-[#88171d] md:text-xl text-md text-center mt-3`}>
-            (Lauk Pauk Nusantara)
-          </p>
-          <motion.div
-            ref={ref}
-            animate={controls}
-            initial="hidden"
-            variants={squareVariants}
-            className=""
-          >
-            {loading ? (
-              <div className="flex w-full md:space-x-4 space-x-0 md:space-y-0 space-y-4 py-12 md:flex-row flex-col">
-                {[1, 2, 3].map((_, i) => {
-                  return (
-                    <div key={i} className="flex w-full">
-                      <Skeleton />
-                    </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <div
-                className={`pt-16 pb-8 md:grid md:grid-cols-3 grid-cols-1  md:grid-flow-row grid-flow-column flex md:flex-row flex-col gap-12 text-[#88171d] md:px-0 md:px-12 px-0 ${poppins.className}`}
-              >
-                {readyToEat.map((menu, i) => {
-                  return (
-                    <motion.div key={i} className="flex flex-col items-center">
-                      {menu.prefix && (
-                        <h3 className="font-medium text-xl text-center">
-                          {menu.prefix}
-                        </h3>
-                      )}
-                      <h3 className="font-medium text-xl text-center pb-2">
-                        <span>{menu.title}</span>
-                      </h3>
-                      <div
-                        className="w-full my-2 h-72 bg-contain bg-no-repeat bg-center"
-                        style={{
-                          backgroundImage: `url(${menu.imagePath})`,
-                        }}
-                      ></div>
-                      <div
-                        className="pt-2 text-center md:px-0 px-4"
-                        dangerouslySetInnerHTML={{ __html: menu.description }}
-                      />
-                    </motion.div>
-                  );
-                })}
-              </div>
-            )}
-          </motion.div>
-
-          <div className="flex flex-col md:flex-row space-y-4 md:space-x-8 relative items-center mt-12 mb-12">
-            <div className={``}>
-              <Image
-                src="/icon/logo-lauk-pauk.png"
-                alt="Lauk Pauk Humani Food Ready to eat"
-                width={150}
-                height={50}
-                priority
-              />
-            </div>
-            <div className={`text-center px-4`}>
-              <span
-                className={`text-[#88171d] text-xl text-center font-bold pr-1`}
-              >
-                Lauk Pauk Nusantara
-              </span>
-              <span className={`text-[#88171d] text-xl text-center pr-1`}>
-                menggunakan kemasan
-              </span>
-              <span
-                className={`text-[#88171d] text-xl text-center font-bold pr-1`}
-              >
-                Food Grade
-              </span>
-              <span className={`text-[#88171d] text-xl text-center pr-1`}>
-                dan melalui proses sterilisasi untuk
-              </span>
-              <span className={`text-[#88171d] text-xl text-center font-bold`}>
-                kualitas terbaik
-              </span>
-            </div>
-            <div className="z-10">
-              <p className="text-center pb-3 text-[#88171d]">
-                Bisa di pesan melalui :
-              </p>
-              <div className={`flex space-x-1`}>
-                <a
-                  className={``}
-                  href="https://www.shopee.co.id/humanifoodcatering"
-                  target="_blank"
-                >
-                  <Image
-                    src="/icon/shopee.png"
-                    alt="Lauk Pauk Humani Food Ready to eat"
-                    width={100}
-                    height={50}
-                    priority
-                  />
-                </a>
-                <a
-                  className={``}
-                  href="https://www.tokopedia.com/humani"
-                  target="_blank"
-                >
-                  <Image
-                    src="/icon/tokopedia.png"
-                    alt="Lauk Pauk Humani Food Ready to eat"
-                    width={100}
-                    height={50}
-                    priority
-                  />
-                </a>
-                <a
-                  className={``}
-                  href="https://vt.tokopedia.com/t/ZSBpuD4Qj/"
-                  target="_blank"
-                >
-                  <Image
-                    src="/icon/tiktok.png"
-                    alt="Lauk Pauk Humani Food Ready to eat"
-                    width={100}
-                    height={50}
-                    priority
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
+        <div className="flex max-w-5xl w-full flex-col">
 
           <h3
             className={`text-center text-[#88171d] text-xl my-8 md:px-12 px-6 ${poppins.className}`}
@@ -780,16 +471,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section id="gallery" className="w-full bg-white">
-        <div
-          className={`text-[#88171d] md:text-6xl text-4xl text-center mt-12 font-bold ${rancho.className}`}
-        >
-          Humani Catering Service
-        </div>
-        <div className="md:pt-8 pt-4 pb-2">
-          <Carosel images={gallery()} size={"bg-contain"} />
-        </div>
-      </section>
       <section
         id="chat-wa"
         className="py-8 bg-white w-full flex justify-center"
@@ -848,7 +529,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                0811 9119 200
+                0812 9006 767
               </Link>
             </div>
             <div className={`pt-4 ${poppins.className}`}>Email</div>
@@ -885,7 +566,7 @@ export default function Home() {
       </section>
       <section id="footer" className="pt-16 pb-6 text-[#88171d] w-full">
         <div className="text-center">
-          <h4>&#169;2024 Humanifood</h4>
+          <h4>&#169;2026 Humanicatering</h4>
         </div>
         <div className="flex justify-center pt-8">
           <Image

@@ -12,7 +12,7 @@ export default function Menu() {
 	const [showHeaderBg, setShowHeaderBg] = useState(true);
 
 	const customerService = {
-		wa: `+6287888111778`,
+		wa: `+628129006767`,
 		content: `Saya ingin mendapatkan informasi katering terbaru`,
 	};
 
@@ -529,10 +529,10 @@ export default function Menu() {
 						<div>Admin Official</div>
 						<div className='font-bold cursor-pointer'>
 							<Link
-								href='https://wa.me/+6287888111778?text=Saya%20ingin%20mendapatkan%20informasi%20katering%20terbaru'
+								href={`https://wa.me/${customerService.wa}?text=${customerService.content}`}
 								rel='noopener noreferrer'
 								target='_blank'>
-								0811 9119 200
+								0812 9006 767
 							</Link>
 						</div>
 						<div className='pt-4'>Email</div>
