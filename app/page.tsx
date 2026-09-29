@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { poppins, rancho } from "./font";
 import { useEffect, useRef, useState } from "react";
 import { OpenCloseCS } from "./components/help/openCloseCS";
 import { iconHalal } from "./components/icon/halal/halal";
@@ -143,7 +142,7 @@ export default function Home() {
             <div className="md:w-full w-full text-[#ffffff] lg:pt-0 pt-4 flex flex-col ">
               <div className="w-full lg:pr-10 lg:px-0 md:px-4 px-4">
                 <h1
-                  className={`min-h-8 lg:text-5xl md:text-4xl text-3xl font-bold tracking-wide md:px-0 px-2 flex flex-col flex-nowrap space-y-2 ${rancho.className}`}
+                  className="min-h-8 lg:text-5xl md:text-4xl text-3xl font-extrabold tracking-tight md:px-0 px-2 flex flex-col flex-nowrap space-y-2"
                 >
                   <Typewriter
                     options={{
@@ -162,7 +161,7 @@ export default function Home() {
               </div>
 
               <div
-                className={`w-full space-y-4 lg:px-0 px-12 md:pt-10 pt-4 w-full md:px-4 px-6 text-sm md:pb-0 pb-4 ${poppins.className}`}
+                className="w-full space-y-4 lg:px-0 px-12 md:pt-10 pt-4 md:px-4 px-6 text-sm md:pb-0 pb-4"
               >
                 <div className="text-base">
                   Humani Catering Service (HCS) selalu siap untuk solusi sajian
@@ -221,7 +220,7 @@ export default function Home() {
                 >
                   <div className="absolute bg-[#88171d] opacity-70 w-full h-full md:rounded-[1rem] rounded-tr-[1rem] rounded-br-[1rem]"></div>
                   <div
-                    className={`relative text-2xl flex flex-col text-left text-white px-12 py-10 gap-2 ${rancho.className}`}
+                    className="relative text-base md:text-lg flex flex-col text-left text-white px-12 py-10 gap-4 leading-relaxed font-normal"
                   >
                     <p>
                       Humani Catering Service berdiri sejak bulan Oktober 2012
@@ -249,19 +248,19 @@ export default function Home() {
                 >
                   <div className="absolute bg-[#88171d] opacity-70 w-full h-full md:rounded-[1rem] rounded-tl-[1rem] rounded-bl-[1rem]"></div>
                   <div
-                    className={`relative flex flex-col text-right text-white px-12 py-10 gap-2 ${rancho.className}`}
+                    className="relative flex flex-col text-right text-white px-12 py-10 gap-4"
                   >
                     <div>
-                      <h3 className="text-4xl">+12 tahun</h3>
-                      <h4 className="text-2xl">melayani jabodetabek</h4>
+                      <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight">+12 tahun</h3>
+                      <h4 className="text-lg md:text-xl font-medium">melayani jabodetabek</h4>
                     </div>
                     <div>
-                      <h3 className="text-4xl">+25.000</h3>
-                      <h4 className="text-2xl">acara telah kami dampingi</h4>
+                      <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight">+25.000</h3>
+                      <h4 className="text-lg md:text-xl font-medium">acara telah kami dampingi</h4>
                     </div>
                     <div>
-                      <h3 className="text-4xl">+20.000.000</h3>
-                      <h4 className="text-2xl">
+                      <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight">+20.000.000</h3>
+                      <h4 className="text-lg md:text-xl font-medium">
                         porsi telah dinikmati Sahabat Humani Catering Service
                       </h4>
                     </div>
@@ -269,7 +268,7 @@ export default function Home() {
                 </motion.div>
               </div>
               <div
-                className={`z-10 flex justify-center ${poppins.className} md:px-0 px-4`}
+                className="z-10 flex justify-center md:px-0 px-4"
               >
                 <div className="border border-white flex items-center justify-between rounded-full px-8 md:pt-4 pt-2 pb-2.5 md:w-4/5 w-full bg-[#e7e8ea] my-4">
                   <div className="flex flex-col w-full md:space-y-3 space-y-1 text-white items-center justify-center">
@@ -329,7 +328,7 @@ export default function Home() {
         <div className="flex max-w-5xl w-full flex-col">
 
           <h3
-            className={`text-center text-[#88171d] text-xl my-8 md:px-12 px-6 ${poppins.className}`}
+            className="text-center text-[#88171d] text-base md:text-xl my-8 md:px-12 px-6 leading-relaxed"
           >
             Dari acara keluarga hingga pelayanan perusahaan, beragam pilihan
             <br />
@@ -342,7 +341,7 @@ export default function Home() {
           </h3>
 
           <h2
-            className={`text-center text-[#88171d] text-xl my-8 px-12 font-bold ${poppins.className}`}
+            className="text-center text-[#88171d] text-xl md:text-2xl my-8 px-12 font-extrabold tracking-tight"
           >
             Anda Fokus Acaranya, Kami Urus Sajiannya.
           </h2>
@@ -444,7 +443,7 @@ export default function Home() {
       <section id="customer" className="w-full bg-white">
         <div
           ref={refPelanggan}
-          className={`text-[#88171d] md:text-6xl text-4xl text-center mt-12 font-bold ${rancho.className}`}
+          className="text-[#88171d] md:text-5xl text-3xl text-center mt-12 font-extrabold tracking-tight"
         >
           Pelanggan Setia Kami
         </div>
@@ -507,11 +506,11 @@ export default function Home() {
         </div>
         <div className="flex md:flex-row flex-col justify-between md:w-5/6 w-full text-white md:pt-0 pt-8 md:gap-0 gap-8">
           <div className="w-full md:items-start items-center flex flex-col">
-            <div className={`text-4xl pb-2 ${rancho.className}`}>
+            <div className="text-2xl font-bold pb-2">
               Layanan Pelanggan
             </div>
-            <div className={`${poppins.className}`}>Whatsapp</div>
-            <div className={`font-bold cursor-pointer ${poppins.className}`}>
+            <div>Whatsapp</div>
+            <div className="font-bold cursor-pointer">
               <Link
                 href={`https://wa.me/${customerService.wa}?text=${customerService.content}`}
                 rel="noopener noreferrer"
@@ -522,19 +521,19 @@ export default function Home() {
             </div>
           </div>
           <div className="w-full md:items-start items-center flex flex-col">
-            <div className={`text-4xl pb-2 ${rancho.className}`}>
+            <div className="text-2xl font-bold pb-2">
               Waktu Pelayanan
             </div>
-            <div className={poppins.className}>Senin - Sabtu</div>
-            <div className={`font-bold ${poppins.className}`}>
+            <div>Senin - Sabtu</div>
+            <div className="font-bold">
               08.00 - 17.00
             </div>
           </div>
           <div className="w-full md:items-start items-center flex flex-col">
-            <div className={`text-4xl pb-2 ${rancho.className}`}>
+            <div className="text-2xl font-bold pb-2">
               Alamat Dapur
             </div>
-            <div className={`${poppins.className} md:text-left text-center`}>
+            <div className="md:text-left text-center">
               Cimanggis Depok <br />
               Jawa Barat - 16453
             </div>
