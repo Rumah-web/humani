@@ -355,7 +355,7 @@ export default function Home() {
       </section>
 
       {/* Story & Milestones Section */}
-      <section id="komitmen-kami" className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 md:py-20">
+      <section id="komitmen-kami" className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           {/* Company Story Card */}
           <motion.div
@@ -363,18 +363,19 @@ export default function Home() {
             animate={controlsService}
             initial="hidden"
             variants={cardVariants}
-            className="lg:col-span-7 bg-white/85 backdrop-blur-2xl border border-white p-6 sm:p-10 md:p-12 rounded-2xl sm:rounded-[2rem] shadow-[0_20px_50px_rgba(136,23,29,0.05)] flex flex-col justify-between"
+            className="lg:col-span-7 bg-white/90 backdrop-blur-2xl border border-white/80 p-6 sm:p-10 md:p-12 rounded-3xl sm:rounded-[2.5rem] shadow-[0_20px_50px_rgba(136,23,29,0.06)] flex flex-col justify-between"
           >
             <div>
-              <div className="inline-block text-xs sm:text-sm font-bold uppercase tracking-wider text-[#88171d] bg-red-50 px-4 py-2 rounded-full mb-4 sm:mb-5">
+              <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#88171d] bg-red-50/90 border border-red-100/80 px-4 py-1.5 rounded-full mb-5">
+                <span className="w-2 h-2 rounded-full bg-[#88171d]"></span>
                 Tentang Humanifood
               </div>
-              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#88171d] tracking-tight leading-tight mb-4 sm:mb-6">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#88171d] tracking-tight leading-tight mb-5">
                 Berdedikasi Melayani Sajian Terbaik Sejak 2012
               </h2>
-              <div className="space-y-3.5 sm:space-y-4 text-sm sm:text-lg text-gray-700 leading-relaxed font-normal">
+              <div className="space-y-4 text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed font-normal">
                 <p>
-                  <strong>Humani Catering Service</strong> berdiri sejak bulan Oktober 2012 di Jakarta dan saat ini berdomisili usaha di Cimanggis, Depok, Jawa Barat.
+                  <strong className="text-[#88171d] font-bold">Humani Catering Service</strong> berdiri sejak bulan Oktober 2012 di Jakarta dan saat ini berdomisili usaha di Cimanggis, Depok, Jawa Barat.
                 </p>
                 <p>
                   Dengan bendera Humanifood kami telah dipercaya melayani berbagai perusahaan dari beragam industri ternama mulai dari pertelevisian, energi, telekomunikasi, farmasi, hingga acara instansi dan keluarga.
@@ -384,6 +385,29 @@ export default function Home() {
                 </p>
               </div>
             </div>
+
+            <div className="mt-8 pt-6 border-t border-gray-100 flex flex-wrap items-center gap-4 text-xs sm:text-sm font-semibold text-gray-500">
+              <span className="flex items-center gap-1.5 text-[#88171d]">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                Legalitas Resmi
+              </span>
+              <span>•</span>
+              <span className="flex items-center gap-1.5 text-[#88171d]">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                Dapur Higienis
+              </span>
+              <span>•</span>
+              <span className="flex items-center gap-1.5 text-[#88171d]">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                Kapasitas Besar
+              </span>
+            </div>
           </motion.div>
 
           {/* Stats Counter Card */}
@@ -392,28 +416,73 @@ export default function Home() {
             animate={controlsServiceStat}
             initial="hidden"
             variants={cardVariants}
-            className="lg:col-span-5 bg-gradient-to-br from-[#88171d] to-[#600f13] text-white p-6 sm:p-10 md:p-12 rounded-2xl sm:rounded-[2rem] shadow-xl shadow-red-950/20 flex flex-col justify-between"
+            className="lg:col-span-5 relative overflow-hidden bg-gradient-to-br from-[#88171d] via-[#751217] to-[#500b0e] text-white p-6 sm:p-8 md:p-10 rounded-3xl sm:rounded-[2.5rem] shadow-xl shadow-red-950/25 flex flex-col justify-between"
           >
-            <div>
-              <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-red-200 mb-4 sm:mb-6">
+            {/* Ambient Background Accents */}
+            <div className="absolute -top-16 -right-16 w-48 h-48 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
+            <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-black/20 rounded-full blur-2xl pointer-events-none"></div>
+
+            <div className="relative z-10 flex flex-col h-full justify-between gap-5">
+              <div className="inline-flex items-center gap-2 self-start text-xs sm:text-sm font-bold uppercase tracking-wider text-red-200 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10">
+                <span>⭐</span>
                 Rekam Jejak &amp; Prestasi
               </div>
 
-              <div className="space-y-6 sm:space-y-8">
-                <div className="border-b border-white/15 pb-4 sm:pb-6">
-                  <div className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white mb-1.5">+12 Tahun</div>
-                  <div className="text-sm sm:text-lg text-red-100 font-medium">Melayani area Jabodetabek</div>
+              {/* 3 Stat Cards that stretch evenly */}
+              <div className="grid grid-cols-1 gap-3.5 sm:gap-4 flex-1 my-1">
+                {/* Stat 1 */}
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-5 border border-white/10 hover:bg-white/15 transition-all duration-300 flex items-center justify-between gap-4">
+                  <div>
+                    <div className="text-2xl sm:text-3xl xl:text-4xl font-black tracking-tight text-white mb-0.5">
+                      +12 Tahun
+                    </div>
+                    <div className="text-xs sm:text-sm text-red-100 font-medium">
+                      Melayani area Jabodetabek sejak 2012
+                    </div>
+                  </div>
+                  <div className="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-xl shrink-0">
+                    🏆
+                  </div>
                 </div>
 
-                <div className="border-b border-white/15 pb-4 sm:pb-6">
-                  <div className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white mb-1.5">+25.000</div>
-                  <div className="text-sm sm:text-lg text-red-100 font-medium">Acara sukses telah kami dampingi</div>
+                {/* Stat 2 */}
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-5 border border-white/10 hover:bg-white/15 transition-all duration-300 flex items-center justify-between gap-4">
+                  <div>
+                    <div className="text-2xl sm:text-3xl xl:text-4xl font-black tracking-tight text-white mb-0.5">
+                      +25.000
+                    </div>
+                    <div className="text-xs sm:text-sm text-red-100 font-medium">
+                      Acara sukses telah kami dampingi
+                    </div>
+                  </div>
+                  <div className="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-xl shrink-0">
+                    🎉
+                  </div>
                 </div>
 
-                <div>
-                  <div className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white mb-1.5">+20.000.000</div>
-                  <div className="text-sm sm:text-lg text-red-100 font-medium">Porsi telah dinikmati Sahabat Humani</div>
+                {/* Stat 3 */}
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-5 border border-white/10 hover:bg-white/15 transition-all duration-300 flex items-center justify-between gap-4">
+                  <div>
+                    <div className="text-2xl sm:text-3xl xl:text-4xl font-black tracking-tight text-white mb-0.5">
+                      +20.000.000
+                    </div>
+                    <div className="text-xs sm:text-sm text-red-100 font-medium">
+                      Porsi telah dinikmati Sahabat Humani
+                    </div>
+                  </div>
+                  <div className="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-xl shrink-0">
+                    🍽️
+                  </div>
                 </div>
+              </div>
+
+              {/* Bottom Guarantee Banner */}
+              <div className="pt-4 border-t border-white/15 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-red-100 font-semibold">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                  Kapasitas 10 s/d Ribuan Porsi
+                </span>
+                <span className="text-white font-bold">100% Halal &amp; Higienis</span>
               </div>
             </div>
           </motion.div>
