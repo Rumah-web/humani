@@ -23,7 +23,7 @@ export default function Home() {
 
   const customerService = {
     wa: `+628129006767`,
-    content: `Halo, saya ingin mendapatkan informasi terkait layanan katering Humani`,
+    content: `Halo, saya ingin mendapatkan informasi terkait layanan Humani Catering`,
   };
 
   const cardVariants: Variants = {
@@ -367,7 +367,7 @@ export default function Home() {
             <div>
               <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#88171d] bg-red-50/90 border border-red-100/80 px-4 py-1.5 rounded-full mb-5">
                 <span className="w-2 h-2 rounded-full bg-[#88171d]"></span>
-                Tentang Humanifood
+                Tentang Humani Catering Service (HCS)
               </div>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#88171d] tracking-tight leading-tight mb-5">
                 Berdedikasi Melayani Sajian Terbaik Sejak 2012
@@ -377,7 +377,7 @@ export default function Home() {
                   <strong className="text-[#88171d] font-bold">Humani Catering Service</strong> berdiri sejak bulan Oktober 2012 di Jakarta dan saat ini berdomisili usaha di Cimanggis, Depok, Jawa Barat.
                 </p>
                 <p>
-                  Dengan bendera Humanifood kami telah dipercaya melayani berbagai perusahaan dari beragam industri ternama mulai dari pertelevisian, energi, telekomunikasi, farmasi, hingga acara instansi dan keluarga.
+                  Dengan bendera <strong className="text-[#88171d] font-bold">Humani Catering Service</strong> kami telah dipercaya melayani berbagai perusahaan dari beragam industri ternama mulai dari pertelevisian, energi, telekomunikasi, farmasi, hingga acara instansi dan keluarga.
                 </p>
                 <p>
                   Dukungan tim tenaga profesional kami siap menyajikan sajian istimewa dalam kapasitas kecil maupun besar dengan mutu dan rasa yang konsisten.
