@@ -91,4 +91,9 @@ const formatShorttDate = (dateParams: Date) => {
 	return tanggal + " " + bulan + " " + tahun;
 };
 
-export { useScrollDirection, formatShorttDate };
+const getYearsOfExperience = (startYear: number = 2012): number => {
+	const currentYear = new Date().getFullYear();
+	return Math.max(0, currentYear - startYear);
+};
+
+export { useScrollDirection, formatShorttDate, getYearsOfExperience };
