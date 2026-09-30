@@ -433,7 +433,7 @@ export default function Home() {
                 <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-5 border border-white/10 hover:bg-white/15 transition-all duration-300 flex items-center justify-between gap-4">
                   <div>
                     <div className="text-2xl sm:text-3xl xl:text-4xl font-black tracking-tight text-white mb-0.5">
-                      +12 Tahun
+                      +14 Tahun
                     </div>
                     <div className="text-xs sm:text-sm text-red-100 font-medium">
                       Melayani area Jabodetabek sejak 2012
